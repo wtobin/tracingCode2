@@ -1,0 +1,12 @@
+
+annotations=loadjson('/home/wtobin/tracing/sid_by_annotation.json');
+
+PNs=annotations.PN;
+
+ORNs_Left=annotations.Left_0x20_ORN;
+ORNs_Right=annotations.Right_0x20_ORN;
+
+ORNs=[ORNs_Left, ORNs_Right];
+
+LNs=annotations.LN;
+LNs=[LNs, annotations.Likely_0x20_LN];
