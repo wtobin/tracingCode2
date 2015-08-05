@@ -162,8 +162,7 @@ for i=1:length(PNs)
 end
 
 % plot contact num vs CAPL for each PNs ORN inputs
-% numContactsLORNs and numContactsRORNs come from
-% wfly1TODO_workingAnalyses.m
+
 
 titles={'PN3 LS', 'PN2 LS', 'PN1 RS', 'PN2 RS', 'PN1 LS'};
 
@@ -173,9 +172,9 @@ for i=1:length(PNs)
     subplot(2,3,i)
 
     
-    scatter(numContactsLORNs(i,:),CAPL_Left(i,:),'k', 'filled')
+    scatter(left_contactNum(i,:),CAPL_Left(i,:),'k', 'filled')
     hold on
-    scatter(numContactsRORNs(i,:),CAPL_Right(i,:),'r', 'filled')
+    scatter(right_contactNum(i,:),CAPL_Right(i,:),'r', 'filled')
         title(titles(i))
     set(gcf,'color','w');
     xlabel('Contact #')
@@ -191,15 +190,15 @@ titles={'PN3 LS', 'PN2 LS', 'PN1 RS', 'PN2 RS', 'PN1 LS'};
 
 for i=1:length(PNs)
     
-    
+
     subplot(2,3,i)
-    
-    boxplot([CAPL_Left(i,:),CAPL_Right(i,:)],[zeros(1,length(CAPL_Left(i,:))),ones(1,length(CAPL_Right(i,:)))], 'notch', 'on')
-    set(gca,'XTickLabel',['Left ORNs ';'Right ORNs'])
-    ylabel('Contact averaged path length')
-    title(titles(i))
+
+    boxplot([CAPL_Left(i,:),CAPL_Right(i,:],[zeros(1,length(CAPL_Left
+
+        title(titles(i))
     set(gcf,'color','w');
-    
+    xlabel('Contact #')
+    ylabel('CAPL')
 end
 
 

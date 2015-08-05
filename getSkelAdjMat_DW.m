@@ -26,6 +26,7 @@ for v=1:length(vertNames)
         % there ***
         
         if strcmp(workingSkel.vertices.(cell2mat(vertNames(v))).labels,'soma')==1
+
         else
             
             skelVertInds(counter)=v;
