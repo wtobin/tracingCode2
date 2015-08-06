@@ -84,8 +84,7 @@ for i=1:5
     
 end
 
-
-%Plot the total number of synapses made by each ORN on the R v L hemishere
+%% Plot the total number of synapses made by each ORN on to R v L hemishere PNs
 
 for i =1:length(numContactsLORNs)
     
@@ -112,4 +111,89 @@ xlabel('Num Conns onto L PNs')
 ylabel('Num Conns onto R PNs') 
 title('Right ORNs')
 
-%%
+%% Hist of number of ORN output synapses 
+
+
+%Load the connector structure
+load('~/tracing/conns.mat')
+
+%gen conn fieldname list
+connFields=fieldnames(conns);
+
+% Loop over L ORNs
+for o=1:length(ORNs_Left)
+    
+synCounter=0;
+
+%loop over all connectors
+for i= 1 : length(connFields)
+    
+    %Make sure the connector doesnt have an empty presynaptic field
+    if isempty(conns.(cell2mat(connFields(i))).pre) == 1
+        
+    else
+        
+        %Check to see if the working skel is presynaptic at this connector
+        if conns.(cell2mat(connFields(i))).pre == ORNs_Left(o)
+
+
+                synCounter=synCounter+1;
+                
+          
+        else
+        end
+    end
+end
+
+sumLeftORNOuts(o)=synCounter;
+
+end
+
+
+% Loop over R ORNs
+for o=1:length(ORNs_Right)
+    
+synCounter=0;
+
+%loop over all connectors
+for i= 1 : length(connFields)
+    
+    %Make sure the connector doesnt have an empty presynaptic field
+    if isempty(conns.(cell2mat(connFields(i))).pre) == 1
+        
+    else
+        
+        %Check to see if the working skel is presynaptic at this connector
+        if conns.(cell2mat(connFields(i))).pre == ORNs_Right(o)
+
+
+                synCounter=synCounter+1;
+                
+          
+        else
+        end
+    end
+end
+
+sumRightORNOuts(o)=synCounter;
+
+end
+
+figure()
+set(gcf, 'color', 'w')
+
+subplot(1,2,1)
+hist(sumLeftORNOuts, 20)
+xlabel('Num Output Synapses')
+ylabel('Freq')
+title('Left ORNs')
+xlim([40 110])
+
+
+subplot(1,2,2)
+hist(sumRightORNOuts, 20)
+xlabel('Num Output Synapses')
+ylabel('Freq')
+title('Right ORNs')
+xlim([40 110])
+
