@@ -23,6 +23,7 @@ for i= 1 : length(connFields)
         
         %Check to see if the working skel is presynaptic at this connector
         if conns.(cell2mat(connFields(i))).pre == skel1
+           
             
             
             %Make sure the connector doesnt have an empty postsynaptic field
