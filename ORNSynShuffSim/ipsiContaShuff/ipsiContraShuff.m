@@ -102,7 +102,7 @@ for p=1:length(PNs)
     
 end
 
-cd('~/Documents/MATLAB/tracingCode/ORNSynShuffSim/ipsiContaShuff/')
+cd('~/Documents/MATLAB/tracingCode2/ORNSynShuffSim/ipsiContaShuff/')
 save('shuffMeanDistsL', 'shuffMeanDists')
 save('shuffStdDistL', 'shuffStdDist')
 save('shuffPathsToIntegratorL', 'shuffPathsToIntegrator')
@@ -217,7 +217,7 @@ end
 
 
 
-cd('~/Documents/MATLAB/tracingCode/ORNSynShuffSim/ipsiContaShuff/')
+cd('~/Documents/MATLAB/tracingCode2/ORNSynShuffSim/ipsiContaShuff/')
 save('shuffMeanDistsR', 'shuffMeanDists')
 save('shuffStdDistR', 'shuffStdDist')
 save('shuffPathsToIntegratorR', 'shuffPathsToIntegrator')
@@ -227,9 +227,6 @@ save('pathsR','paths')
 
 %%
 
-for i=1:500
-    popMeans(i)=mean(shuffMeanDists{i});
-end
 
 figure()
 hist(popMeans,100)
@@ -239,9 +236,13 @@ title('Mean Contra ORN syn distance to primary neurite for 500 shuffled pops')
 savefig('popMeansR')
 export_fig popMeansR.png
 
-
-for i=1:500
-    popSTDs(i)=std(shuffMeanDists{i});
+for p=1:5
+    
+for i=1:250
+    
+    
+    popSTDs{p}(i)=std(shuffMeanDists{}{i});
+    
 end
 
 figure()
