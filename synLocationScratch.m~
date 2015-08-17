@@ -1,8 +1,7 @@
 conns=loadjson('~/tracing/connectors.json');
-conns=load('~/tracing/conns.mat');
 connNames=fieldnames(conns);
  
-annotations=loadjson('/home/william/tracing/sid_by_annotation.json');
+annotations=loadjson('/home/wtobin/tracing/sid_by_annotation.json');
 
 PNs=annotations.PN;
 
@@ -297,6 +296,73 @@ set(gcf,'color','w')
 
 
 
+
+for i=1:length(ORNs_Right)
+    
+
+counter=1;
+
+
+for j=1:length(connNames)
+    
+    if isempty(conns.(cell2mat(connNames(j))).pre)== 0 &&  isempty(conns.(cell2mat(connNames(j))).post) == 0
+        
+        if ismember(conns.(cell2mat(connNames(j))).pre,ORNs_Right(i)) == 1 && sum(ismember(conns.(cell2mat(connNames(j))).post,PNs([3,4]))) ~= 0
+            
+            orn2PNs_RIpsi(counter,:)=conns.(cell2mat(connNames(j))).location;
+            counter=counter+1;
+            
+        
+        end
+        
+    else
+    end
+end
+
+
+end
+
+
+
+for i=1:length(ORNs_Left)
+    
+    
+    
+counter=1;
+
+
+for j=1:length(connNames)
+    
+    if isempty(conns.(cell2mat(connNames(j))).pre)== 0 &&  isempty(conns.(cell2mat(connNames(j))).post) == 0
+        
+        if ismember(conns.(cell2mat(connNames(j))).pre,ORNs_Left(i)) == 1 && sum(ismember(conns.(cell2mat(connNames(j))).post,PNs([3,4]))) ~= 0
+            
+            orn2PNs_RContra(counter,:)=conns.(cell2mat(connNames(j))).location;
+            counter=counter+1;
+            
+        
+        end
+        
+    else
+    end
+end
+
+
+end
+
+
+figure()
+
+
+scatter(orn2PNs_RIpsi(:,1),orn2PNs_RIpsi(:,2), 'r')
+hold on
+scatter(orn2PNs_RContra(:,1),orn2PNs_RContra(:,2), 'g')
+
+ylim([2.25*10^5, 2.45*10^5])
+xlim([3.95*10^5 4.66*10^5])
+% ylim([8500, 2.3*10^4])
+% xlim([3.95*10^5 4.66*10^5])
+set(gcf,'color','w')
 
 
 

@@ -295,7 +295,71 @@ set(gcf,'color','w')
 
 
 
+counter=1;
 
+for i=1:length(ORNs_Right)
+    
+
+
+
+
+for j=1:length(connNames)
+    
+    if isempty(conns.(cell2mat(connNames(j))).pre)== 0 &&  isempty(conns.(cell2mat(connNames(j))).post) == 0
+        
+        if ismember(conns.(cell2mat(connNames(j))).pre,ORNs_Right(i)) == 1 && sum(ismember(conns.(cell2mat(connNames(j))).post,PNs([1,2,5]))) ~= 0
+            
+            orn2PNs_Lcontra(counter,:)=conns.(cell2mat(connNames(j))).location;
+            counter=counter+1;
+            
+        
+        end
+        
+    else
+    end
+end
+
+
+end
+
+
+counter=1;
+
+for i=1:length(ORNs_Left)
+    
+
+for j=1:length(connNames)
+    
+    if isempty(conns.(cell2mat(connNames(j))).pre)== 0 &&  isempty(conns.(cell2mat(connNames(j))).post) == 0
+        
+        if ismember(conns.(cell2mat(connNames(j))).pre,ORNs_Left(i)) == 1 && sum(ismember(conns.(cell2mat(connNames(j))).post,PNs([1,2,5]))) ~= 0
+            
+            orn2PNs_Lipsi(counter,:)=conns.(cell2mat(connNames(j))).location;
+            counter=counter+1;
+            
+        
+        end
+        
+    else
+    end
+end
+
+
+end
+
+
+figure()
+% subplot(2,1,1)
+hold on
+scatter(orn2PNs_Lipsi(:,1),orn2PNs_Lipsi(:,2), 'k')
+% subplot(2,1,2)
+scatter(orn2PNs_Lcontra(:,1),orn2PNs_Lcontra(:,2), 'r')
+
+ylim([2.25*10^5, 2.45*10^5])
+xlim([3.95*10^5 4.66*10^5])
+% ylim([8500, 2.3*10^4])
+% xlim([3.95*10^5 4.66*10^5])
+set(gcf,'color','w')
 
 
 

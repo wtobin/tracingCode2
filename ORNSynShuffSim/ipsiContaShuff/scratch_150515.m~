@@ -84,17 +84,17 @@ end
 % ipsi and contra side
 
 for i=1:25
-   fractIpsiL(i)=sum(numContactsLORNs([1,2,5],i))/sum(numContactsLORNs([3,4],i));
+   fractIpsiL(i)=sum(numContactsLORNs([1,2,5],i))/sum(numContactsLORNs(:,i));
    fractIpsiR(i)=sum(numContactsRORNs([3,4],i))/sum(numContactsRORNs(:,i));
     
 end
 
 subplot(2,1,1)
 hist(fractIpsiL,20)
-xlim([0 2])
+xlim([0 1])
 subplot(2,1,2)
 hist(fractIpsiR,20)
-xlim([0 2])
+xlim([0 1])
 
 
 titles={'PN3 LS', 'PN2 LS', 'PN1 RS', 'PN2 RS', 'PN1 LS'};
