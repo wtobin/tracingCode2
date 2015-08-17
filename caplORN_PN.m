@@ -152,7 +152,7 @@ titles={'PN3 LS', 'PN2 LS', 'PN1 RS', 'PN2 RS', 'PN1 LS'};
 
 for i=1:length(PNs)
     
-    orns=[CAPL_Left(i,:),CAPL_Right(i,:)];
+    orns=[norm_CAPL_Left(i,:),norm_CAPL_Right(i,:)];
     grps=[zeros(1,length(CAPL_Left)), ones(1,length(CAPL_Right))];
     subplot(2,3,i)
     boxplot(orns,grps, 'notch', 'on', 'labels',{'Left ORNs','Right ORNs'})

@@ -106,7 +106,7 @@ cd('~/Documents/MATLAB/tracingCode2/ORNSynShuffSim/ipsiContaShuff/')
 save('shuffMeanDistsL', 'shuffMeanDists')
 save('shuffStdDistL', 'shuffStdDist')
 save('shuffPathsToIntegratorL', 'shuffPathsToIntegrator')
-save('pathsL','paths')
+save('shuffPathsL','paths')
 
 clear all
 
@@ -203,10 +203,10 @@ for p=1:length(PNs)
         % Calculate contact averaged path length for each of the fictive ORNs
         for o=1:length(ORNs_Right)
             
-            [shuffMeanDists{p}{i}(o), shuffStdDist{p}{i}(o), shuffPathsToIntegrator{p}{i}{o}, paths{p}{i}{o}]=meanPathToIntegrator(workingPN,edgeMatrix,verts,shuffORNs{o},integrator);
+            [shuffMeanDists{p}{i}(o), shuffStdDist{p}{i}(o), shuffPathLengths{p}{i}{o}, paths{p}{i}{o}]=meanPathToIntegrator(workingPN,edgeMatrix,verts,shuffORNs{o},integrator);
             
         end
-     
+        
     end
     
     
@@ -221,11 +221,58 @@ cd('~/Documents/MATLAB/tracingCode2/ORNSynShuffSim/ipsiContaShuff/')
 save('shuffMeanDistsR', 'shuffMeanDists')
 save('shuffStdDistR', 'shuffStdDist')
 save('shuffPathsToIntegratorR', 'shuffPathsToIntegrator')
-save('pathsR','paths')
+save('shuffPathsR','paths')
 
 
 
 %%
+
+%Collect the real CAPL information for R ORNs
+
+for p= 1:numel(PNs)
+    
+    workingPN=loadjson(strcat('~/tracing/skeletons/', num2str(PNs(p)),'.json'));
+    [ edgeMatrix, verts ] = getSkelAdjMat_DW( workingPN );
+    
+    %find the primary branch point on the working PN (integrator)
+    
+    for i=1:length(verts);
+        if isempty(workingPN.vertices.(cell2mat(verts(i))).labels) == 1
+            
+        elseif strcmp(cell2mat(workingPN.vertices.(cell2mat(verts(i))).labels), 'primary branch point') == 1
+            
+            integrator=verts(i);
+        else
+            
+        end
+    end
+    
+    
+    
+    
+    for o=1:numel(ORNs_Right)
+        
+          workingORN=ORNs_Right(o);
+        inputSyns=getSynapseVerts(workingPN,workingORN);
+        
+        
+         [realMeanDistsR(p,o), realStdDistR(p,o),...
+             realPathsToIntegratorR{p}{o}, realPaths{p}{o}]...
+             =meanPathToIntegrator(workingPN,edgeMatrix,verts,inputSyns,integrator);
+    end
+    
+end
+
+
+
+
+for p=1:5
+    
+    subplot(2,3,p)
+    hist(popSTDs{p},100)
+    title(num2str(sum(popSTDs{p}>std(realMeanDistsR(p,:)))/250))
+    
+end
 
 
 figure()
@@ -238,105 +285,107 @@ export_fig popMeansR.png
 
 for p=1:5
     
-for i=1:250
+    for i=1:250
+        
+        
+        popSTDs{p}(i)=std(shuffMeanDists{p}{i});
+        
+    end
+    
+end
+    
+    figure()
+    hist(popSTDs,100)
+    set(gcf,'color','w')
+    xlabel('std (nm)')
+    title('std of Contra ORN syn distance to primary neurite for 500 shuffled pops')
+    savefig('popSTDsR')
+    export_fig popSTDsR.png
+    
+    sum(popSTDs >= std(meanMinDistsR))/500
     
     
-    popSTDs{p}(i)=std(shuffMeanDists{}{i});
+    for i=1:500
+        meanSTDs(i)=mean(shuffStdDist{i});
+    end
     
-end
-
-figure()
-hist(popSTDs,100)
-set(gcf,'color','w')
-xlabel('std (nm)')
-title('std of Contra ORN syn distance to primary neurite for 500 shuffled pops')
-savefig('popSTDsR')
-export_fig popSTDsR.png
-
-sum(popSTDs >= std(meanMinDistsR))/500
-
-
-for i=1:500
-    meanSTDs(i)=mean(shuffStdDist{i});
-end
-
-figure()
-hist(meanSTDs,100)
-set(gcf,'color','w')
-xlabel('mean std (nm)')
-title('mean std of Contra ORN syn distance to primary neurite for 500 shuffled pops')
-savefig('meanSTDsR')
-export_fig meanSTDsR.png
-
-sum(meanSTDs >= mean(stdMinDistR))/500
-
-% Now for the ipsi ORNs
-
-for i=1:500
-    popMeans(i)=mean(shuffMeanDists{i});
-end
-
-figure()
-hist(popMeans,100)
-set(gcf,'color','w')
-xlabel('Path Distance (nm)')
-title('Mean Ipsi ORN syn distance to primary neurite for 500 shuffled pops')
-savefig('popMeansL')
-export_fig popMeansL.png
-
-
-for i=1:500
-    popSTDs(i)=std(shuffMeanDists{i});
-end
-
-figure()
-hist(popSTDs,100)
-set(gcf,'color','w')
-xlabel('std (nm)')
-title('std of Ipsi ORN syn distance to primary neurite for 500 shuffled pops')
-savefig('popSTDsL')
-export_fig popSTDsL.png
-
-sum(popSTDs >= std(meanDistsL))/500
-
-
-for i=1:500
-    meanSTDs(i)=mean(shuffStdDist{i});
-end
-
-figure()
-hist(meanSTDs,100)
-set(gcf,'color','w')
-xlabel('mean std (nm)')
-title('mean std of ipss ORN syn distance to primary neurite for 500 shuffled pops')
-savefig('meanSTDsL')
-export_fig meanSTDsL.png
-
-sum(meanSTDs >= mean(stdDistL))/500
-
-
-
-
-
-dists=[]
-for i=1:500
-    %     for j
-    dists=[dists pathLengthsL{i}]
-end
-
-
-
-
-
-
-
-[n1,p1]=hist(meanMinDistsL,50)
-[n2,p2]=hist(shuffMeanDists,50)
-
-bar(p1, n1)
-hold on
-bar(p2,n2,'r')
-
-
-[testMeanDists{i}(o), testStdDist{i}(o), testPathsToIntegrator{i}{o}, testPaths{i}{o}]=meanPathToIntegrator(workingSkel,edgeMatrix,skelVertNames,synVerts_master,integrator);
-
+    figure()
+    hist(meanSTDs,100)
+    set(gcf,'color','w')
+    xlabel('mean std (nm)')
+    title('mean std of Contra ORN syn distance to primary neurite for 500 shuffled pops')
+    savefig('meanSTDsR')
+    export_fig meanSTDsR.png
+    
+    sum(meanSTDs >= mean(stdMinDistR))/500
+    
+    % Now for the ipsi ORNs
+    
+    for i=1:500
+        popMeans(i)=mean(shuffMeanDists{i});
+    end
+    
+    figure()
+    hist(popMeans,100)
+    set(gcf,'color','w')
+    xlabel('Path Distance (nm)')
+    title('Mean Ipsi ORN syn distance to primary neurite for 500 shuffled pops')
+    savefig('popMeansL')
+    export_fig popMeansL.png
+    
+    
+    for i=1:500
+        popSTDs(i)=std(shuffMeanDists{i});
+    end
+    
+    figure()
+    hist(popSTDs,100)
+    set(gcf,'color','w')
+    xlabel('std (nm)')
+    title('std of Ipsi ORN syn distance to primary neurite for 500 shuffled pops')
+    savefig('popSTDsL')
+    export_fig popSTDsL.png
+    
+    sum(popSTDs >= std(meanDistsL))/500
+    
+    
+    for i=1:500
+        meanSTDs(i)=mean(shuffStdDist{i});
+    end
+    
+    figure()
+    hist(meanSTDs,100)
+    set(gcf,'color','w')
+    xlabel('mean std (nm)')
+    title('mean std of ipss ORN syn distance to primary neurite for 500 shuffled pops')
+    savefig('meanSTDsL')
+    export_fig meanSTDsL.png
+    
+    sum(meanSTDs >= mean(stdDistL))/500
+    
+    
+    
+    
+    
+    dists=[]
+    for i=1:500
+        %     for j
+        dists=[dists pathLengthsL{i}]
+    end
+    
+    
+    
+    
+    
+    
+    
+    [n1,p1]=hist(meanMinDistsL,50)
+    [n2,p2]=hist(shuffMeanDists,50)
+    
+    bar(p1, n1)
+    hold on
+    bar(p2,n2,'r')
+    
+    
+    [testMeanDists{i}(o), testStdDist{i}(o), testPathsToIntegrator{i}{o}, testPaths{i}{o}]=meanPathToIntegrator(workingSkel,edgeMatrix,skelVertNames,synVerts_master,integrator);
+    
