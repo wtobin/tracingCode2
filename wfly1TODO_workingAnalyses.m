@@ -97,7 +97,9 @@ scatter(leftORN_sums(:,1), leftORN_sums(:,2))
 xlabel('Num Conns onto L PNs') 
 ylabel('Num Conns onto R PNs') 
 title('Left ORNs')
-
+xlim([0 100])
+ylim([0 100])
+refline(1,0)
 for i =1:length(numContactsRORNs)
     
     rightORN_sums(i,1)=sum(numContactsRORNs([1,2,5],i));
@@ -110,7 +112,9 @@ scatter(rightORN_sums(:,1), rightORN_sums(:,2))
 xlabel('Num Conns onto L PNs') 
 ylabel('Num Conns onto R PNs') 
 title('Right ORNs')
-
+xlim([0 100])
+ylim([0 100])
+refline(1,0)
 %% Hist of number of ORN output synapses 
 
 

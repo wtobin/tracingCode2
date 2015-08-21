@@ -62,6 +62,8 @@ for o=1:length(ORNs_Left)
     
 end
 
+
+
 for o=1:length(ORNs_Right)
 
    
@@ -91,3 +93,16 @@ for o=1:length(ORNs_Right)
 end
 
 end
+
+cd('/home/simulation/Documents/MATLAB/tracingCode2/synToSynResults')
+save('synToSynAvesL', 'synToSynAvesL')
+save('synToSynSTDsL', 'synToSynSTDsL')
+save('synToSynIndLengthsL', 'synToSynIndLengthsL')
+save('synToSynPathsL','synToSynPathsL')
+
+save('synToSynAvesR', 'synToSynAvesR')
+save('synToSynSTDsR', 'synToSynSTDsR')
+save('synToSynIndLengthsR', 'synToSynIndLengthsR')
+save('synToSynPathsR','synToSynPathsR')
+
+
