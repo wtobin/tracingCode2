@@ -412,6 +412,22 @@ ylabel('Freq')
 title('Right ORNs')
 xlim([0 10])
 
+%pool all ORNs
+figure()
+set(gcf, 'color', 'w')
+
+
+hist([sumDivL,sumDivR], 30)
+xlabel('Num Postsynaptic Profiles','FontSize', 18)
+ylabel('Freq','FontSize', 18)
+title('DM6 ORNs', 'FontSize', 18)
+set(gca,'FontSize', 18)
+ax=gca;
+ax.XTick=[0:1:10];
+xlim([0 10])
+
+
+
 %histogram the mean number of postsynaptic profiles for each ORN
 
 figure()
@@ -447,6 +463,7 @@ text(2.25,4,cvMeanDivR)
 
 %% What fraction of profiles post-synaptic to ORNs are PNs?
 
+counter=1;
 
 % Loop over L ORNs
 for o=1:length(ORNs_Left)
@@ -608,6 +625,7 @@ text(100, 240, 'y=3.23x+32.7')
 title('Right ORNs')
 xlabel('Num Presynaptic Sites')
 ylabel('Num Post Profiles')
+
 % generate historams of the number of PN profiles postsynaptic to right and
 % left ORNs
 figure()
@@ -711,20 +729,55 @@ text(.3,5,cvFractContraR)
 
 % Generate the boxplot of ipsi vs. contra inputs to each PN
 
-titles={'PN3 LS', 'PN2 LS', 'PN1 RS', 'PN2 RS', 'PN1 LS'};
+ipsi_OtoP_contacts(:,1:3)=postPnProfL(:,[5,2,1]);
+ipsi_OtoP_contacts(:,4:5)=postPnProfR(:,[3,4]);
+
+contra_OtoP_contacts(:,1:3)=postPnProfR(:,[5,2,1]);
+contra_OtoP_contacts(:,4:5)=postPnProfL(:,[3,4]);
+
+
+titles={'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS', 'PN2 RS'};
 
 for i=1:length(PNs)
-    
-    
+
     subplot(2,3,i)
+%     boxplot([ipsi_OtoP_contacts(:,i),contra_OtoP_contacts(:,i)],[zeros(1,length(ipsi_OtoP_contacts(:,i))),ones(1,length(contra_OtoP_contacts(:,i)))], 'notch', 'on')
+scatter([ones(length(ipsi_OtoP_contacts(:,i)),1);2*ones(length(contra_OtoP_contacts(:,i)),1)],[ipsi_OtoP_contacts(:,i);contra_OtoP_contacts(:,i)])
+xlim([0 3])
+ylim([0 50])
+set(gca, 'XTick',[1:1:2])
+line([.75 1.25],[mean(ipsi_OtoP_contacts(:,i)), mean(ipsi_OtoP_contacts(:,i))], 'color', 'k', 'LineWidth', 2)
+line([1.75 2.25],[mean(contra_OtoP_contacts(:,i)), mean(contra_OtoP_contacts(:,i))], 'color', 'k', 'LineWidth', 2)
+    set(gca,'XTickLabel',['Ipsi  ';'Contra'],'FontSize',18)
     
-    boxplot([postPnProfL(:,i),postPnProfR(:,i)],[zeros(1,length(postPnProfL(:,i))),ones(1,length(postPnProfR(:,i)))], 'notch', 'on')
-    set(gca,'XTickLabel',['Left ORNs ';'Right ORNs'])
-    ylabel('Num of Contacts')
-    title(titles(i))
+    if i == 1 || i==4
+    ylabel('Num ORN Contacts', 'FontSize',18)
+    else
+    end
+    title(titles(i), 'FontSize',18)
     set(gcf,'color','w');
     
 end
+
+% Generate the boxplot of ipsi vs. contra inputs to each PN
+
+ipsi_OtoP=[sum(ipsi_OtoP_contacts(:,[1:3])'),sum(ipsi_OtoP_contacts(:,[4,5])')]
+contra_OtoP=[sum(contra_OtoP_contacts(:,[1:3])'),sum(contra_OtoP_contacts(:,[4,5])')]
+
+figure()
+set(gcf,'color','w')
+scatter(ipsi_OtoP,contra_OtoP,'filled')
+xlabel('Ipsi PN Contacts', 'FontSize', 18)
+ylabel('Contra PN Contacts', 'FontSize',18)
+rLine=refline(1,0);
+rLine.Color='k';
+title('DM6 ORNs', 'FontSize',24)
+
+%MANOVA test for significance in difference bewteen mean ipsi and contra
+%ORN inputs
+
+concatIpsiCont=[ipsi_OtoP_contacts;contra_OtoP_contacts];
+groups=[zeros(size(ipsi_OtoP_contacts,1),1); ones(size(contra_OtoP_contacts,1),1)];
 
 
 % Ok here I want to generate a histogram of the fraction of ipsi inputs to
@@ -748,19 +801,21 @@ for pn=1:5
 end
 
 figure()
-subplot(1,2,1)
+subplot(2,1,1)
 set(gcf, 'color', 'w')
-hist(fractIpsiInputs, 20)
-xlabel('contacts on ipsi PN/sum ipsi orn--> pn contacts')
-ylabel('Freq')
-title('Fraction of Ipsilateral ORN-->PN Inputs accounted for by each ORN')
-xlim([0 .08])
-ylim([0 20])
-stdOutL=['std: ', num2str(std(fractIpsiInputs))];
-cvOutL=['CV: ', num2str(std(fractIpsiInputs)/mean(fractIpsiInputs))];
-text(.005,16.5,stdOutL)
-text(.005,16,cvOutL)
+ax=gca;
 
+hist(fractIpsiInputs, 50)
+xlabel('Unitary Contact Num/Total Contacts', 'FontSize',18)
+ylabel('Freq')
+title('Fraction of Ipsi ORN Inputs provided by each ORN', 'FontSize',18)
+xlim([0 .08])
+ylim([0 12])
+stdFractI=['std: ', num2str(std(fractIpsiInputs))];
+cvFractI=['CV: ', num2str(std(fractIpsiInputs)/mean(fractIpsiInputs))];
+text(.005,11,stdFractI,  'FontSize',18)
+text(.005,10,cvFractI, 'FontSize',18)
+ax.FontSize=16;
 
 % now I want to run a simulation 
 
@@ -824,18 +879,22 @@ end
 
 %Histogram all simulated fractions
 
-subplot(1,2,2)
-set(gcf, 'color', 'w')
-hist(allSimFractIpsi, 20)
-xlabel('contacts on ipsi PN/sum ipsi orn--> pn contacts')
+subplot(2,1,2)
+ax=gca;
+
+hist(allSimFractIpsi, 50)
+xlabel('SIMULATED Unitary Contact Num/Total Contacts', 'FontSize',18)
 ylabel('Freq')
-title('Fraction of Ipsilateral ORN-->PN Inputs accounted for by each ORN')
-xlim([0 .09])
-ylim([0 300000])
-stdOutL=['std: ', num2str(std(allSimFractIpsi))];
-cvOutL=['CV: ', num2str(std(allSimFractIpsi)/mean(allSimFractIpsi))];
-text(.005,210000,stdOutL)
-text(.005,200000,cvOutL)
+title('SIMULATED Fraction of Ipsi ORN Inputs provided by each ORN', 'FontSize',18)
+xlim([0 .08])
+ylim([0 140000])
+stdFractISim=['std: ', num2str(std(allSimFractIpsi))];
+cvFractISim=['CV: ', num2str(std(allSimFractIpsi)/mean(allSimFractIpsi))];
+text(.005,120000,stdFractISim,  'FontSize',18)
+text(.005,100000,cvFractISim, 'FontSize',18)
+ax.FontSize=16;
+
+
 
 % Histogram the distribution of stds
 figure()
@@ -1462,6 +1521,7 @@ connectionFields=fieldnames(workingORN.connectivity);
 
 leftCounter=1;
 rightCounter=1;
+
 for i=1:length(connectionFields)
     children=fieldnames(workingORN.connectivity.(cell2mat(connectionFields(i)))); 
 
