@@ -130,7 +130,7 @@ text(45,5,cvOutR)
 
 %run the simulation 10000 times
 
-for r=1:10000
+for r=1:1000
    
     % assign each Left ORN output synapse to one of the 25 Left ORNs at
     % random
@@ -229,7 +229,7 @@ sumLOuts_exMin(find(sumLOuts_exMin==min(sumLOuts_exMin)))=[];
 sumROuts_exMin=sumRightORNOuts;
 sumROuts_exMin(find(sumROuts_exMin==min(sumROuts_exMin)))=[]; 
 
-for r=1:10000
+for r=1:1000
    r
     % assign each Left ORN output synapse to one of the 25 Left ORNs at
     % random
