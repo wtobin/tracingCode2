@@ -20,8 +20,17 @@ ORNs_Left(find(ORNs_Left == 401378))=[];
 % %exclude ORN 8 because it was temporarily unilateral on 8/5 for testing 
 % ORNs_Left(find(ORNs_Left == 593865))=[];
 
+ORNs=[ORNs_Left, ORNs_Right];
+
 %return all skeleton IDs of DM6 PNs
 PNs=annotations.PN;
+
+%return all LN skel IDs
+LNs=annotations.LN;
+LNs=[LNs, annotations.potential_0x20_LN];
+LNs=[LNs, annotations.Prospective_0x20_LN];
+LNs=[LNs, annotations.Likely_0x20_LN];
+
 
 %Load the connector structure
 load('~/tracing/conns.mat')
@@ -33,42 +42,33 @@ connFields=fieldnames(conns);
 
 %Loop over all PNs
 
-for p=1:5
+for p=1:length(PNs)
     
-postSkel{p}=[];
-
-%loop over all connectors
-for i= 1 : length(connFields)
+    postSkel{p}=[];
     
-    %Make sure the connector doesnt have an empty presynaptic field
-    if isempty(conns.(cell2mat(connFields(i))).pre) == 1 
+    %loop over all connectors
+    for i= 1 : length(connFields)
         
-        % or an empty postsynaptic field, if its empty it will be a cell
-        
-    elseif iscell(conns.(cell2mat(connFields(i))).post) == 1
-        
-    else
-        
-        %Check to see if the current PN is presynaptic at this connector
-        if PNs(p) == conns.(cell2mat(connFields(i))).pre
+        %Make sure the connector doesnt have an empty presynaptic field
+        if isempty(conns.(cell2mat(connFields(i))).pre) == 1
             
-            %record the postsynaptic skel IDs 
+            % or an empty postsynaptic field, if its empty it will be a cell
             
- 
-                
-               
-                
-               
-                    
-                    postSkel{p}=[postSkel{p}, conns.(cell2mat(connFields(i))).post];
+        elseif iscell(conns.(cell2mat(connFields(i))).post) == 1
+            
         else
-                    
+            
+            %Check to see if the current PN is presynaptic at this connector
+            if PNs(p) == conns.(cell2mat(connFields(i))).pre
+                
+                %record the postsynaptic skel IDs
+                postSkel{p}=[postSkel{p}, conns.(cell2mat(connFields(i))).post];
+                
+            else
+                
                 
             end
-           
-                
-          
-       
+
         end
     end
 end
@@ -97,120 +97,63 @@ end
 
 
 
-%% Identify annotations associated with each profile presynaptic to each PN
+%% Categorize presynaptic profiles
 
-%collect a list of annotations present in our dataset
+% Question, how many profiles can be accounted for as ORNs, PNs and LNs?
 
-annFields=fieldnames(annotations);
 
 % Loop over each PN
 for p=1:length(PNs)
     
     
-    %loop over each postsynaptic profile
-for s=1:length(postSkel{p})
-    
-    
-    % for each annotation
-    for a= 1:length(annFields)
-        
-        if ismember(postSkel{p}(s),annotations.(cell2mat(annFields(a)))) == 1
-            annTable{p}(s,a)=1;
-        else
-            annTable{p}(s,a)=0;
-        end
-    end
-end
-end
-
-
-
-% Question, how many profiles can be accounted for as ORNs, PNs and LNs?
-
-
-%for each PN
-for p=1:5
-    
-    %for each postsynaptic profile
+    %loop over each presynaptic profile
     for s=1:length(postSkel{p})
         
-        %is it a PN, and LN or an ORN?
-        
-        % collect indicies of annotations on this postsynaptic profile
-        k=find(annTable{p}(s,:));
-    
-        for a=1:length(k)
+        if ismember(postSkel{p}(s), ORNs) == 1
             
-            if isempty(findstr('ORN', cell2mat(annFields(k(a))))) == 0
-                
-                preSynID{p}(s)=1;
-                break
-                
-            elseif isempty(findstr('LN', cell2mat(annFields(k(a))))) == 0
-                
-                 preSynID{p}(s)=2;
-                break
-                
-            elseif isempty(findstr('PN', cell2mat(annFields(k(a))))) == 0
-                
-                 preSynID{p}(s)=3;
-                break
-                
-            else
-                 preSynID{p}(s)=4;
-                
-                
-            end
+            postSynID{p}(s)=1;
+            
+            
+        elseif ismember(postSkel{p}(s), PNs) == 1
+            
+            postSynID{p}(s)=2;
+            
+            
+        elseif ismember(postSkel{p}(s), LNs) == 1
+            
+            postSynID{p}(s)=3;
+            
+            
+        else
+            postSynID{p}(s)=4;
+            
         end
+        
     end
 end
 
 
-%stacked bar chart the averages
+%% Plotting
 
 
 %Tally up the identifications
 
 
-
+%For each PN
+for p=1:length(PNs)
     
-for p=1:5
-    counter=1;
+    %for each category
+    for id=1:4
+        
+        idenCounts(p,id)=sum(postSynID{p}==id);
+        
+    end
     
-  for id=0:4  
-    idenCounts(p,counter)=sum(preSynID{p}==id);
-
-   counter=counter+1;
-   
-  end
-
 end
-
-% 
-% order=[5,1,2,3,4];
-% 
-% labels={'unk: ','ORN: ','LN: ','PN: ','unclassified: '};
-% explode=[0,0,0,1,1];
-% 
-% 
-% for i=1:5
-%     
-%     subplot(2,3,i)
-% %     h=pie(idenCounts(order(i),:));
-% %     hText = findobj(h,'Type','text'); % text object handles
-% %     percentValues = get(hText,'String'); % percent values
-% %     combinedLabels=strcat(labels,percentValues');
-%     pie(idenCounts(order(i),:),explode)
-%    
-%     
-% end
-%     
-% subplot(2,3,6)
-% legend(labels)
 
 [v i]=sort(sum(idenCounts), 'descend');
 
-labels={'Unknown','ORN','LN','PN','Unclassified'};
+labels={'ORN','PN','LN','Unclassified'};
 order=[5,1,2,3,4];  
 pnLabels={'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS','PN2 RS'};
 
@@ -230,7 +173,7 @@ ylabel('Postsynaptic Profile Num')
 %Normalize the postynaptic identity counts by tot number of postsynaptic
 %profiles
 
-for t=1:5
+for t=1:length(PNs)
     normIden(t,:)=idenCounts(order(t),i)./sum(idenCounts(order(t),i));
 end
 
@@ -242,7 +185,7 @@ ax=gca;
 ax.XTickLabel=pnLabels;
 ax.FontSize=18;
 ax.YLim=[0, 1.3];
-ax.XLim=[-.2 6.0]
+ax.XLim=[-.2 6.0];
 set(gcf,'color','w')
 ylabel('Fraction Postsynaptic Profiles')
 
@@ -253,9 +196,9 @@ h=pie(mean(normIden));
 % title('Average Fractional Input')
 set(gcf,'color','w')
 
-textInds=[2:2:10];
+textInds=[2:2:8];
 
-for i=1:5
+for i=1:4
     h(textInds(i)).FontSize=16;
 end
 

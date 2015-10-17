@@ -20,15 +20,23 @@ ORNs_Left(find(ORNs_Left == 401378))=[];
 % %exclude ORN 8 because it was temporarily unilateral on 8/5 for testing 
 % ORNs_Left(find(ORNs_Left == 593865))=[];
 
+ORNs=[ORNs_Left, ORNs_Right];
+
 %return all skeleton IDs of DM6 PNs
 PNs=annotations.PN;
+
+%return all LN skel IDs
+LNs=annotations.LN;
+LNs=[LNs, annotations.potential_0x20_LN];
+LNs=[LNs, annotations.Prospective_0x20_LN];
+LNs=[LNs, annotations.Likely_0x20_LN];
+
 
 %Load the connector structure
 load('~/tracing/conns.mat')
 
 %gen conn fieldname list
 connFields=fieldnames(conns);
-
 %% Collect a list of presynaptic profile skeleton IDs for each ORN
 
 ORNs=[ORNs_Left,ORNs_Right];
@@ -101,74 +109,43 @@ end
 
 
 
-%% Identify annotations associated with each profile presynaptic to each ORN
-
-%collect a list of annotations present in our dataset
-
-annFields=fieldnames(annotations);
-
-% Loop over each PN
-for o=1:length(ORNs)
-    
-    
-    %loop over each presynaptic profile
-for s=1:length(preSkel{o})
-    
-    
-    % for each annotation
-    for a= 1:length(annFields)
-        
-        if ismember(preSkel{o}(s),annotations.(cell2mat(annFields(a)))) == 1
-            annTable{o}(s,a)=1;
-        else
-            annTable{o}(s,a)=0;
-        end
-    end
-end
-end
-
-
+%% Categorize presynaptic profiles
 
 % Question, how many profiles can be accounted for as ORNs, PNs and LNs?
 
 
-%for each ORN
-for o=1:length(ORNs)
+% Loop over each ORN
+for p=1:length(ORNs)
     
-    %for each presynaptic profile
-    for s=1:length(preSkel{o})
-        
-        %is it a PN, and LN or an ORN?
-        
-        % collect indicies of annotations on this presynaptic profile
-        k=find(annTable{o}(s,:));
     
-        for a=1:length(k)
-            
-            if isempty(findstr('ORN', cell2mat(annFields(k(a))))) == 0
+    %loop over each presynaptic profile
+for s=1:length(preSkel{p})
+    
+     if ismember(preSkel{p}(s), ORNs) == 1
                 
-                preSynID{o}(s)=1;
-                break
+                preSynID{p}(s)=1;
                 
-            elseif isempty(findstr('LN', cell2mat(annFields(k(a))))) == 0
                 
-                 preSynID{o}(s)=2;
-                break
+            elseif ismember(preSkel{p}(s), PNs) == 1
                 
-            elseif isempty(findstr('PN', cell2mat(annFields(k(a))))) == 0
+                 preSynID{p}(s)=2;
                 
-                 preSynID{o}(s)=3;
-                break
+                
+            elseif ismember(preSkel{p}(s), LNs) == 1
+                
+                 preSynID{p}(s)=3;
+                
                 
             else
-                 preSynID{o}(s)=4;
+                 preSynID{p}(s)=4;
                 
-                
-            end
-        end
-    end
+     end
+    
+end
 end
 
+
+%% Plotting
 
 %stacked bar chart the averages
 
@@ -180,13 +157,12 @@ end
     
 for o=1:length(ORNs)
     
-    counter=1;
+ 
     
-  for id=0:4  
-    idenCounts(o,counter)=sum(preSynID{o}==id);
+  for id=1:4
+    idenCounts(o,id)=sum(preSynID{o}==id);
 
-   counter=counter+1;
-   
+
   end
 
 end
@@ -194,7 +170,7 @@ end
 
 [v i]=sort(sum(idenCounts), 'descend');
 
-labels={'Unknown','ORN','LN','PN','Unclassified'};
+labels={'ORN','PN','LN','Unclassified'};
  
 
 
@@ -236,9 +212,9 @@ h=pie(mean(normIden));
 % title('Average Fractional Input')
 set(gcf,'color','w')
 
-textInds=[2:2:10];
+textInds=[2:2:8];
 
-for i=1:5
+for i=1:4
     h(textInds(i)).FontSize=16;
 end
 

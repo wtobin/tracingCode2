@@ -20,8 +20,17 @@ ORNs_Left(find(ORNs_Left == 401378))=[];
 % %exclude ORN 8 because it was temporarily unilateral on 8/5 for testing 
 % ORNs_Left(find(ORNs_Left == 593865))=[];
 
+ORNs=[ORNs_Left, ORNs_Right];
+
 %return all skeleton IDs of DM6 PNs
 PNs=annotations.PN;
+
+%return all LN skel IDs
+LNs=annotations.LN;
+LNs=[LNs, annotations.potential_0x20_LN];
+LNs=[LNs, annotations.Prospective_0x20_LN];
+LNs=[LNs, annotations.Likely_0x20_LN];
+
 
 %Load the connector structure
 load('~/tracing/conns.mat')
@@ -29,48 +38,37 @@ load('~/tracing/conns.mat')
 %gen conn fieldname list
 connFields=fieldnames(conns);
 
-%% Collect a list of postsynaptic profile skeleton IDs for each ORN
 
-ORNs=[ORNs_Left,ORNs_Right];
+%% Collect a list of postsynaptic profile skeleton IDs for each ORN
 
 %Loop over all ORNs
 
 for o=1:length(ORNs)
     
-postSkel{o}=[];
-
-%loop over all connectors
-for i= 1 : length(connFields)
+    postSkel{o}=[];
     
-    %Make sure the connector doesnt have an empty presynaptic field
-    if isempty(conns.(cell2mat(connFields(i))).pre) == 1 
+    %loop over all connectors
+    for i= 1 : length(connFields)
         
-        % or an empty postsynaptic field, if its empty it will be a cell
-        
-    elseif iscell(conns.(cell2mat(connFields(i))).post) == 1
-        
-    else
-        
-        %Check to see if the current PN is presynaptic at this connector
-        if ORNs(o) == conns.(cell2mat(connFields(i))).pre
+        %Make sure the connector doesnt have an empty presynaptic field
+        if isempty(conns.(cell2mat(connFields(i))).pre) == 1
             
-            %record the postsynaptic skel IDs 
+            % or an empty postsynaptic field, if its empty it will be a cell
             
- 
-                
-               
-                
-               
-                    
-                    postSkel{o}=[postSkel{o}, conns.(cell2mat(connFields(i))).post];
+        elseif iscell(conns.(cell2mat(connFields(i))).post) == 1
+            
         else
-                    
+            
+            %Check to see if the current PN is presynaptic at this connector
+            if ORNs(o) == conns.(cell2mat(connFields(i))).pre
+                
+                %record the postsynaptic skel IDs
+                postSkel{o}=[postSkel{o}, conns.(cell2mat(connFields(i))).post];
+                
+            else
                 
             end
-           
-                
-          
-       
+            
         end
     end
 end
@@ -99,93 +97,58 @@ end
 
 
 
-%% Identify annotations associated with each profile postsynaptic to each ORN
-
-%collect a list of annotations present in our dataset
-
-annFields=fieldnames(annotations);
-
-% Loop over each ORN
-for o=1:length(ORNs)
-    
-    
-    %loop over each postsynaptic profile
-for s=1:length(postSkel{o})
-    
-    
-    % for each annotation
-    for a= 1:length(annFields)
-        
-        if ismember(postSkel{o}(s),annotations.(cell2mat(annFields(a)))) == 1
-            annTable{o}(s,a)=1;
-        else
-            annTable{o}(s,a)=0;
-        end
-    end
-end
-end
-
-
+%% Categorize presynaptic profiles
 
 % Question, how many profiles can be accounted for as ORNs, PNs and LNs?
 
 
-%for each ORN
-for o=1:length(ORNs)
+% Loop over each ORN
+for p=1:length(ORNs)
     
-    %for each postsynaptic profile
-    for s=1:length(postSkel{o})
-        
-        %is it a PN, and LN or an ORN?
-        
-        % collect indicies of annotations on this postsynaptic profile
-        k=find(annTable{o}(s,:));
     
-        for a=1:length(k)
+    %loop over each presynaptic profile
+    for s=1:length(postSkel{p})
+        
+        if ismember(postSkel{p}(s), ORNs) == 1
             
-            if isempty(findstr('ORN', cell2mat(annFields(k(a))))) == 0
-                
-                preSynID{o}(s)=1;
-                break
-                
-            elseif isempty(findstr('LN', cell2mat(annFields(k(a))))) == 0
-                
-                 preSynID{o}(s)=2;
-                break
-                
-            elseif isempty(findstr('PN', cell2mat(annFields(k(a))))) == 0
-                
-                 preSynID{o}(s)=3;
-                break
-                
-            else
-                 preSynID{o}(s)=4;
-                
-                
-            end
+            postSynID{p}(s)=1;
+            
+            
+        elseif ismember(postSkel{p}(s), PNs) == 1
+            
+            postSynID{p}(s)=2;
+            
+            
+        elseif ismember(postSkel{p}(s), LNs) == 1
+            
+            postSynID{p}(s)=3;
+            
+            
+        else
+            postSynID{p}(s)=4;
+            
         end
+        
     end
 end
 
+%% Plotting
 
 %stacked bar chart the averages
 
 
 %Tally up the identifications
 
-
-
+%For each ORN
+for p=1:length(ORNs)
     
-for o=1:length(ORNs)
-    counter=1;
+    %for each category
+    for id=1:4
+        
+        idenCounts(p,id)=sum(postSynID{p}==id);
+        
+    end
     
-  for id=0:4  
-    idenCounts(o,counter)=sum(preSynID{o}==id);
-
-   counter=counter+1;
-   
-  end
-
 end
 
 % 
@@ -212,7 +175,7 @@ end
 
 [v i]=sort(sum(idenCounts), 'descend');
 
-labels={'Unknown','ORN','LN','PN','Unclassified'};
+labels={'ORN','PN','LN','Unclassified'};
 
 %Raw Numbers
 figure()
@@ -222,7 +185,7 @@ ax=gca;
 ax.FontSize=18;
 set(gcf,'color','w')
 ylabel('Postsynaptic Profile Num')
-
+xlabel('ORNs')
 
 %Fractions
 
@@ -234,7 +197,6 @@ for t=1:length(ORNs)
 end
 
 figure()
-
 bar(normIden,'stacked');
 legend(labels(i),'Location', 'NorthEast')
 ax=gca;
@@ -252,9 +214,9 @@ h=pie(mean(normIden));
 % title('Average Fractional Input')
 set(gcf,'color','w')
 
-textInds=[2:2:10];
+textInds=[2:2:8];
 
-for i=1:5
+for i=1:4
     h(textInds(i)).FontSize=16;
 end
 

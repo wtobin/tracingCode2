@@ -328,62 +328,40 @@ for t=1:3
 subplot(3,3,t)
 hist(ornOuts{t},12)
 title(types(t))
-xlabel('Num Post Partners')
-
-
+ylim([0 1500])
+xlim([0 12])
 
 end
 
-ax=gca;
-ylabel('Num Post Partners')
-ax.XLim=[0 4];
-ax.YLim=[0 15];
-ax.XTick=[1:3];
-ax.XTickLabel={'ORN-->PN','ORN-->LN','ORN-->ORN'};
+types={'PN-->PN','PN-->LN','PN-->ORN'};
 
-        
-     
-subplot(3,1,2)
 
 for t=1:3
 
-jitterAmount = 0.25;
-jitterValuesX = 2*(rand(1,length(pnOuts{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
-jitterValuesY = 2*(rand(size(pnOuts{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
-
-scatter(t*ones(1,length(pnOuts{t}))+jitterValuesX,pnOuts{t}+jitterValuesY)
-hold on
-
+subplot(3,3,t+3)
+hist(pnOuts{t},12)
+title(types(t))
+ylim([0 200])
+xlim([0 12])
 
 end
 
-ax=gca;
-ylabel('Num Post Partners')
-ax.XLim=[0 4];
-ax.YLim=[0 15];
-ax.XTick=[1:3];
-ax.XTickLabel={'PN-->PN','PN-->LN','PN-->ORN'}; 
-
-
-subplot(3,1,3)
+types={'LN-->PN','LN-->LN','LN-->ORN'};
 
 for t=1:3
 
-jitterAmount = 0.25;
-jitterValuesX = 2*(rand(1,length(lnOuts{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
-jitterValuesY = 2*(rand(size(lnOuts{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
+subplot(3,3,t+6)
 
-scatter(t*ones(1,length(lnOuts{t}))+jitterValuesX,lnOuts{t}+jitterValuesY)
-hold on
+hist(lnOuts{t},12)
+title(types(t))
+ylim([0 400])
+xlim([0 12])
+
+if t==1
+    xlabel('Num Post Profiles', 'FontSize', 16)
+    ylabel('Freq','FontSize', 16)
+end
+
 
 
 end
-
-ax=gca;
-ylabel('Num Post Partners')
-ax.XLim=[0 4];
-ax.YLim=[0 15];
-ax.XTick=[1:3];
-ax.XTickLabel={'LN-->PN','LN-->LN','LN-->ORN'}; 
-
-

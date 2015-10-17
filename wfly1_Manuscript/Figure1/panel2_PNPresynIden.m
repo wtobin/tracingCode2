@@ -20,19 +20,26 @@ ORNs_Left(find(ORNs_Left == 401378))=[];
 % %exclude ORN 8 because it was temporarily unilateral on 8/5 for testing 
 % ORNs_Left(find(ORNs_Left == 593865))=[];
 
+ORNs=[ORNs_Left, ORNs_Right];
+
 %return all skeleton IDs of DM6 PNs
 PNs=annotations.PN;
+
+%return all LN skel IDs
+LNs=annotations.LN;
+LNs=[LNs, annotations.potential_0x20_LN];
+LNs=[LNs, annotations.Prospective_0x20_LN];
+LNs=[LNs, annotations.Likely_0x20_LN];
+
 
 %Load the connector structure
 load('~/tracing/conns.mat')
 
 %gen conn fieldname list
 connFields=fieldnames(conns);
-
 %% Collect a list of presynaptic profile skeleton IDs for each PN
 
 %Loop over all PNs
-
 for p=1:5
     
 preSkel{p}=[];
@@ -40,11 +47,10 @@ preSkel{p}=[];
 %loop over all connectors
 for i= 1 : length(connFields)
     
-    %Make sure the connector doesnt have an empty presynaptic field
+   %Make sure the connector doesnt have an empty presynaptic field
     if isempty(conns.(cell2mat(connFields(i))).pre) == 1 
         
-        % or an empty postsynaptic field, if its empty it will be a cell
-        
+   %or an empty postsynaptic field, if its empty it will be a cell
     elseif iscell(conns.(cell2mat(connFields(i))).post) == 1
         
     else
@@ -56,8 +62,6 @@ for i= 1 : length(connFields)
             %postsynaptic
             
             for s=1:length(conns.(cell2mat(connFields(i))).post)
-                
-               
                 
                 if conns.(cell2mat(connFields(i))).post(s) == PNs(p)
                     
@@ -99,11 +103,10 @@ end
 
 
 
-%% Identify annotations associated with each profile presynaptic to each PN
+%% Categorize presynaptic profiles
 
-%collect a list of annotations present in our dataset
+% Question, how many profiles can be accounted for as ORNs, PNs and LNs?
 
-annFields=fieldnames(annotations);
 
 % Loop over each PN
 for p=1:length(PNs)
@@ -112,61 +115,32 @@ for p=1:length(PNs)
     %loop over each presynaptic profile
 for s=1:length(preSkel{p})
     
-    
-    % for each annotation
-    for a= 1:length(annFields)
-        
-        if ismember(preSkel{p}(s),annotations.(cell2mat(annFields(a)))) == 1
-            annTable{p}(s,a)=1;
-        else
-            annTable{p}(s,a)=0;
-        end
-    end
-end
-end
-
-
-
-% Question, how many profiles can be accounted for as ORNs, PNs and LNs?
-
-
-%for each PN
-for p=1:5
-    
-    %for each presynaptic profile
-    for s=1:length(preSkel{p})
-        
-        %is it a PN, and LN or an ORN?
-        
-        % collect indicies of annotations on this presynaptic profile
-        k=find(annTable{p}(s,:))
-    
-        for a=1:length(k)
-            
-            if isempty(findstr('ORN', cell2mat(annFields(k(a))))) == 0
+     if ismember(preSkel{p}(s), ORNs) == 1
                 
                 preSynID{p}(s)=1;
-                break
                 
-            elseif isempty(findstr('LN', cell2mat(annFields(k(a))))) == 0
+                
+            elseif ismember(preSkel{p}(s), PNs) == 1
                 
                  preSynID{p}(s)=2;
-                break
                 
-            elseif isempty(findstr('PN', cell2mat(annFields(k(a))))) == 0
+                
+            elseif ismember(preSkel{p}(s), LNs) == 1
                 
                  preSynID{p}(s)=3;
-                break
+                
                 
             else
                  preSynID{p}(s)=4;
                 
-                
-            end
-        end
-    end
+     end
+    
+end
 end
 
+
+
+%% Plotting
 
 %stacked bar chart the averages
 
@@ -175,44 +149,21 @@ end
 
 
 
+%For each PN
+for p=1:length(PNs)
     
-for p=1:5
-    counter=1;
+    %for each category
+    for id=1:4
+        
+        idenCounts(p,id)=sum(preSynID{p}==id);
+        
+    end
     
-  for id=0:4  
-    idenCounts(p,counter)=sum(preSynID{p}==id);
-
-   counter=counter+1;
-   
-  end
-
 end
-
-% 
-% order=[5,1,2,3,4];
-% 
-% labels={'unk: ','ORN: ','LN: ','PN: ','unclassified: '};
-% explode=[0,0,0,1,1];
-% 
-% 
-% for i=1:5
-%     
-%     subplot(2,3,i)
-% %     h=pie(idenCounts(order(i),:));
-% %     hText = findobj(h,'Type','text'); % text object handles
-% %     percentValues = get(hText,'String'); % percent values
-% %     combinedLabels=strcat(labels,percentValues');
-%     pie(idenCounts(order(i),:),explode)
-%    
-%     
-% end
-%     
-% subplot(2,3,6)
-% legend(labels)
 
 [v i]=sort(sum(idenCounts), 'descend');
 
-labels={'Unknown','ORN','LN','PN','Unclassified'};
+labels={'ORN','PN','LN','Unclassified'};
 order=[5,1,2,3,4];  
 pnLabels={'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS','PN2 RS'};
 
