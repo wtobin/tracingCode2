@@ -263,12 +263,11 @@ hold on
 end
 
 ax=gca;
-ylabel('Num Post Partners')
 ax.XLim=[0 4];
 ax.YLim=[0 15];
 ax.XTick=[1:3];
 ax.XTickLabel={'ORN-->PN','ORN-->LN','ORN-->ORN'};
-
+ax.FontSize=16;
         
      
 subplot(3,1,2)
@@ -286,12 +285,13 @@ hold on
 end
 
 ax=gca;
-ylabel('Num Post Partners')
+ylabel('Num Post Partners', 'FontSize', 16)
 ax.XLim=[0 4];
 ax.YLim=[0 15];
 ax.XTick=[1:3];
 ax.XTickLabel={'PN-->PN','PN-->LN','PN-->ORN'}; 
-
+ax.FontSize=16;
+        
 
 subplot(3,1,3)
 
@@ -308,12 +308,12 @@ hold on
 end
 
 ax=gca;
-ylabel('Num Post Partners')
 ax.XLim=[0 4];
 ax.YLim=[0 15];
 ax.XTick=[1:3];
 ax.XTickLabel={'LN-->PN','LN-->LN','LN-->ORN'}; 
-
+ax.FontSize=16;
+        
 
 %Histograms
 

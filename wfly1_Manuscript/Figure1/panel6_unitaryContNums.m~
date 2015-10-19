@@ -245,29 +245,31 @@ figure()
 set(gcf,'color','w')
 
 
-ornPnUnitaries{1}=ornToPn(find(ornToPn>3));
-ornPnUnitaries{2}=pnToPn(find(pnToPn>3));
-ornPnUnitaries{3}=pnToOrn(find(pnToOrn>3));
-ornPnUnitaries{4}=ornToOrn(find(ornToOrn>3));
+ornUnitaries{1}=ornToPn(find(ornToPn>3));
+ornUnitaries{2}=ornToLn(find(ornToLn>3));
+ornUnitaries{3}=ornToOrn(find(ornToOrn>3));
+
+pnUnitaries{1}=pnToPn(find(pnToPn>3));
+pnUnitaries{2}=pnToLn(find(pnToLn>3));
+pnUnitaries{3}=pnToOrn(find(pnToOrn>3));
 
 
-
-for t=1:4
+for t=1:5
 
 jitterAmount = 0.25;
-jitterValuesX = 2*(rand(1,length(ornPnUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
+jitterValuesX = 2*(rand(1,length(ornUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
 
-scatter(t*ones(1,length(ornPnUnitaries{t}))+jitterValuesX,ornPnUnitaries{t})
+scatter(t*ones(1,length(ornUnitaries{t}))+jitterValuesX,ornUnitaries{t})
 hold on
 
 end
 
 ax=gca;
-ylabel('Connections per unitary (3 conn thresh)')
-ax.XLim=[0 5];
+% ylabel('Connections per Unitary w/ >3 connections')
+ax.XLim=[0 4];
 ax.YLim=[0 60];
-ax.XTick=[1:4];
-ax.XTickLabel={'ORN-->PN','PN-->PN','PN-->ORN','ORN-->ORN'};
+ax.XTick=[1:3];
+ax.XTickLabel={'ORN-->PN','ORN-->LN','ORN-->ORN'};
 ax.FontSize=16;
 
 
