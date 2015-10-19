@@ -47,7 +47,7 @@ connFields=fieldnames(conns);
 %Loop over ORNs
 
 for o=1:length(ORNs)
-    tic
+    tic 
     % get contact number between each ORN and each PN
     %loop over PNs
     for p=1:length(PNs)
@@ -86,6 +86,7 @@ save('ornToOrn','ornToOrn')
 
 
 for o=1:length(PNs)
+    tic
     
     % get contact number between each PN and each PN
     %loop over PNs
@@ -108,7 +109,7 @@ for o=1:length(PNs)
         
         pnToOrn(o,orn)=getSynapseNum(PNs(o),ORNs(orn));
     end
-    
+    toc
 end
 
 save('pnToPn','pnToPn')
@@ -125,7 +126,7 @@ save('pnToOrn','pnToOrn')
 
 
 for o=1:length(LNs)
-    
+    tic
     % get contact number between each LN and each PN
     %loop over PNs
     for p=1:length(PNs)
@@ -147,7 +148,7 @@ for o=1:length(LNs)
         
         lnToOrn(o,orn)=getSynapseNum(LNs(o),ORNs(orn));
     end
-    
+    toc
 end
 
 save('lnToPn','lnToPn')
