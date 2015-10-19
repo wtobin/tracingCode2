@@ -10,4 +10,13 @@ ornToLPN(1)=sum(ornToPn(:,5));
 ornToLPN(2)=sum(ornToPn(:,1));
 ornToLPN(3)=sum(ornToPn(:,2));
 
-bar([ornToRPN; ornToLPN], 'stacked')
+figure()
+bar([ornToLPN; ornToRPN], 'stacked')
+set(gcf, 'Color', 'w')
+colormap('winter')
+ax=gca;
+xlim([0 3]);
+ax.XTick=[1:2];
+ax.XTickLabel={'Left PNs', 'Right PNs'};
+ax.FontSize=16;
+ylabel('ORN Input Connection #s', 'FontSize', 16);
