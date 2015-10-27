@@ -1,3 +1,4 @@
+% This code relies on the products of uEPSP_AmpWorking which should be found in the same dir
 
 % Collect the amplitude of ipsilateral uEPSPs for R and L PNs
 
@@ -23,6 +24,18 @@ for i=4 %length(PNs)
     
 end
 
+% Collect the num of contacts per unitary ipsiORN syn for R and L PNs
+
+ilNum=[];
+
+for i=1:3 %over each left PN
+    
+   ilNum=[ilNum,leftContactNum{i}];
+    
+end
+
+
+
 %% Plotting
 
 
@@ -38,6 +51,36 @@ ax.XTickLabel={'Left ORNs', 'Right ORNs'};
 ax.FontSize=16;
 ylabel('uEPSP Amp (mV)', 'FontSize', 16);
 title('Mean ipsi ORN-->PN uEPSP Amp', 'FontSize', 18)
+
+
+figure()
+subplot(2,1,1)
+scatter(ones(1,length(ilAmps)),ilAmps)
+hold on
+scatter(2*ones(1,length(irAmps)), irAmps)
+
+set(gcf, 'Color', 'w')
+ax=gca;
+xlim([0 3]);
+ax.XTick=[1:2];
+ax.XTickLabel={'Left ORNs', 'Right ORNs'};
+ax.FontSize=16;
+ylabel('uEPSP Amp (mV)', 'FontSize', 16);
+title('ipsi ORN-->PN uEPSP Amps', 'FontSize', 18)
+
+subplot(2,1,2)
+scatter(ones(1,length(ilNum)),ilNum)
+hold on
+scatter(2*ones(1,length(rightContactNum{4})), rightContactNum{4})
+
+set(gcf, 'Color', 'w')
+ax=gca;
+xlim([0 3]);
+ax.XTick=[1:2];
+ax.XTickLabel={'Left ORNs', 'Right ORNs'};
+ax.FontSize=16;
+ylabel('Contact Num', 'FontSize', 16);
+title('ipsi ORN-->PN contacts per unitary', 'FontSize', 18)
 
 
 
