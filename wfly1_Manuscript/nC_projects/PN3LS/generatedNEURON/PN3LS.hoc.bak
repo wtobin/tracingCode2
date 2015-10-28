@@ -69,7 +69,7 @@ if (strFuncs.len(host)>0) {
 
 {use_mcell_ran4(1)}
 
-{mcell_ran4_init(759640876)}
+{mcell_ran4_init(294360087)}
 
 //////////////////////////////////////////////////////////////////////
 //   Cell group 0: neuron_PN3_LS_sk_668267 has cells of type: neuron_PN3_LS_sk_668267
@@ -9934,7 +9934,7 @@ synapse_333916[10] = new DoubExpSynA(0.22817877)
 connection_333916[10] = new NetCon(spikesource_333916[10], synapse_333916[10], thresh, delay, weight)
 
 
-access a_neuron_PN3_LS_sk_668267[0].c12833 
+access a_neuron_PN3_LS_sk_668267[0].c12843 
 spikesource_333916[11] = new NetStim(0.67898256)
 
 //  NOTE: This is a very rough way to get an average rate of 0.02 kHz!!!
@@ -13463,7 +13463,7 @@ for i=0, 0 {
 objref f_neuron_PN3_LS_sk_668267_seg_s1_v[1]
 
 strdef simReference
-simReference = "Sim_3"
+simReference = "Sim_5"
 
 
 

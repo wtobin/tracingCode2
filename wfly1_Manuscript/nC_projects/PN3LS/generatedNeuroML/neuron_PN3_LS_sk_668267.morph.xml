@@ -3,7 +3,7 @@
 
 <meta:notes>
 
-NeuroML (level 3) description of a cell neuron_PN3_LS_sk_668267 generated with project: PN3LS saved with neuroConstruct v1.6.0 on: 13:11:28, 22-Oct-15
+NeuroML (level 3) description of a cell neuron_PN3_LS_sk_668267 generated with project: PN3LS saved with neuroConstruct v1.6.0 on: 20:38:26, 27-Oct-15
 
 </meta:notes>
 
@@ -24820,13 +24820,13 @@ NeuroML (level 3) description of a cell neuron_PN3_LS_sk_668267 generated with p
 <mml:distal x="460.196333333" y="236.803666667" z="13.68" diameter="0.65"></mml:distal>
 </mml:segment>
 <mml:segment id="8815" name="s8815" parent="8814" cable="8811">
-<mml:distal x="460.199" y="236.693" z="13.64" diameter="0.65"></mml:distal>
+<mml:distal x="460.248333333" y="236.639666667" z="13.64" diameter="0.65"></mml:distal>
 </mml:segment>
 <mml:segment id="8816" name="s8816" parent="8815" cable="8811">
-<mml:distal x="460.199" y="236.621" z="13.6" diameter="0.65"></mml:distal>
+<mml:distal x="460.248333333" y="236.567666667" z="13.6" diameter="0.65"></mml:distal>
 </mml:segment>
 <mml:segment id="8817" name="s8817" parent="8816" cable="8811">
-<mml:distal x="460.205333333" y="236.741666667" z="13.56" diameter="0.65"></mml:distal>
+<mml:distal x="460.254666667" y="236.688333333" z="13.56" diameter="0.65"></mml:distal>
 </mml:segment>
 <mml:segment id="8818" name="s8818" parent="8817" cable="8811">
 <mml:distal x="460.146666667" y="236.997666667" z="13.52" diameter="0.65"></mml:distal>
@@ -35831,41 +35831,41 @@ NeuroML (level 3) description of a cell neuron_PN3_LS_sk_668267 generated with p
 </mml:segment>
 <mml:segment id="12834" name="s12834" parent="12367" cable="12833">
 <mml:proximal x="453.439" y="235.368" z="17.88" diameter="0.04"></mml:proximal>
-<mml:distal x="453.568666667" y="235.372" z="17.8133333333" diameter="0.04"></mml:distal>
-</mml:segment>
-<mml:segment id="12835" name="s12835" parent="12834" cable="12833">
-<mml:distal x="453.643333333" y="235.376" z="17.76" diameter="0.04"></mml:distal>
-</mml:segment>
-<mml:segment id="12836" name="s12836" parent="12835" cable="12833">
-<mml:distal x="453.663" y="235.38" z="17.72" diameter="0.04"></mml:distal>
-</mml:segment>
-<mml:segment id="12838" name="s12838" parent="12367" cable="12837">
-<mml:proximal x="453.439" y="235.368" z="17.88" diameter="0.04"></mml:proximal>
 <mml:distal x="453.468333333" y="235.4" z="17.92" diameter="0.04"></mml:distal>
 </mml:segment>
-<mml:segment id="12839" name="s12839" parent="12838" cable="12837">
+<mml:segment id="12835" name="s12835" parent="12834" cable="12833">
 <mml:distal x="453.497666667" y="235.429333333" z="17.96" diameter="0.04"></mml:distal>
 </mml:segment>
-<mml:segment id="12840" name="s12840" parent="12839" cable="12837">
+<mml:segment id="12836" name="s12836" parent="12835" cable="12833">
 <mml:distal x="453.507" y="235.442666667" z="18.0" diameter="0.04"></mml:distal>
 </mml:segment>
-<mml:segment id="12841" name="s12841" parent="12840" cable="12837">
+<mml:segment id="12837" name="s12837" parent="12836" cable="12833">
 <mml:distal x="453.508333333" y="235.452" z="18.04" diameter="0.04"></mml:distal>
 </mml:segment>
-<mml:segment id="12842" name="s12842" parent="12841" cable="12837">
+<mml:segment id="12838" name="s12838" parent="12837" cable="12833">
 <mml:distal x="453.489666667" y="235.465333333" z="18.08" diameter="0.04"></mml:distal>
 </mml:segment>
-<mml:segment id="12843" name="s12843" parent="12842" cable="12837">
+<mml:segment id="12839" name="s12839" parent="12838" cable="12833">
 <mml:distal x="453.465666667" y="235.486666667" z="18.12" diameter="0.04"></mml:distal>
 </mml:segment>
-<mml:segment id="12844" name="s12844" parent="12843" cable="12837">
+<mml:segment id="12840" name="s12840" parent="12839" cable="12833">
 <mml:distal x="453.431" y="235.508" z="18.16" diameter="0.04"></mml:distal>
 </mml:segment>
-<mml:segment id="12845" name="s12845" parent="12844" cable="12837">
+<mml:segment id="12841" name="s12841" parent="12840" cable="12833">
 <mml:distal x="453.415" y="235.496" z="18.2" diameter="0.04"></mml:distal>
 </mml:segment>
-<mml:segment id="12846" name="s12846" parent="12845" cable="12837">
+<mml:segment id="12842" name="s12842" parent="12841" cable="12833">
 <mml:distal x="453.423" y="235.46" z="18.24" diameter="0.04"></mml:distal>
+</mml:segment>
+<mml:segment id="12844" name="s12844" parent="12367" cable="12843">
+<mml:proximal x="453.439" y="235.368" z="17.88" diameter="0.04"></mml:proximal>
+<mml:distal x="453.568666667" y="235.372" z="17.8133333333" diameter="0.04"></mml:distal>
+</mml:segment>
+<mml:segment id="12845" name="s12845" parent="12844" cable="12843">
+<mml:distal x="453.643333333" y="235.376" z="17.76" diameter="0.04"></mml:distal>
+</mml:segment>
+<mml:segment id="12846" name="s12846" parent="12845" cable="12843">
+<mml:distal x="453.663" y="235.38" z="17.72" diameter="0.04"></mml:distal>
 </mml:segment>
 <mml:segment id="12848" name="s12848" parent="12376" cable="12847">
 <mml:proximal x="458.162" y="231.57" z="15.16" diameter="0.268"></mml:proximal>
@@ -46954,7 +46954,7 @@ NeuroML (level 3) description of a cell neuron_PN3_LS_sk_668267 generated with p
 <mml:cable id="12833" name="c12833" fract_along_parent="1.0">
 <meta:group>arbor_group</meta:group>
 </mml:cable>
-<mml:cable id="12837" name="c12837" fract_along_parent="1.0">
+<mml:cable id="12843" name="c12843" fract_along_parent="1.0">
 <meta:group>arbor_group</meta:group>
 </mml:cable>
 <mml:cable id="12847" name="c12847" fract_along_parent="1.0">

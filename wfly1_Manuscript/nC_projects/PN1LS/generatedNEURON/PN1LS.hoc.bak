@@ -69,7 +69,7 @@ if (strFuncs.len(host)>0) {
 
 {use_mcell_ran4(1)}
 
-{mcell_ran4_init(990531571)}
+{mcell_ran4_init(1442746768)}
 
 //////////////////////////////////////////////////////////////////////
 //   Cell group 0: neuron_PN1_LS_sk_419138 has cells of type: neuron_PN1_LS_sk_419138
@@ -16088,7 +16088,7 @@ for i=0, 0 {
 objref f_neuron_PN1_LS_sk_419138_seg_s1_v[1]
 
 strdef simReference
-simReference = "Sim_5"
+simReference = "Sim_6"
 
 
 
