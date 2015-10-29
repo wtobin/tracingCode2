@@ -3,7 +3,7 @@
 
 <meta:notes>
 
-NeuroML (level 3) description of a cell neuron_PN3_LS_sk_668267 generated with project: PN3LS saved with neuroConstruct v1.6.0 on: 20:38:26, 27-Oct-15
+NeuroML (level 3) description of a cell neuron_PN3_LS_sk_668267 generated with project: PN3LS saved with neuroConstruct v1.6.0 on: 15:03:38, 29-Oct-15
 
 </meta:notes>
 
@@ -17228,10 +17228,10 @@ NeuroML (level 3) description of a cell neuron_PN3_LS_sk_668267 generated with p
 <mml:distal x="454.541666667" y="228.453666667" z="15.0" diameter="0.2"></mml:distal>
 </mml:segment>
 <mml:segment id="6045" name="s6045" parent="6044" cable="6042">
-<mml:distal x="454.485333333" y="228.544" z="14.96" diameter="0.2"></mml:distal>
+<mml:distal x="454.49" y="228.546666667" z="14.96" diameter="0.2"></mml:distal>
 </mml:segment>
 <mml:segment id="6046" name="s6046" parent="6045" cable="6042">
-<mml:distal x="454.449666667" y="228.573666667" z="14.92" diameter="0.2"></mml:distal>
+<mml:distal x="454.454333333" y="228.576333333" z="14.92" diameter="0.2"></mml:distal>
 </mml:segment>
 <mml:segment id="6047" name="s6047" parent="6046" cable="6042">
 <mml:distal x="454.428" y="228.56" z="14.88" diameter="0.2"></mml:distal>

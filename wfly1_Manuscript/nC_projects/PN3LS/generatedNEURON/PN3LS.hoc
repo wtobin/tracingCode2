@@ -69,7 +69,7 @@ if (strFuncs.len(host)>0) {
 
 {use_mcell_ran4(1)}
 
-{mcell_ran4_init(294360087)}
+{mcell_ran4_init(886109513)}
 
 //////////////////////////////////////////////////////////////////////
 //   Cell group 0: neuron_PN3_LS_sk_668267 has cells of type: neuron_PN3_LS_sk_668267
@@ -9972,13 +9972,13 @@ connection_337765[20] = new NetCon(spikesource_337765[20], synapse_337765[20], t
 
 
 access a_neuron_PN3_LS_sk_668267[0].c6042 
-spikesource_337765[21] = new NetStim(0.86012256)
+spikesource_337765[21] = new NetStim(0.8553479)
 
 //  NOTE: This is a very rough way to get an average rate of 0.02 kHz!!!
 spikesource_337765[21].number = 1.0
 spikesource_337765[21].noise = 0.0
 spikesource_337765[21].start = 134700
-synapse_337765[21] = new DoubExpSynA(0.86012256) 
+synapse_337765[21] = new DoubExpSynA(0.8553479) 
 
 //   Inserts synapse 0.5 of way down
 
@@ -11072,13 +11072,13 @@ connection_337396[5] = new NetCon(spikesource_337396[5], synapse_337396[5], thre
 
 
 access a_neuron_PN3_LS_sk_668267[0].c6042 
-spikesource_337396[6] = new NetStim(0.95747423)
+spikesource_337396[6] = new NetStim(0.9549421)
 
 //  NOTE: This is a very rough way to get an average rate of 0.02 kHz!!!
 spikesource_337396[6].number = 1.0
 spikesource_337396[6].noise = 0.0
 spikesource_337396[6].start = 149700
-synapse_337396[6] = new DoubExpSynA(0.95747423) 
+synapse_337396[6] = new DoubExpSynA(0.9549421) 
 
 //   Inserts synapse 0.5 of way down
 
@@ -12614,7 +12614,7 @@ for i=0, 0 {
 objref f_neuron_PN3_LS_sk_668267_seg_s1_v[1]
 
 strdef simReference
-simReference = "Sim_5"
+simReference = "Sim_6"
 
 
 

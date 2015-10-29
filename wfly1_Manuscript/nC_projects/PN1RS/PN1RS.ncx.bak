@@ -1541,6 +1541,887 @@ The cell positions &amp; network connections in memory reflect the instances in 
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator50">
+       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
+        <string>numberType</string>
+        <void method="set">
+         <object idref="NumberGenerator50"/>
+         <int>11</int>
+        </void>
+       </void>
+       <void property="fixedNum">
+        <float>0.02</float>
+       </void>
+      </object>
+     </void>
+     <void property="reference">
+      <string>538882</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator50"/>
+     </void>
+     <void property="reference">
+      <string>360235</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator50"/>
+     </void>
+     <void property="reference">
+      <string>317572</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator50"/>
+     </void>
+     <void property="reference">
+      <string>329095</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator50"/>
+     </void>
+     <void property="reference">
+      <string>492811</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator50"/>
+     </void>
+     <void property="reference">
+      <string>362882</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator50"/>
+     </void>
+     <void property="reference">
+      <string>415503</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator50"/>
+     </void>
+     <void property="reference">
+      <string>366040</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator50"/>
+     </void>
+     <void property="reference">
+      <string>331413</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator51">
+       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
+        <string>numberType</string>
+        <void method="set">
+         <object idref="NumberGenerator51"/>
+         <int>11</int>
+        </void>
+       </void>
+       <void property="fixedNum">
+        <float>0.02</float>
+       </void>
+      </object>
+     </void>
+     <void property="reference">
+      <string>445335</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator51"/>
+     </void>
+     <void property="reference">
+      <string>319492</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator51"/>
+     </void>
+     <void property="reference">
+      <string>379044</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator51"/>
+     </void>
+     <void property="reference">
+      <string>379686</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator52">
+       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
+        <string>numberType</string>
+        <void method="set">
+         <object idref="NumberGenerator52"/>
+         <int>11</int>
+        </void>
+       </void>
+       <void property="fixedNum">
+        <float>0.02</float>
+       </void>
+      </object>
+     </void>
+     <void property="reference">
+      <string>499879</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>225960</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>360361</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>392106</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>328875</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>420141</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>373935</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>320688</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>327347</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>591293</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>596799</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>373569</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>401986</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>265283</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>321092</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>401197</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>153798</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>362954</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>362999</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>332879</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>395984</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>403794</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>404952</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>392665</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>309595</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>333916</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>337765</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>362982</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>373736</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>333138</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>331430</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>398576</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>337396</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>339573</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>343030</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>220151</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>331514</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>402811</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>396156</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
+     <void property="cellGroup">
+      <string>neuron_PN1_RS_sk_638603</string>
+     </void>
+     <void property="rate">
+      <object idref="NumberGenerator52"/>
+     </void>
+     <void property="reference">
+      <string>332797</string>
+     </void>
+     <void property="synapseType">
+      <string>DoubExpSynA</string>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
  <object class="ucl.physiol.neuroconstruct.project.SimConfigInfo" id="SimConfigInfo0">

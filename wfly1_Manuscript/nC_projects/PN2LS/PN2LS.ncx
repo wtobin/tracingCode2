@@ -180,7 +180,7 @@ The cell positions &amp; network connections in memory reflect the instances in 
    <float>100.0</float>
   </void>
   <void property="reference">
-   <string>Sim_1</string>
+   <string>Sim_5</string>
   </void>
   <void property="saveCopyGenSimFiles">
    <boolean>true</boolean>
