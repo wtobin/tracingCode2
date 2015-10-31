@@ -15,7 +15,7 @@
 <entry key="Stimulation: 30">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
 <entry key="GUI Mode">ALL_SHOW</entry>
 <entry key="dt">0.025</entry>
-<entry key="Populations">neuron_PN1_LS_sk_419138 (neuron_PN1_LS_sk_419138): 1</entry>
+<entry key="Populations">neuron_PN1_LS_sk_419138 (neuron_PN1_LS_sk_419138): 1; </entry>
 <entry key="Global Cm">1.0E-8</entry>
 <entry key="Stimulation: 29">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
 <entry key="Stimulation: 28">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
@@ -41,7 +41,7 @@
 <entry key="Stimulation: 11">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
 <entry key="Stimulation: 10">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
 <entry key="Duration">100.0</entry>
-<entry key="NEURON random seed">528515307</entry>
+<entry key="NEURON random seed">1300245646</entry>
 <entry key="Stimulation: 9">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
 <entry key="Stimulation: 8">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
 <entry key="Stimulation: 7">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
@@ -55,13 +55,13 @@
 <entry key="Stimulation: 0">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
 <entry key="Simulator">NEURON</entry>
 <entry key="Script format">Hoc</entry>
-<entry key="Script generation time">6.15</entry>
+<entry key="Script generation time">4.551</entry>
 <entry key="Net connections"/>
 <entry key="Num integration method">Fixed time step</entry>
 <entry key="Global Rm">3.33333344E8</entry>
 <entry key="Stimulation: 51">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
 <entry key="Stimulation: 50">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
-<entry key="Morph summary neuron_PN1_LS_sk_419138">Segs:15284_Secs:1836_IntDivs:1839</entry>
+<entry key="Morph summary neuron_PN1_LS_sk_419138">Segs:15278_Secs:1838_IntDivs:1841</entry>
 <entry key="Global Ra">300.0</entry>
 <entry key="Unit system">NEURON Units</entry>
 <entry key="Stimulation: 49">RandomSpikeTrain: [rate: 0.02, synaptic input: DoubExpSynA] on neuron_PN1_LS_sk_419138</entry>
