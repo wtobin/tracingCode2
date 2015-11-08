@@ -1,2 +1,2 @@
-cd '/home/william/nC_projects/PN1LS/generatedNEURON'
-/usr/local//bin/nrngui PN1LS.hoc
+cd '/home/william/nC_projects/PN1LS/simulations/Sim_2'
+/home/william/neuron/nrn/bin/nrngui PN1LS.hoc

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_51" class="java.beans.XMLDecoder">
+<java version="1.6.0_36" class="java.beans.XMLDecoder">
 
 <!-- This is a neuroConstruct project file. It's best to open this
 file with neuroConstruct, as opposed to editing it directly. 
@@ -14,14 +14,14 @@ part of NeuroML or any standardised XML specification. -->
 The cell positions &amp; network connections in memory reflect the instances in the NetworkML elements of the imported file. Regenerating the network in neuroConstruct nmay lead to a different network structure.</string>
   </void>
   <void property="projectFileVersion">
-   <string>neuroConstruct v1.6.0</string>
+   <string>neuroConstruct v1.7.1</string>
   </void>
   <void property="projectName">
    <string>PN2LS</string>
   </void>
  </object>
- <object class="ucl.physiol.neuroconstruct.project.RegionsInfo" id="RegionsInfo0">
-  <void id="Hashtable0" property="internalData">
+ <object class="ucl.physiol.neuroconstruct.project.RegionsInfo">
+  <void property="internalData">
    <void method="get">
     <string>Name</string>
     <void method="add">
@@ -31,10 +31,10 @@ The cell positions &amp; network connections in memory reflect the instances in 
    <void method="get">
     <string>Colour</string>
     <void method="add">
-     <object class="java.awt.Color" id="Color0">
-      <int>139</int>
-      <int>58</int>
-      <int>128</int>
+     <object id="Color0" class="java.awt.Color">
+      <int>178</int>
+      <int>142</int>
+      <int>228</int>
       <int>255</int>
      </object>
     </void>
@@ -42,15 +42,11 @@ The cell positions &amp; network connections in memory reflect the instances in 
    <void method="get">
     <string>Description</string>
     <void method="add">
-     <object class="ucl.physiol.neuroconstruct.project.RectangularBox" id="RectangularBox0">
-      <void id="InternalParameterArray0" property="parameterList">
-       <void id="InternalParameter0" index="4">
-        <void class="ucl.physiol.neuroconstruct.project.InternalParameter" method="getField">
-         <string>value</string>
-         <void method="set">
-          <object idref="InternalParameter0"/>
-          <float>100.0</float>
-         </void>
+     <object class="ucl.physiol.neuroconstruct.project.RectangularBox">
+      <void property="parameterList">
+       <void index="4">
+        <void property="value">
+         <float>100.0</float>
         </void>
        </void>
       </void>
@@ -59,20 +55,16 @@ The cell positions &amp; network connections in memory reflect the instances in 
    </void>
   </void>
  </object>
- <object class="ucl.physiol.neuroconstruct.project.CellGroupsInfo" id="CellGroupsInfo0">
-  <void id="Hashtable1" property="internalData">
+ <object class="ucl.physiol.neuroconstruct.project.CellGroupsInfo">
+  <void property="internalData">
    <void method="get">
     <string>Cell Packing Adapter</string>
     <void method="add">
-     <object class="ucl.physiol.neuroconstruct.project.packing.SinglePositionedCellPackingAdapter" id="SinglePositionedCellPackingAdapter0">
-      <void id="InternalParameterArray1" property="parameterList">
-       <void id="InternalParameter1" index="3">
-        <void class="ucl.physiol.neuroconstruct.project.InternalParameter" method="getField">
-         <string>value</string>
-         <void method="set">
-          <object idref="InternalParameter1"/>
-          <float>0.0</float>
-         </void>
+     <object class="ucl.physiol.neuroconstruct.project.packing.SinglePositionedCellPackingAdapter">
+      <void property="parameterList">
+       <void index="3">
+        <void property="value">
+         <float>0.0</float>
         </void>
        </void>
       </void>
@@ -111,7 +103,7 @@ The cell positions &amp; network connections in memory reflect the instances in 
    </void>
   </void>
  </object>
- <object class="ucl.physiol.neuroconstruct.project.SimPlotInfo" id="SimPlotInfo0">
+ <object class="ucl.physiol.neuroconstruct.project.SimPlotInfo">
   <void property="allSimPlots">
    <void method="add">
     <object class="ucl.physiol.neuroconstruct.project.SimPlot">
@@ -189,7 +181,7 @@ The cell positions &amp; network connections in memory reflect the instances in 
    <int>2</int>
   </void>
  </object>
- <object class="ucl.physiol.neuroconstruct.project.ElecInputInfo" id="ElecInputInfo0">
+ <object class="ucl.physiol.neuroconstruct.project.ElecInputInfo">
   <void property="allStims">
    <void method="add">
     <object class="ucl.physiol.neuroconstruct.simulation.RandomSpikeTrainSettings">
@@ -197,16 +189,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator0">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator0"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -224,16 +212,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator1">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator1"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -251,16 +235,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator2">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator2"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -278,16 +258,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator3">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator3"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -305,16 +281,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator4">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator4"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -332,16 +304,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator5">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator5"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -359,16 +327,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator6">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator6"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -386,16 +350,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator7">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator7"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -413,16 +373,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator8">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator8"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -440,16 +396,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator9">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator9"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -467,16 +419,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator10">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator10"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -494,16 +442,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator11">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator11"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -521,16 +465,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator12">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator12"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -548,16 +488,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator13">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator13"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -575,16 +511,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator14">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator14"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -602,16 +534,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator15">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator15"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -629,16 +557,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator16">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator16"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -656,16 +580,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator17">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator17"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -683,16 +603,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator18">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator18"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -710,16 +626,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator19">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator19"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -737,16 +649,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator20">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator20"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -764,16 +672,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator21">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator21"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -791,16 +695,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator22">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator22"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -818,16 +718,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator23">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator23"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -845,16 +741,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator24">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator24"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -872,16 +764,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator25">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator25"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -899,16 +787,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator26">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator26"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -926,16 +810,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator27">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator27"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -953,16 +833,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator28">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator28"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -980,16 +856,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator29">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator29"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1007,16 +879,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator30">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator30"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1034,16 +902,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator31">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator31"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1061,16 +925,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator32">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator32"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1088,16 +948,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator33">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator33"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1115,16 +971,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator34">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator34"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1142,16 +994,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator35">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator35"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1169,16 +1017,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator36">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator36"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1196,16 +1040,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator37">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator37"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1223,16 +1063,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator38">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator38"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1250,16 +1086,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator39">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator39"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1277,16 +1109,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator40">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator40"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1304,16 +1132,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator41">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator41"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1331,16 +1155,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator42">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator42"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1358,16 +1178,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator43">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator43"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1385,16 +1201,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator44">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator44"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1412,16 +1224,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator45">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator45"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1439,16 +1247,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator46">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator46"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1466,16 +1270,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator47">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator47"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1493,16 +1293,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator48">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator48"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1520,16 +1316,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator49">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator49"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1547,16 +1339,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator50">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator50"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1574,16 +1362,12 @@ The cell positions &amp; network connections in memory reflect the instances in 
       <string>neuron_PN2_LS_sk_427345</string>
      </void>
      <void property="rate">
-      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator" id="NumberGenerator51">
-       <void class="ucl.physiol.neuroconstruct.utils.NumberGenerator" method="getField">
-        <string>numberType</string>
-        <void method="set">
-         <object idref="NumberGenerator51"/>
-         <int>11</int>
-        </void>
-       </void>
+      <object class="ucl.physiol.neuroconstruct.utils.NumberGenerator">
        <void property="fixedNum">
         <float>0.02</float>
+       </void>
+       <void property="numberType">
+        <int>11</int>
        </void>
       </object>
      </void>
@@ -1597,10 +1381,10 @@ The cell positions &amp; network connections in memory reflect the instances in 
    </void>
   </void>
  </object>
- <object class="ucl.physiol.neuroconstruct.project.SimConfigInfo" id="SimConfigInfo0">
+ <object class="ucl.physiol.neuroconstruct.project.SimConfigInfo">
   <void property="allSimConfigs">
    <void method="add">
-    <object class="ucl.physiol.neuroconstruct.project.SimConfig" id="SimConfig0">
+    <object class="ucl.physiol.neuroconstruct.project.SimConfig">
      <void property="cellGroups">
       <void method="add">
        <string>neuron_PN2_LS_sk_427345</string>
@@ -1611,136 +1395,67 @@ The cell positions &amp; network connections in memory reflect the instances in 
      </void>
      <void property="inputs">
       <void method="add">
-       <string>362882</string>
+       <string>153798</string>
       </void>
       <void method="add">
-       <string>328875</string>
-      </void>
-      <void method="add">
-       <string>319492</string>
-      </void>
-      <void method="add">
-       <string>329095</string>
-      </void>
-      <void method="add">
-       <string>492811</string>
-      </void>
-      <void method="add">
-       <string>415503</string>
-      </void>
-      <void method="add">
-       <string>404952</string>
-      </void>
-      <void method="add">
-       <string>420141</string>
-      </void>
-      <void method="add">
-       <string>317572</string>
-      </void>
-      <void method="add">
-       <string>379044</string>
-      </void>
-      <void method="add">
-       <string>379686</string>
+       <string>220151</string>
       </void>
       <void method="add">
        <string>225960</string>
       </void>
       <void method="add">
-       <string>360361</string>
-      </void>
-      <void method="add">
-       <string>392106</string>
-      </void>
-      <void method="add">
-       <string>360235</string>
-      </void>
-      <void method="add">
-       <string>401197</string>
-      </void>
-      <void method="add">
-       <string>373935</string>
-      </void>
-      <void method="add">
-       <string>320688</string>
-      </void>
-      <void method="add">
-       <string>327347</string>
-      </void>
-      <void method="add">
-       <string>591293</string>
-      </void>
-      <void method="add">
-       <string>596799</string>
-      </void>
-      <void method="add">
-       <string>373569</string>
-      </void>
-      <void method="add">
-       <string>401986</string>
-      </void>
-      <void method="add">
        <string>265283</string>
-      </void>
-      <void method="add">
-       <string>321092</string>
-      </void>
-      <void method="add">
-       <string>426230</string>
-      </void>
-      <void method="add">
-       <string>153798</string>
-      </void>
-      <void method="add">
-       <string>362954</string>
-      </void>
-      <void method="add">
-       <string>362999</string>
-      </void>
-      <void method="add">
-       <string>332879</string>
-      </void>
-      <void method="add">
-       <string>395984</string>
-      </void>
-      <void method="add">
-       <string>403794</string>
-      </void>
-      <void method="add">
-       <string>366040</string>
-      </void>
-      <void method="add">
-       <string>392665</string>
       </void>
       <void method="add">
        <string>309595</string>
       </void>
       <void method="add">
-       <string>333916</string>
+       <string>317572</string>
       </void>
       <void method="add">
-       <string>401378</string>
+       <string>319492</string>
       </void>
       <void method="add">
-       <string>337765</string>
+       <string>320688</string>
       </void>
       <void method="add">
-       <string>362982</string>
+       <string>321092</string>
       </void>
       <void method="add">
-       <string>373736</string>
+       <string>327347</string>
       </void>
       <void method="add">
-       <string>333138</string>
+       <string>328875</string>
+      </void>
+      <void method="add">
+       <string>329095</string>
+      </void>
+      <void method="add">
+       <string>331413</string>
       </void>
       <void method="add">
        <string>331430</string>
       </void>
       <void method="add">
-       <string>398576</string>
+       <string>331514</string>
+      </void>
+      <void method="add">
+       <string>332797</string>
+      </void>
+      <void method="add">
+       <string>332879</string>
+      </void>
+      <void method="add">
+       <string>333138</string>
+      </void>
+      <void method="add">
+       <string>333916</string>
       </void>
       <void method="add">
        <string>337396</string>
+      </void>
+      <void method="add">
+       <string>337765</string>
       </void>
       <void method="add">
        <string>339573</string>
@@ -1749,22 +1464,91 @@ The cell positions &amp; network connections in memory reflect the instances in 
        <string>343030</string>
       </void>
       <void method="add">
-       <string>220151</string>
+       <string>360235</string>
       </void>
       <void method="add">
-       <string>331514</string>
+       <string>360361</string>
       </void>
       <void method="add">
-       <string>402811</string>
+       <string>362882</string>
+      </void>
+      <void method="add">
+       <string>362954</string>
+      </void>
+      <void method="add">
+       <string>362982</string>
+      </void>
+      <void method="add">
+       <string>362999</string>
+      </void>
+      <void method="add">
+       <string>366040</string>
+      </void>
+      <void method="add">
+       <string>373569</string>
+      </void>
+      <void method="add">
+       <string>373736</string>
+      </void>
+      <void method="add">
+       <string>373935</string>
+      </void>
+      <void method="add">
+       <string>379044</string>
+      </void>
+      <void method="add">
+       <string>379686</string>
+      </void>
+      <void method="add">
+       <string>392106</string>
+      </void>
+      <void method="add">
+       <string>392665</string>
+      </void>
+      <void method="add">
+       <string>395984</string>
       </void>
       <void method="add">
        <string>396156</string>
       </void>
       <void method="add">
-       <string>332797</string>
+       <string>398576</string>
       </void>
       <void method="add">
-       <string>331413</string>
+       <string>401197</string>
+      </void>
+      <void method="add">
+       <string>401378</string>
+      </void>
+      <void method="add">
+       <string>401986</string>
+      </void>
+      <void method="add">
+       <string>402811</string>
+      </void>
+      <void method="add">
+       <string>403794</string>
+      </void>
+      <void method="add">
+       <string>404952</string>
+      </void>
+      <void method="add">
+       <string>415503</string>
+      </void>
+      <void method="add">
+       <string>420141</string>
+      </void>
+      <void method="add">
+       <string>426230</string>
+      </void>
+      <void method="add">
+       <string>492811</string>
+      </void>
+      <void method="add">
+       <string>591293</string>
+      </void>
+      <void method="add">
+       <string>596799</string>
       </void>
      </void>
      <void property="name">
