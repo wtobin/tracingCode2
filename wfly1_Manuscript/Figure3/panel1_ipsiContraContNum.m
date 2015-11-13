@@ -42,5 +42,76 @@ refline(1,0)
 xlabel('Num Ipsi PN Contacts', 'FontSize', 16);
 ylabel('Num Cont PN Contacts', 'FontSize', 16);
 title('Ipsi/Contra ORN-->PN Contact Nums ', 'FontSize', 16);
+
+
+%% A further thought
+
+
+ipsiInputCVs=[std(ornToPn(1:25,[5,1,2]))./mean(ornToPn(1:25,[5,1,2])),...
+std(ornToPn(26:end,[3,4]))./mean(ornToPn(26:end,[3,4]))]
+
+
+contraInputCVs=[std(ornToPn(26:end,[5,1,2]))./mean(ornToPn(26:end,[5,1,2])),...
+std(ornToPn(1:25,[3,4]))./mean(ornToPn(1:25,[3,4]))]
+
+
+figure()
+set(gcf,'Color', 'w')
+scatter(ipsiInputCVs(1:3),contraInputCVs(1:3), 'filled')
+hold on
+scatter(ipsiInputCVs([4,5]),contraInputCVs([4,5]), 'r', 'filled')
+
+
+xlim([.2 .36])
+ylim([.2 .36])
+refline(1,0)
+xlabel('Ipsi ORN Contact Num CV', 'FontSize', 16)
+
+ylabel('Contra ORN Contact Num CV', 'FontSize', 16)
+
+    
+
+ipsiInputSTDs=[std(ornToPn(1:25,[5,1,2])),...
+std(ornToPn(26:end,[3,4]))]
+
+
+contraInputSTDs=[std(ornToPn(26:end,[5,1,2])),...
+std(ornToPn(1:25,[3,4]))]
+
+
+figure()
+set(gcf,'Color', 'w')
+scatter(ipsiInputSTDs(1:3),contraInputSTDs(1:3), 'filled')
+hold on
+scatter(ipsiInputSTDs([4,5]),contraInputSTDs([4,5]), 'r', 'filled')
+
+
+xlim([3.5 10])
+ylim([3.5 10])
+refline(1,0)
+xlabel('Ipsi ORN Contact Num STD', 'FontSize', 16)
+
+ylabel('Contra ORN Contact Num STD', 'FontSize', 16)
+
+
+%% Plotting for lab meeting fraction of ORN contacts from ipsi vs contra ORNs
+
+
+    
+for o=1:size(ornToPn,2)
+    
+    if o <= 
+        
+        ipsiCont(o)=sum(ornToPn(o,[1,2,5]));
+        contraCont(o)=sum(ornToPn(o,[3,4]));
+        
+    else
+        
+        ipsiCont(o)=sum(ornToPn(o,[3,4]));
+        contraCont(o)=sum(ornToPn(o,[1,2,5]));
+        
+    end
+end
+        
     
     

@@ -125,7 +125,7 @@ for p=1:length(PNs)
             
             
         else
-            postSynID{p}(s)=4;
+            postSynID{p}(s)=3;%4;
             
         end
         
@@ -143,7 +143,7 @@ end
 for p=1:length(PNs)
     
     %for each category
-    for id=1:4
+    for id=1:3%4
         
         idenCounts(p,id)=sum(postSynID{p}==id);
         
@@ -153,7 +153,7 @@ end
 
 [v i]=sort(sum(idenCounts), 'descend');
 
-labels={'ORN','PN','LN','Unclassified'};
+labels={'ORN','PN','Multi-glomerular'};
 order=[5,1,2,3,4];  
 pnLabels={'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS','PN2 RS'};
 
@@ -198,7 +198,7 @@ set(gcf,'color','w')
 
 textInds=[2:2:8];
 
-for i=1:4
+for i=1:3%4
     h(textInds(i)).FontSize=16;
 end
 

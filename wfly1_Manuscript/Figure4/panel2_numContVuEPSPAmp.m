@@ -14,7 +14,7 @@ for o=1:length(ORNs)
     if o <= length(ORNs_Left)
         
     %loop over PNs
-    for p=1:4
+    for p=1:5
     
        uEPSP_Amps(o,p)=max(leftUEPSPs{p}(o,:))-mean(leftUEPSPs{p}(o,1:100));
         
@@ -24,7 +24,7 @@ for o=1:length(ORNs)
             
         %Loop over PNs
         
-        for p=1:4
+        for p=1:5
     
        uEPSP_Amps(o,p)=max(rightUEPSPs{p}(o-length(ORNs_Left),:))-mean(rightUEPSPs{p}(o-length(ORNs_Left),1:100));
         
@@ -42,8 +42,9 @@ hold on
 scatter([leftContactNum{2}, rightContactNum{2}],uEPSP_Amps(:,2), 'r', 'filled')
 scatter([leftContactNum{3}, rightContactNum{3}],uEPSP_Amps(:,3), 'k', 'filled')
 scatter([leftContactNum{4}, rightContactNum{4}],uEPSP_Amps(:,4), 'm', 'filled')
+scatter([leftContactNum{5}, rightContactNum{5}],uEPSP_Amps(:,5), 'c', 'filled')
 xlabel('Contact Number', 'FontSize',18)
 ylabel('uEPSP Amp (mV)', 'FontSize',18)
-legend({'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS'}, 'Location', 'NorthWest')
+legend({'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS', 'PN2 RS'}, 'Location', 'NorthWest')
 
 

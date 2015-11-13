@@ -9,11 +9,11 @@ figure()
 set(gcf, 'Color', 'w')
 
 scatter(mean(sorted_uEPSPAmps(1:length(ORNs_Left),[1,2,3])'),...
-sorted_uEPSPAmps(1:length(ORNs_Left),4)', 'Filled')
+mean(sorted_uEPSPAmps(1:length(ORNs_Left),[4:5])'), 'Filled')
 
 hold on
 
-scatter(sorted_uEPSPAmps(length(ORNs_Left)+1:end,4)',...
+scatter(mean(sorted_uEPSPAmps(length(ORNs_Left)+1:end,[4:5])'),...
 mean(sorted_uEPSPAmps(length(ORNs_Left)+1:end,[1,2,3])'), 'r', 'Filled')
 
 ax=gca;

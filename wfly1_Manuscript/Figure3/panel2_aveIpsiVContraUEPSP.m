@@ -12,7 +12,7 @@ for o=1:length(ORNs)
     if o <= length(ORNs_Left)
         
     %loop over PNs
-    for p=1:4
+    for p=1:5
     
        uEPSP_Amps(o,p)=max(leftUEPSPs{p}(o,:))-mean(leftUEPSPs{p}(o,1:100));
         
@@ -22,7 +22,7 @@ for o=1:length(ORNs)
             
         %Loop over PNs
         
-        for p=1:4
+        for p=1:5
     
        uEPSP_Amps(o,p)=max(rightUEPSPs{p}(o-length(ORNs_Left),:))-mean(rightUEPSPs{p}(o-length(ORNs_Left),1:100));
         
@@ -57,7 +57,7 @@ scatter(mean(uEPSP_Amps(1:25,1:3))./max(uEPSP_Amps(:,1:3)),mean(uEPSP_Amps(26:en
 
 hold on
 
-scatter(mean(uEPSP_Amps(26:end,4))./max(uEPSP_Amps(:,4)),mean(uEPSP_Amps(1:25,4))./max(uEPSP_Amps(:,4)), 'filled','r')
+scatter(mean(uEPSP_Amps(26:end,4:5))./max(uEPSP_Amps(:,4:5)),mean(uEPSP_Amps(1:25,4:5))./max(uEPSP_Amps(:,4:5)), 'filled','r')
 
 set(gcf, 'Color', 'w')
 ax=gca;
@@ -93,3 +93,23 @@ refline(1,0)
 xlabel('Mean Ipsi ORN uEPSP Amp (mV)', 'FontSize', 16);
 ylabel('Mean Contra ORN uEPSP Amp (mV)', 'FontSize', 16);
 legend({'Left PNs','Right PNs'}, 'Location','NorthWest')
+
+
+
+figure()
+
+for p=1:5
+    
+    if p<=3
+        scatter(p*ones(1,25), uEPSP_Amps(1:25,p),'b')
+        hold on
+        scatter(p*ones(1,25),uEPSP_Amps(26:end,p),'r')
+    else
+        scatter(p*ones(1,25), uEPSP_Amps(26:end,p),'b')
+        hold on
+        scatter(p*ones(1,25),uEPSP_Amps(1:25,p),'r')
+    end
+    
+end
+        
+        

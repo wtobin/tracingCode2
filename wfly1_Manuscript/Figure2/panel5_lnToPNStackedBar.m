@@ -187,4 +187,29 @@ ylabel('Num Connections', 'FontSize', 16);
 title('Total Inputs to PNs', 'FontSize', 16);
 
 
+% I want to make a stacked bar graph of number of non-ORN inputs to each PN
+
+
+nonORNToRPN(1)=sum(preSynID{3}~=1);
+nonORNToRPN(2)=sum(preSynID{4}~=1);
+nonORNToRPN(3)=0;
+
+nonORNToLPN(1)=sum(preSynID{5}~=1);
+nonORNToLPN(2)=sum(preSynID{1}~=1);
+nonORNToLPN(3)=sum(preSynID{2}~=1);
+
+figure()
+bar([nonORNToLPN; nonORNToRPN], 'stacked')
+set(gcf, 'Color', 'w')
+colormap('winter')
+ax=gca;
+xlim([0 3]);
+ax.XTick=[1:2];
+ax.XTickLabel={'Left PNs', 'Right PNs'};
+ax.FontSize=16;
+ylabel('Num Connections', 'FontSize', 16);
+title('Non-ORN Inputs to PNs', 'FontSize', 16);
+
+
+
 

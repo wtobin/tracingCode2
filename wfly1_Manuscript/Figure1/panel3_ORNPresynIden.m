@@ -31,7 +31,6 @@ LNs=[LNs, annotations.potential_0x20_LN];
 LNs=[LNs, annotations.Prospective_0x20_LN];
 LNs=[LNs, annotations.Likely_0x20_LN];
 
-
 %Load the connector structure
 load('~/tracing/conns.mat')
 
@@ -62,7 +61,7 @@ for i= 1 : length(connFields)
         %Check to see if the current ORN is postsynaptic at this connector
         if sum(ismember(ORNs(o), conns.(cell2mat(connFields(i))).post))>=1
             
-            %record the presynaptic skel ID once for each time the PN is
+            %record the presynaptic skel ID once for each time the ORN is
             %postsynaptic
             
             for s=1:length(conns.(cell2mat(connFields(i))).post)
@@ -137,7 +136,7 @@ for s=1:length(preSkel{p})
                 
                 
             else
-                 preSynID{p}(s)=4;
+                 preSynID{p}(s)=3; %4;
                 
      end
     
@@ -152,14 +151,12 @@ end
 
 %Tally up the identifications
 
-
-
     
 for o=1:length(ORNs)
     
  
     
-  for id=1:4
+  for id=1:3 %4
     idenCounts(o,id)=sum(preSynID{o}==id);
 
 
@@ -170,8 +167,9 @@ end
 
 [v i]=sort(sum(idenCounts), 'descend');
 
-labels={'ORN','PN','LN','Unclassified'};
+%labels={'ORN','PN','LN','Unclassified'};
  
+labels={'ORN','PN','Multi-glomerular'};
 
 
 %Raw Numbers
@@ -214,7 +212,7 @@ set(gcf,'color','w')
 
 textInds=[2:2:8];
 
-for i=1:4
+for i=1:3%4
     h(textInds(i)).FontSize=16;
 end
 

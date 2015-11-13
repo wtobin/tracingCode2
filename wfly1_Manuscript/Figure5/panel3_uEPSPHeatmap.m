@@ -8,7 +8,7 @@
 for l=1:length(ORNs_Left)
     
     %loop over PNs
-    for p=1:4
+    for p=1:5
         
         uEPSP_Amps(l,p)=max(leftUEPSPs{p}(l,:))-mean(leftUEPSPs{p}(l,1:100));
         
@@ -21,7 +21,7 @@ end
 for r=1:length(ORNs_Right)
     
     %loop over PNs
-    for p=1:4
+    for p=1:5
         
         uEPSP_Amps(r+length(ORNs_Left),p)=max(rightUEPSPs{p}(r,:))-mean(rightUEPSPs{p}(r,1:100));
         
@@ -45,7 +45,7 @@ end
 % end
 
 %Normalize by each PNs mean uEPSP Amp
- for c=1:4
+ for c=1:5
     
     normUEPSP(:,c)=uEPSP_Amps(:,c)./mean(uEPSP_Amps(:,c));
    
@@ -60,9 +60,9 @@ end
 
 sorted_uEPSPAmps(1:length(ORNs_Left),:)=normUEPSP(i,:);
 
-% NOTE: Currently only for PN1 RS!!
 
-[v2 i2]=sort(normUEPSP(length(ORNs_Left)+1:end,4));
+
+[v2 i2]=sort(mean(normUEPSP(length(ORNs_Left)+1:end,[4:5])'));
 
 sorted_uEPSPAmps(length(ORNs_Left)+1:length(ORNs_Left)+length(ORNs_Right),:)=normUEPSP(i2+length(ORNs_Left),:);
     

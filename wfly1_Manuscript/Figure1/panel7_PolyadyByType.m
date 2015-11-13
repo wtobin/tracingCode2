@@ -326,10 +326,14 @@ types={'ORN-->PN','ORN-->LN','ORN-->ORN'};
 for t=1:3
 
 subplot(3,3,t)
-hist(ornOuts{t},12)
-title(types(t))
+[N Edges]=histcounts(ornOuts{t});
+histogram(ornOuts{t},Edges)
+title(types(t), 'FontSize', 16)
 ylim([0 1500])
 xlim([0 12])
+ax=gca;
+ax.FontSize=16;
+ax.XTick=[0:2:12];
 
 end
 
@@ -339,10 +343,14 @@ types={'PN-->PN','PN-->LN','PN-->ORN'};
 for t=1:3
 
 subplot(3,3,t+3)
-hist(pnOuts{t},12)
-title(types(t))
+[N Edges]=histcounts(pnOuts{t})
+histogram(pnOuts{t},Edges)
+title(types(t),'FontSize', 16)
 ylim([0 200])
 xlim([0 12])
+ax=gca;
+ax.FontSize=16;
+ax.XTick=[0:2:12];
 
 end
 
@@ -351,9 +359,9 @@ types={'LN-->PN','LN-->LN','LN-->ORN'};
 for t=1:3
 
 subplot(3,3,t+6)
-
-hist(lnOuts{t},12)
-title(types(t))
+[N Edges]=histcounts(lnOuts{t})
+histogram(lnOuts{t},Edges);
+title(types(t),'FontSize', 16)
 ylim([0 400])
 xlim([0 12])
 
@@ -362,6 +370,8 @@ if t==1
     ylabel('Freq','FontSize', 16)
 end
 
-
+ax=gca;
+ax.FontSize=16;
+ax.XTick=[0:2:12];
 
 end

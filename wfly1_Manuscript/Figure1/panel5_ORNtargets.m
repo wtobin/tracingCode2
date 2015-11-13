@@ -125,7 +125,7 @@ for p=1:length(ORNs)
             
             
         else
-            postSynID{p}(s)=4;
+            postSynID{p}(s)=3;%4;
             
         end
         
@@ -143,7 +143,7 @@ end
 for p=1:length(ORNs)
     
     %for each category
-    for id=1:4
+    for id=1:3%4
         
         idenCounts(p,id)=sum(postSynID{p}==id);
         
@@ -175,7 +175,7 @@ end
 
 [v i]=sort(sum(idenCounts), 'descend');
 
-labels={'ORN','PN','LN','Unclassified'};
+labels={'ORN','PN','Multi-glomerular'};
 
 %Raw Numbers
 figure()

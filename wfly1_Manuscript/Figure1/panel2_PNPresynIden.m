@@ -131,7 +131,7 @@ for s=1:length(preSkel{p})
                 
                 
             else
-                 preSynID{p}(s)=4;
+                 preSynID{p}(s)=3 %4;
                 
      end
     
@@ -153,7 +153,7 @@ end
 for p=1:length(PNs)
     
     %for each category
-    for id=1:4
+    for id=1:3%4
         
         idenCounts(p,id)=sum(preSynID{p}==id);
         
@@ -163,7 +163,7 @@ end
 
 [v i]=sort(sum(idenCounts), 'descend');
 
-labels={'ORN','PN','LN','Unclassified'};
+labels={'ORN','PN','Multi-glomerular'};
 order=[5,1,2,3,4];  
 pnLabels={'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS','PN2 RS'};
 

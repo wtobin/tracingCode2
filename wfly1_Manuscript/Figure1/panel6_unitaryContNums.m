@@ -157,6 +157,11 @@ save('lnToOrn','lnToOrn')
 
 %% Plotting
 
+
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToOrn.mat')
+
 figure()
 set(gcf,'color','w')
 
@@ -187,6 +192,9 @@ ax.FontSize=16;
 
 
 
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToOrn.mat')
      
 subplot(3,1,2)
 
@@ -215,6 +223,9 @@ ax.FontSize=16;
 
 subplot(3,1,3)
 
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/lnToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/lnToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/lnToOrn.mat')
 
 lnUnitaries{1}=lnToPn(find(lnToPn>3));
 lnUnitaries{2}=lnToLn(find(lnToLn>3));

@@ -14,7 +14,7 @@ end
 
 irAmps=[];
 
-for i=4 %length(PNs)
+for i=4:5 %length(PNs)
     
     for j=1:size(rightUEPSPs{i},1)
         
@@ -34,12 +34,37 @@ for i=1:3 %over each left PN
     
 end
 
+irNum=[];
+
+for i=4:5 %over each right PN
+    
+   irNum=[irNum,rightContactNum{i}];
+    
+end
+
 
 
 %% Plotting
 
 
 figure()
+
+
+subplot(2,1,1)
+
+bar([mean(ilNum); mean(irNum)], 'k')
+hold on
+errorbar([mean(ilNum); mean(irNum)],[mean(ilNum)/sqrt(numel(ilNum)); mean(irNum)/sqrt(numel(irNum))],'r.')
+set(gcf, 'Color', 'w')
+ax=gca;
+xlim([0 3]);
+ax.XTick=[1:2];
+ax.XTickLabel={'Left ORNs', 'Right ORNs'};
+ax.FontSize=16;
+ylabel('Contact Num', 'FontSize', 16);
+title('ipsi ORN-->PN contacts per unitary', 'FontSize', 18)
+
+subplot(2,1,2)
 bar([mean(ilAmps); mean(irAmps)], 'k')
 hold on
 errorbar([mean(ilAmps); mean(irAmps)],[mean(ilAmps)/sqrt(numel(ilAmps)); mean(irAmps)/sqrt(numel(irAmps))],'r.')
@@ -71,7 +96,7 @@ title('ipsi ORN-->PN uEPSP Amps', 'FontSize', 18)
 subplot(2,1,2)
 scatter(ones(1,length(ilNum)),ilNum)
 hold on
-scatter(2*ones(1,length(rightContactNum{4})), rightContactNum{4})
+scatter(2*ones(1,length(irNum)), irNum)
 
 set(gcf, 'Color', 'w')
 ax=gca;
