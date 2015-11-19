@@ -10,4 +10,4 @@ if test "" = "yes" ; then
 else
 	NRNIV="${NRNBIN}nrniv"
 fi
-"${NRNIV}" -dll "/home/william/nC_projects/PN2RS/generatedNEURON/x86_64/.libs/libnrnmech.so" "$@"
+"${NRNIV}" -dll "/home/william/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2RS/generatedNEURON/x86_64/.libs/libnrnmech.so" "$@"
