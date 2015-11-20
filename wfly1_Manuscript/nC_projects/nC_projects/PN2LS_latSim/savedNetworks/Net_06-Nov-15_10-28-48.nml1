@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<networkml xmlns="http://morphml.org/networkml/schema" xmlns:meta="http://morphml.org/metadata/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://morphml.org/networkml/schema  http://www.neuroml.org/NeuroMLValidator/NeuroMLFiles/Schemata/v1.8.1/Level3/NetworkML_v1.8.1.xsd" lengthUnits="micrometer">
+
+    <meta:notes>
+
+Network structure (NeuroML 1.x) for project: PN2LS saved with neuroConstruct v1.7.1 on: 10:28:49, 06-Nov-15
+
+Cell Group: neuron_PN2_LS_sk_427345 contains 1 cells
+
+
+
+    </meta:notes>
+
+<meta:properties>
+    <meta:property tag="neuroConstruct_random_seed" value="-9223372036854775808"/>
+
+    <meta:property tag="neuroConstruct_sim_config" value="Default Simulation Configuration"/>
+
+    <meta:property tag="neuroConstruct_sim_duration" value="100.0"/>
+
+    <meta:property tag="neuroConstruct_sim_time_step" value="0.025"/>
+
+    <meta:property tag="neuroConstruct_temperature" value="6.3"/>
+</meta:properties>
+
+        <populations>
+    <population name="neuron_PN2_LS_sk_427345" cell_type="neuron_PN2_LS_sk_427345">
+        <meta:properties>
+            <meta:property tag="color" value="0.6953125 0.5546875 0.890625"/>
+        </meta:properties>
+        <instances size="1">
+            <instance id="0">
+                <location x="0.0" y="0.0" z="0.0"/>
+            </instance>
+        </instances>
+    </population>
+</populations>
+
+
+
+            <!--There are no synaptic connections present in the network-->
+
+
+        <inputs units="Physiological Units">
+    <input name="398576">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="15">
+            <site cell_id="0" segment_id="8628" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3046" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17168" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14748" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11166" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5602" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13561" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13989" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17310" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6860" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6706" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6847" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2239" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13983" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4796" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="395984">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="29">
+            <site cell_id="0" segment_id="16936" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16359" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16261" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14584" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5144" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14581" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10311" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3033" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3717" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3745" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9038" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10169" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9554" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16413" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16119" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16407" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10687" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10672" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7872" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3719" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15482" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15972" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15631" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11185" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10661" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7932" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15900" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11479" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16617" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="321092">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="16">
+            <site cell_id="0" segment_id="10976" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10969" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8297" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10677" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15084" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15847" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9616" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3210" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3522" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6156" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8736" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6737" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3208" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4911" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5140" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5071" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="403794">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="28">
+            <site cell_id="0" segment_id="6773" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10294" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3738" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2717" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9223" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10323" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4608" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16204" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17062" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3287" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4425" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5721" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9259" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4437" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9644" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7981" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15488" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14007" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2678" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2676" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6652" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6855" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12079" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16828" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15597" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16280" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10793" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13326" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="339573">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="16">
+            <site cell_id="0" segment_id="5243" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10003" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11941" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8056" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13644" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6410" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9983" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13621" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11014" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13617" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10253" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12207" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9400" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8805" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7620" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14078" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="333916">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="18">
+            <site cell_id="0" segment_id="13550" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15448" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14621" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16822" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16683" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11941" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15033" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4311" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9846" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15143" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11449" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7800" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17044" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15211" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13901" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16320" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10448" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17231" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="225960">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="17">
+            <site cell_id="0" segment_id="16866" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3885" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13299" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10310" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3284" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17081" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11895" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17081" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6893" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6886" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6297" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6920" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15965" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13377" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9619" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15111" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3772" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="319492">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="31">
+            <site cell_id="0" segment_id="15060" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15793" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12844" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4981" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8758" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9270" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10793" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13087" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14204" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15804" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5464" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13501" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11498" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12117" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13377" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16958" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11894" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12959" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8785" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13531" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17351" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17285" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12855" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4019" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16951" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14441" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12850" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14902" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5469" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5804" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14013" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="153798">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="11">
+            <site cell_id="0" segment_id="5153" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14532" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9214" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16224" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10292" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12507" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12249" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12544" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15380" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16492" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10616" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="265283">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="19">
+            <site cell_id="0" segment_id="15680" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4674" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3993" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4944" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10951" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6242" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15915" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14201" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4960" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4485" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15605" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15757" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7546" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16132" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16983" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11181" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10369" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17155" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15121" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="360361">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="26">
+            <site cell_id="0" segment_id="5833" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13605" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8298" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14133" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13329" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16473" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6219" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13561" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5140" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15195" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12057" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15446" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8179" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10465" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13299" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4927" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14699" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15938" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16297" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14612" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15983" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7068" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16890" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8895" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7016" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17255" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="320688">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="26">
+            <site cell_id="0" segment_id="6234" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16754" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9396" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4371" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4991" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10997" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12862" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12868" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4331" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9250" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8829" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13079" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14730" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16902" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16634" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16069" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16844" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10924" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6558" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3497" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16508" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16229" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11461" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15864" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6547" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16749" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="402811">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="11">
+            <site cell_id="0" segment_id="16022" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17187" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14177" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17334" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17105" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12219" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9403" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9403" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12625" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13079" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12607" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="360235">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="26">
+            <site cell_id="0" segment_id="5398" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14746" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16445" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12006" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9820" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4120" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15863" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12818" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13053" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12010" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7573" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7586" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10827" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8716" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7351" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8691" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10817" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15199" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15594" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2817" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14093" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14706" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14124" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10684" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11858" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15182" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="362999">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="12">
+            <site cell_id="0" segment_id="4879" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15446" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15916" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16394" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13616" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11326" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11302" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12723" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3548" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14316" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14071" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17033" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="309595">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="12">
+            <site cell_id="0" segment_id="11162" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16079" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14041" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5052" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15924" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14246" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9376" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16349" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14017" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14810" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17088" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15844" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="331430">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="23">
+            <site cell_id="0" segment_id="12094" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8186" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10079" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14411" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14484" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16911" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13962" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11675" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8741" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14271" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14021" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11632" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13108" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5700" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14261" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13113" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10731" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14690" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15313" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7029" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8333" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4258" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11097" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="343030">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="17">
+            <site cell_id="0" segment_id="10965" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9798" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12096" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10901" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11032" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13042" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12503" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9802" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13045" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12489" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11338" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16816" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7987" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7982" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12003" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9119" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11025" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="329095">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="18">
+            <site cell_id="0" segment_id="5796" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13022" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7555" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14298" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4619" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15988" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14789" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6744" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3608" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7007" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15012" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8956" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10178" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4086" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11468" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4606" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14902" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8163" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="332797">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="20">
+            <site cell_id="0" segment_id="16259" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2237" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15050" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13893" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14950" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15794" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15919" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10791" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8696" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6177" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4343" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4280" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3673" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16421" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13905" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13908" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15908" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16929" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16187" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13811" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="220151">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="23">
+            <site cell_id="0" segment_id="6818" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8805" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10487" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17263" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17260" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17265" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8231" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12873" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16877" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11054" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7938" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7487" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7499" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7496" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7903" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12648" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7915" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9202" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11835" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9902" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12893" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4793" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9820" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="392106">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="20">
+            <site cell_id="0" segment_id="15946" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2189" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14487" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17061" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14174" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11938" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17051" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15173" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14618" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14611" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10826" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8206" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2302" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13068" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17304" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4086" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12254" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16889" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8642" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14403" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="396156">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="19">
+            <site cell_id="0" segment_id="4368" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15409" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14004" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14874" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15676" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7968" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10651" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13430" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10449" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16983" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16132" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3235" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11312" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16482" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4923" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4803" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4270" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10519" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14380" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="596799">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="11">
+            <site cell_id="0" segment_id="9682" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4900" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12240" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13114" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12853" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3511" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17203" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13128" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14650" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8756" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7363" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="401378">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="3">
+            <site cell_id="0" segment_id="3482" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10068" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6888" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="401986">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="13">
+            <site cell_id="0" segment_id="7001" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6375" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4012" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16312" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8628" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9202" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13499" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11021" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13522" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17331" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17276" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13539" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15806" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="426230">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="18">
+            <site cell_id="0" segment_id="4971" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15619" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15631" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10890" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12213" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12662" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14705" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4619" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4122" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6357" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6363" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8914" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8232" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8834" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6192" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11318" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2074" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7496" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="333138">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="16">
+            <site cell_id="0" segment_id="9539" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3714" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3717" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4982" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14589" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3775" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2914" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11323" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7559" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7288" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4046" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9701" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10971" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11465" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3513" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11980" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="337765">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="19">
+            <site cell_id="0" segment_id="13155" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12776" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3922" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13465" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13028" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16880" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12188" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5406" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8025" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6969" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5732" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5414" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12897" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13975" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13038" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4260" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11097" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11392" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12085" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="373935">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="14">
+            <site cell_id="0" segment_id="5830" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9930" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3012" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3296" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4388" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16962" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2928" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11107" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15096" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13808" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3285" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8821" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9484" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3876" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="379686">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="32">
+            <site cell_id="0" segment_id="4899" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5172" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5160" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2020" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10487" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6872" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3002" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4591" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16071" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6275" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11324" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9254" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9275" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8764" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8075" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8071" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14927" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8806" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13222" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11165" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10142" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5754" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11135" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12260" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12844" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16627" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16377" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4424" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5720" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2597" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2909" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6279" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="379044">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="17">
+            <site cell_id="0" segment_id="8736" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5611" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6173" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6741" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11456" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11469" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10605" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9360" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12771" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5348" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13615" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17172" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15823" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17250" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16307" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14343" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7461" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="373736">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="21">
+            <site cell_id="0" segment_id="9264" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6862" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5692" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14031" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14773" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14768" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14495" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14785" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14756" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8776" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9977" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13106" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11632" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12640" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7522" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14107" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4326" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13913" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10316" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8776" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16911" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="362954">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="23">
+            <site cell_id="0" segment_id="7527" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7016" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9331" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6712" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8834" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6953" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5082" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15965" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12300" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6949" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7007" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15652" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10370" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11630" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5620" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7456" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6185" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13126" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13141" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8914" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5114" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9797" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6706" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="404952">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="22">
+            <site cell_id="0" segment_id="4960" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4485" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4515" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11861" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14639" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13942" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12476" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11963" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9083" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10240" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16570" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4973" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9582" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11262" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3986" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15902" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10693" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6192" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16124" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2696" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12387" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8565" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="328875">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="31">
+            <site cell_id="0" segment_id="12961" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9252" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12884" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9279" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16077" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16511" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17159" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15908" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13227" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8800" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10305" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7908" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4930" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9646" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17325" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7735" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13924" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14627" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10795" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6221" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14229" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10353" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13377" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11558" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11067" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12147" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13127" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12863" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11291" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14258" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5696" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="362982">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="16">
+            <site cell_id="0" segment_id="7101" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4663" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15206" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13901" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7523" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4415" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15953" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9682" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12746" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13435" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3056" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7928" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2591" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5444" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5242" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13398" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="366040">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="18">
+            <site cell_id="0" segment_id="7786" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8724" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14811" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13159" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7793" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7770" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9797" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6723" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13056" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12730" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11179" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14757" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17324" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14874" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7405" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15510" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13602" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5402" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="420141">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="33">
+            <site cell_id="0" segment_id="12835" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14061" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9722" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12853" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7580" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17257" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15937" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8994" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5462" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6371" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8070" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7732" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17341" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15404" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15617" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16510" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16077" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16413" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16925" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15926" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4449" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4924" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4422" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12252" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12863" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5687" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16753" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6360" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6561" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13504" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7545" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4580" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6872" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="327347">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="18">
+            <site cell_id="0" segment_id="5716" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2613" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9540" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11006" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15881" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9280" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9754" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5046" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2883" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14105" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7165" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13880" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5716" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12210" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11277" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12218" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11000" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2293" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="492811">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="22">
+            <site cell_id="0" segment_id="2662" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2322" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9200" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9011" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15936" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8828" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5839" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3821" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12609" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9115" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12145" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16498" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16535" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12296" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9081" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11960" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13942" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2675" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16727" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2368" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12222" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9703" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="362882">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="23">
+            <site cell_id="0" segment_id="17250" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15823" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17101" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5441" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5445" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10971" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15964" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7475" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6174" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16167" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8598" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7040" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9965" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7574" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17345" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5869" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11303" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16078" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16511" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7336" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12967" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16598" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9158" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="331514">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="16">
+            <site cell_id="0" segment_id="5708" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12744" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4316" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17063" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14174" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9707" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6267" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15130" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14415" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10545" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2907" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11128" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13620" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11016" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11637" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3983" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="392665">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="13">
+            <site cell_id="0" segment_id="12687" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7764" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9965" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7040" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9869" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3353" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4799" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3133" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9986" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15615" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16191" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13368" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17006" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="373569">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="14">
+            <site cell_id="0" segment_id="12393" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15175" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7168" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6658" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7946" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14710" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11134" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3180" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10577" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13600" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3482" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10593" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2199" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6934" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="415503">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="36">
+            <site cell_id="0" segment_id="7571" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6803" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5102" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5109" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6934" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4380" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3145" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5828" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10694" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10164" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11811" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11815" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10663" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9867" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4966" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4499" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2636" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2772" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14408" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7471" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8159" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2376" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11145" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5442" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12610" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3389" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7067" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15107" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6949" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8863" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3128" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14382" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12143" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9691" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9688" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13334" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="332879">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="20">
+            <site cell_id="0" segment_id="4990" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9216" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3887" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16465" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16974" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11523" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8971" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12252" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13966" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4699" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11676" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12128" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3806" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8697" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14173" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8146" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5103" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5481" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16826" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16278" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="337396">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="9">
+            <site cell_id="0" segment_id="8025" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7474" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17260" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17265" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13907" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4907" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17173" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4560" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11158" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="317572">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="24">
+            <site cell_id="0" segment_id="17127" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7565" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15442" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6231" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14986" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8047" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14061" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15503" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17197" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17215" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13533" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17284" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13531" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16118" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16407" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16544" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13096" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="17235" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14000" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8785" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15313" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9712" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15570" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4295" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="331413">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="17">
+            <site cell_id="0" segment_id="16442" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16789" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6715" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12117" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11303" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11965" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11495" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13302" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8657" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9373" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5162" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7956" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11306" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14245" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2649" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="10719" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8710" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="591293">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="23">
+            <site cell_id="0" segment_id="16196" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4774" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="7457" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14205" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9404" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9223" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15806" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15815" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9229" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9238" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14124" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14155" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12981" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4606" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3015" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4788" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4790" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="4793" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="9693" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8146" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6953" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16481" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="14014" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+    <input name="401197">
+        <random_stim frequency="0.02" synaptic_mechanism="DoubExpSynA"/>
+        <target population="neuron_PN2_LS_sk_427345">
+            <sites size="19">
+            <site cell_id="0" segment_id="13968" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13361" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13465" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6717" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="3478" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="5714" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="15121" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12544" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6712" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="2293" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6282" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="6856" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12663" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="16363" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="12684" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="8776" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="11067" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13141" fraction_along="0.5"/>
+            <site cell_id="0" segment_id="13128" fraction_along="0.5"/>
+        </sites>
+        </target>
+    </input>
+</inputs>
+
+
+
+
+
+</networkml>
