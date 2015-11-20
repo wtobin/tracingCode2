@@ -83,7 +83,13 @@ for p=1:length(PN_Names)
     simRefCmd=['sed -i -e ''s#simsDir\s\=\s\".*\"#simsDir \= \"',simDir,'\"#'' ',PN, '.hoc '];
     system(simRefCmd)
     
-    %Set simulation duration
+    %Set initial Vm
+    initVm=-59.4; %in mv
+    runVCmd=['sed -i -e ''s#v\s\=\s\-65\.\0#v = \',num2str(initVm),'#'' ',PN, '.hoc '];
+    system(runVCmd)
+    
+    
+     %Setsim duration
     runTime=500; %in ms
     runTCmd=['sed -i -e ''s#tstop\s\=\s.*#tstop \= ',num2str(runTime),'#'' ',PN, '.hoc '];
     system(runTCmd)
@@ -106,21 +112,29 @@ for p=1:length(PN_Names)
     cd(['/home/william/nC_projects/',PN,'_poissSim/simulations/poissSim/'])
     
     
+    
+    %find the total number of synapses
+    grepCommand=['grep -oP ''\[\d*\].ropen\("/home/william/nC_projects/',PN,'_poissSim/spikeVectors/spikeVector\K\d*'' ' , PN,'.hoc'];
+    [status, totSynapseNums]=system(grepCommand);
+    totSynapseNums=str2num(totSynapseNums);
+    
+    
     %The number of ORNs activated in these simulations will range from 2 to 25
-    for ornNum=2:25
-        
+    for ornNum=2:4
+        tic
         
         % We want to run the simulation # times for each orn Num
         
-        for rep=1:30
-            tic
+        for rep=1:20
+            
             %initilize array to hold the synapse numbers activated in this
             %sim. It will be a 2d array in which one column hold synapse
             %numbers and the other holds a number which identifies the ORN
             %the syn came from
-            
+            PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
             
             activeSyns=[];
+            activeSyns_eq=[];
             
             
             % pick ORNs at random, from the ipsi ORN pool
@@ -151,7 +165,7 @@ for p=1:length(PN_Names)
             else % For L PNs
                 
                 selectionL=randsample(length(ORNs_Right),ornNum);
-                skelIDsL=ORNs_Right(selection);
+                skelIDsL=ORNs_Right(selectionL);
                 
                 
                 %Search the simulation hoc file and return the synapse numbers
@@ -179,12 +193,14 @@ for p=1:length(PN_Names)
             %Generate poisson spike trains for each ORN and turn them into
             %a list of spike times
             for o=1:ornNum
-                % sim time -50ms used to allow the mem pot to settle
-                spikeTrains(o,:)=makeSpikes(.004,5,.45);
-                spikeTimes{o}=find(spikeTrains(o,:)==1);
+                % sim time -10ms used to allow the mem pot to settle
+                spikeTrains(o,:)=makeSpikes(.001,2,.49); 
+                spikeTimes{o}=find(spikeTrains(o,:)==1); 
                 
             end
             
+            %spikeTrain storage
+            storedSTs{p,ornNum}(rep,:,:)=spikeTrains;
            
             
            
@@ -194,10 +210,6 @@ for p=1:length(PN_Names)
             %while all other files are blank
             
             
-                %find the total number of synapses
-                grepCommand=['grep -oP ''\[\d*\].ropen\("/home/william/nC_projects/',PN,'_poissSim/spikeVectors/spikeVector\K\d*'' ' , PN,'.hoc'];
-                [status, totSynapseNums]=system(grepCommand);
-                totSynapseNums=str2num(totSynapseNums);
                 
                % Save spike vector files for all synapses on this PN with a single
                % spike at the synapses from selected ORNs
@@ -213,22 +225,35 @@ for p=1:length(PN_Names)
                        % them from the start of the sim, allowing for the
                        % mem pot to settle
                        
-                        vector=spikeTimes{activeSyns(find(activeSyns(:,1) == s),2)}+50; 
+                       
+                       % If there are no spikes, dont try to write the
+                       % empty spikeTimes array, it snarls nrn. [] seems to
+                       % do fine?
+                       
+                       if isempty(spikeTimes{activeSyns(find(activeSyns(:,1) == s),2)}) == 1
+                           
+                        vector=[];
+                        save(['~/nC_projects/',PN,'_poissSim/spikeVectors/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')  
                         
+                       else
+                           
+                        vector=spikeTimes{activeSyns(find(activeSyns(:,1) == s),2)}+10; 
                         save(['~/nC_projects/',PN,'_poissSim/spikeVectors/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
                         
+                       end
+                       
                     else
                         
                         vector=[];
                         save(['~/nC_projects/',PN,'_poissSim/spikeVectors/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
+                        
                     end
                 end
-            
             
             %I want to run the simulation
             
                 runCmd=['nrniv ', PN, '.hoc'];
-                system(runCmd)
+                system(runCmd);
             
             
             %I want to import the PNs simulated voltage trace
@@ -236,22 +261,113 @@ for p=1:length(PN_Names)
             %find its name
                 pnResults=dir('neuron_PN*.dat');
                 
-                pnVm=importdata(pnResults.name);
+                pnVm1=importdata(pnResults.name);
+                
+                %PN voltage storage
+                 storedVms{p,ornNum}(1,rep,:)=pnVm1;
+                
             
             %Store the average PN mem pot over the firing period and the
             %total spike count
             
-            outcomes(rep,1)=sum(spikeTrains(:));
-            outcomes(rep,2)=mean(pnVm(2000:end));
+            outcomes(ornNum, rep,1)=sum(spikeTrains(:));
+            %mean deviation from baseline (-59.4mv)
+            outcomes(ornNum, rep,2)=mean(pnVm1(400:end)+59.4);
             
+            % now I want to give all ORNs the same number of synapses, I
+            % will do this by finding the ORN w/ the least synapses from my
+            % selection and only using that number of contacts in all other
+            % ORNs
+            
+            % give ORNs an equal number of synapses
+            
+            numCont=round(numel(activeSyns(:,1))/ornNum); % num contacts each ORN is going to get
+                
+            % pull synapse IDs uniformly at random from the total list and
+            % assign them equally to all active ORNs
+
+            pulledContacts=totSynapseNums(randsample(length(totSynapseNums),numCont*ornNum));
+            
+            for i=1:ornNum
+ 
+               activeSyns_eq(i*numCont-(numCont-1):i*numCont,:)=...
+                   [pulledContacts(i*numCont-(numCont-1):i*numCont),i*ones(numCont,1)];
+  
+            end
+            
+            % Save spike vector files for all synapses on this PN with
+            % spike trains given to synapses in activeSyns_eq according to
+            % ORN identity
+                
+                for f=1:numel(totSynapseNums)
+                    
+                    s=totSynapseNums(f);
+                    
+                    if ismember(s,activeSyns_eq(:,1))
+                        
+                       %should return spike time list for orn which owns the current active syn
+                       % Also I am adding 50 to all these values to offset
+                       % them from the start of the sim, allowing for the
+                       % mem pot to settle
+                       
+                       
+                       % If there are no spikes, dont try to write the
+                       % empty spikeTimes array, it snarls nrn. [] seems to
+                       % do fine?
+                       
+                       if isempty(spikeTimes{activeSyns_eq(find(activeSyns_eq(:,1) == s),2)}) == 1
+                           
+                        vector=[];
+                        save(['~/nC_projects/',PN,'_poissSim/spikeVectors/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')  
+                        
+                       else
+                           
+                        vector=spikeTimes{activeSyns_eq(find(activeSyns_eq(:,1) == s),2)}+10; 
+                        save(['~/nC_projects/',PN,'_poissSim/spikeVectors/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
+                        
+                       end
+                       
+                    else
+                        
+                        vector=[];
+                        save(['~/nC_projects/',PN,'_poissSim/spikeVectors/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
+                        
+                    end
+                end
+                
+            
+                
+            %I want to run the simulation
+            
+                runCmd=['nrniv ', PN, '.hoc'];
+                system(runCmd);
+            
+            
+            %I want to import the PNs simulated voltage trace
+            
+            %find its name
+                pnResults=dir('neuron_PN*.dat');
+                pnVm2=importdata(pnResults.name);
+                
+                  %PN voltage storage
+                 storedVms{p,ornNum}(2,rep,:)=pnVm2;
+            
+            %Store the average PN mem pot over the firing period and the
+            %total spike count
+            
+            outcomes_eq(ornNum,rep,1)=sum(spikeTrains(:));
+            outcomes_eq(ornNum, rep,2)=mean(pnVm2(400:end+59.5));
+            
+                
+                
             %Clear the spike trains/times variables
             clear spikeTrains
             clear spikeTimes
             
-            toc
+           
             
         end
-        
+         toc
     end
     
     
