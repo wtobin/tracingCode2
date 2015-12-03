@@ -174,7 +174,7 @@ for p=1 %:numel(PNs)
     
     %see how well it did on the test data
     performance(p,dFCount,2)= (sum(ctg(p,dFCount,2,find(vmMeans(p,dFCount,2,:)< thresh))==1)+...
-        sum(ctg(p,dFCount,2,find(vmMeans(p,dFCount,2,:)> thresh))==2))/numel(ctg(p,dFCount,2,:))
+        sum(ctg(1,2,find(vmMeans(1,2,:)> thresh))==2))/numel(ctg(1,2,:))
     
     
     dFCount=dFCount+1;

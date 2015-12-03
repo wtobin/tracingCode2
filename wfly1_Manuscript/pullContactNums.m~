@@ -35,8 +35,7 @@ for sk=1:length(skelIDs)
         
     
   % A hacky solution to the weird problem that sometimes the system call
-  % returns a truncated output
-  
+  % returns a truncated outp
     [status, synsW]=system(grepCommand);
     synsW=str2num(synsW);
     
