@@ -18,9 +18,9 @@ hold on
 scatter(mean(contactNum_Fract(length(ORNs_Left)+1:end,[4,5])'),...
 mean(contactNum_Fract(length(ORNs_Left)+1:end,[1,2,3])'), 'r', 'Filled')
 
-ax=gca;
-ax.XLim=[0 .04];
-ax.YLim=[0 .04];
+
+xlim([0 .04]);
+ylim([0 .04]);
 
 xlabel('Ipsilateral', 'FontSize',18)
 ylabel('Contralateral', 'FontSize',18)

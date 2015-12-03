@@ -70,7 +70,7 @@ sorted_uEPSPAmps(length(ORNs_Left)+1:length(ORNs_Left)+length(ORNs_Right),:)=nor
 
 figure()
 set(gcf, 'Color', 'w')
-
+colormap(parula)
 imagesc(sorted_uEPSPAmps, [.4 1.6])
 colorbar()
 xlabel('PNs', 'FontSize',18)

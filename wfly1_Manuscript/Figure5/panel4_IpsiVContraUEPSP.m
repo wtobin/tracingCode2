@@ -16,9 +16,8 @@ hold on
 scatter(mean(sorted_uEPSPAmps(length(ORNs_Left)+1:end,[4:5])'),...
 mean(sorted_uEPSPAmps(length(ORNs_Left)+1:end,[1,2,3])'), 'r', 'Filled')
 
-ax=gca;
-ax.XLim=[.35 2];
-ax.YLim=[.35 2];
+xlim([.35 2]);
+ylim([.35 2]);
 
 xlabel('Ipsilateral PNs', 'FontSize',18)
 ylabel('Contralateral PNs', 'FontSize',18)

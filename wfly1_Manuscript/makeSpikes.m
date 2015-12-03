@@ -21,6 +21,8 @@ spikes = (spikesPerS*timeStepS) > vt;
 
 while min(diff(find(spikes==1))) < 4
     
+    vt = rand(size(times));
+    
 spikes = (spikesPerS*timeStepS) > vt;
 
 end

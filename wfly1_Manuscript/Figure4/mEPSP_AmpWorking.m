@@ -25,8 +25,8 @@ PNs=annotations.PN;
 %return all LN skel IDs
 LNs=annotations.LN;
 LNs=[LNs, annotations.potential_0x20_LN];
-LNs=[LNs, annotations.Prospective_0x20_LN];
-LNs=[LNs, annotations.Likely_0x20_LN];
+% LNs=[LNs, annotations.Prospective_0x20_LN];
+% LNs=[LNs, annotations.Likely_0x20_LN];
 
 
 %Load the connector structure
@@ -37,17 +37,17 @@ connFields=fieldnames(conns);
 
 %% Collect simulation results for PN1LS
 
-pn1LS_Vm=importdata('/home/william/nC_projects/PN1LS/simulations/Sim_6/neuron_PN1_LS_sk_419138_0.dat');
-pn1LS_simTime=importdata('/home/william/nC_projects/PN1LS/simulations/Sim_6/time.dat');
+pn1LS_Vm=importdata('/home/william/nC_projects/PN1LS_151125/simulations/minis_151130/neuron_PN1_LS_sk_419138_0.dat');
+pn1LS_simTime=importdata('/home/william/nC_projects/PN1LS_151125/simulations/minis_151130/time.dat');
 
 %collect ORN skel IDs from PN1LS hoc file, one for every synapse,  and save them in a txt file
-idCommand='grep -Po ''(?<=^synapse_)\d*'' /home/william/nC_projects/PN1LS/generatedNEURON/PN1LS.hoc > /home/william/nC_projects/PN1LS/generatedNEURON/synapseIDs.txt ';
+idCommand='grep -Po ''(?<=^synapse_)\d*'' /home/william/nC_projects/PN1LS_151125/simulations/minis_151130/PN1LS_151125.hoc > /home/william/nC_projects/PN1LS_151125/simulations/minis_151130/synapseIDs.txt ';
 system(idCommand);
-synIDs=importdata('/home/william/nC_projects/PN1LS/generatedNEURON/synapseIDs.txt');
+synIDs=importdata('/home/william/nC_projects/PN1LS_151125/simulations/minis_151130/synapseIDs.txt');
 
-fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/william/nC_projects/PN1LS/generatedNEURON/PN1LS.hoc > /home/william/nC_projects/PN1LS/generatedNEURON/ornSpikeTimes.txt';
+fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/william/nC_projects/PN1LS_151125/simulations/minis_151130/PN1LS_151125.hoc > /home/william/nC_projects/PN1LS_151125/simulations/minis_151130/ornSpikeTimes.txt';
 system(fireTimeCmd);
-fireTimes=importdata('/home/william/nC_projects/PN1LS/generatedNEURON/ornSpikeTimes.txt');
+fireTimes=importdata('/home/william/nC_projects/PN1LS_151125/simulations/minis_151130/ornSpikeTimes.txt');
 
 
 %% Collect mEPSPs in an array
@@ -59,35 +59,36 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftUEPSPs{1}(leftCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-40:find(pn1LS_simTime==fireTimes(o))+1000);
-       
+        leftMEPSPs{1}(leftCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-40:find(pn1LS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{1}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-       rightUEPSPs{1}(rightCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-40:find(pn1LS_simTime==fireTimes(o))+1000);
-      
+       rightMEPSPs{1}(rightCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-40:find(pn1LS_simTime==fireTimes(o))+1000);
+       rightMEPSPs_idList{1}(rightCounter)=find(ORNs_Right==synIDs(o));
        rightCounter=rightCounter+1;
         
     end
+    
 end
 
 %% Collect simulation results for PN2LS
 
-pn2LS_Vm=importdata('/home/william/nC_projects/PN2LS/simulations/Sim_2/neuron_PN2_LS_sk_427345_0.dat');
-pn2LS_simTime=importdata('/home/william/nC_projects/PN2LS/simulations/Sim_2/time.dat');
+pn2LS_Vm=importdata('/home/william/nC_projects/PN2LS_151125/simulations/minis_151130/neuron_PN2_LS_sk_427345_0.dat');
+pn2LS_simTime=importdata('/home/william/nC_projects/PN2LS_151125/simulations/minis_151130/time.dat');
 
 %collect ORN skel IDs from PN1LS hoc file and save them in a txt file
-idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/william/nC_projects/PN2LS/generatedNEURON/PN2LS.hoc > /home/william/nC_projects/PN2LS/generatedNEURON/ornIDs.txt ';
+idCommand='grep -Po ''(?<=^synapse_)\d*'' /home/william/nC_projects/PN2LS_151125/simulations/minis_151130/PN2LS_151125.hoc > /home/william/nC_projects/PN2LS_151125/simulations/minis_151130/ornIDs.txt ';
 system(idCommand);
-synIDs=importdata('/home/william/nC_projects/PN2LS/generatedNEURON/ornIDs.txt');
+synIDs=importdata('/home/william/nC_projects/PN2LS_151125/simulations/minis_151130/ornIDs.txt');
 
-fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/william/nC_projects/PN2LS/generatedNEURON/PN2LS.hoc > /home/william/nC_projects/PN2LS/generatedNEURON/ornSpikeTimes.txt';
+fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/william/nC_projects/PN2LS_151125/simulations/minis_151130/PN2LS_151125.hoc > /home/william/nC_projects/PN2LS_151125/simulations/minis_151130/ornSpikeTimes.txt';
 system(fireTimeCmd);
-fireTimes=importdata('/home/william/nC_projects/PN2LS/generatedNEURON/ornSpikeTimes.txt');
+fireTimes=importdata('/home/william/nC_projects/PN2LS_151125/simulations/minis_151130/ornSpikeTimes.txt');
 
 
-%% Collect uEPSPs in an array
+%% Collect MEPSPs in an array
 
 leftCounter=1;
 rightCounter=1;
@@ -96,14 +97,14 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftUEPSPs{2}(leftCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-160:find(pn2LS_simTime==fireTimes(o))+4000);
-        leftContactNum{2}(leftCounter)=getSynapseNum(synIDs(o),PNs(1));
+        leftMEPSPs{2}(leftCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-40:find(pn2LS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{2}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-        rightUEPSPs{2}(rightCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-160:find(pn2LS_simTime==fireTimes(o))+4000);
-        rightContactNum{2}(rightCounter)=getSynapseNum(synIDs(o),PNs(1));
+        rightMEPSPs{2}(rightCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-40:find(pn2LS_simTime==fireTimes(o))+1000);
+        rightMEPSPs_idList{2}(rightCounter)=find(ORNs_Right==synIDs(o));
         rightCounter=rightCounter+1;
         
     end
@@ -112,20 +113,20 @@ end
 
 %% Collect simulation results for PN3LS
 
-pn3LS_Vm=importdata('/home/william/nC_projects/PN3LS/simulations/Sim_2/neuron_PN3_LS_sk_668267_0.dat');
-pn3LS_simTime=importdata('/home/william/nC_projects/PN3LS/simulations/Sim_2/time.dat');
+pn3LS_Vm=importdata('/home/william/nC_projects/PN3LS_151125/simulations/minis_151130/neuron_PN3_LS_sk_668267_0.dat');
+pn3LS_simTime=importdata('/home/william/nC_projects/PN3LS_151125/simulations/minis_151130/time.dat');
 
 %collect ORN skel IDs from PN1LS hoc file and save them in a txt file
-idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/william/nC_projects/PN3LS/generatedNEURON/PN3LS.hoc > /home/william/nC_projects/PN3LS/generatedNEURON/ornIDs.txt ';
+idCommand='grep -Po ''(?<=^synapse_)\d*'' /home/william/nC_projects/PN3LS_151125/simulations/minis_151130/PN3LS_151125.hoc > /home/william/nC_projects/PN3LS_151125/simulations/minis_151130/ornIDs.txt ';
 system(idCommand);
-synIDs=importdata('/home/william/nC_projects/PN3LS/generatedNEURON/ornIDs.txt');
+synIDs=importdata('/home/william/nC_projects/PN3LS_151125/simulations/minis_151130/ornIDs.txt');
 
-fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/william/nC_projects/PN3LS/generatedNEURON/PN3LS.hoc > /home/william/nC_projects/PN3LS/generatedNEURON/ornSpikeTimes.txt';
+fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/william/nC_projects/PN3LS_151125/simulations/minis_151130/PN3LS_151125.hoc > /home/william/nC_projects/PN3LS_151125/simulations/minis_151130/ornSpikeTimes.txt';
 system(fireTimeCmd);
-fireTimes=importdata('/home/william/nC_projects/PN3LS/generatedNEURON/ornSpikeTimes.txt');
+fireTimes=importdata('/home/william/nC_projects/PN3LS_151125/simulations/minis_151130/ornSpikeTimes.txt');
 
 
-%% Collect uEPSPs in an array
+%% Collect MEPSPs in an array
 
 leftCounter=1;
 rightCounter=1;
@@ -134,14 +135,14 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftUEPSPs{3}(leftCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-160:find(pn3LS_simTime==fireTimes(o))+4000);
-        leftContactNum{3}(leftCounter)=getSynapseNum(synIDs(o),PNs(2));
+        leftMEPSPs{3}(leftCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-40:find(pn3LS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{3}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-        rightUEPSPs{3}(rightCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-160:find(pn3LS_simTime==fireTimes(o))+4000);
-        rightContactNum{3}(rightCounter)=getSynapseNum(synIDs(o),PNs(2));
+        rightMEPSPs{3}(rightCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-40:find(pn3LS_simTime==fireTimes(o))+1000);
+        rightMEPSPs_idList{3}(rightCounter)=find(ORNs_Right==synIDs(o));
         rightCounter=rightCounter+1;
         
     end
@@ -150,20 +151,20 @@ end
 
 %% Collect simulation results for PN1RS
 
-pn1RS_Vm=importdata('/home/william/nC_projects/PN1RS/simulations/Sim_2/neuron_PN1_RS_sk_638603_0.dat');
-pn1RS_simTime=importdata('/home/william/nC_projects/PN1RS/simulations/Sim_2/time.dat');
+pn1RS_Vm=importdata('/home/william/nC_projects/PN1RS_151125/simulations/minis_151130/neuron_PN1_RS_sk_638603_0.dat');
+pn1RS_simTime=importdata('/home/william/nC_projects/PN1RS_151125/simulations/minis_151130/time.dat');
 
 %collect ORN skel IDs from PN1LS hoc file and save them in a txt file
-idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/william/nC_projects/PN1RS/generatedNEURON/PN1RS.hoc > /home/william/nC_projects/PN1RS/generatedNEURON/ornIDs.txt ';
+idCommand='grep -Po ''(?<=^synapse_)\d*'' /home/william/nC_projects/PN1RS_151125/simulations/minis_151130/PN1RS_151125.hoc > /home/william/nC_projects/PN1RS_151125/simulations/minis_151130/ornIDs.txt ';
 system(idCommand);
-synIDs=importdata('/home/william/nC_projects/PN1RS/generatedNEURON/ornIDs.txt');
+synIDs=importdata('/home/william/nC_projects/PN1RS_151125/simulations/minis_151130/ornIDs.txt');
 
-fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/william/nC_projects/PN1RS/generatedNEURON/PN1RS.hoc > /home/william/nC_projects/PN1RS/generatedNEURON/ornSpikeTimes.txt';
+fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/william/nC_projects/PN1RS_151125/simulations/minis_151130/PN1RS_151125.hoc > /home/william/nC_projects/PN1RS_151125/simulations/minis_151130/ornSpikeTimes.txt';
 system(fireTimeCmd);
-fireTimes=importdata('/home/william/nC_projects/PN1RS/generatedNEURON/ornSpikeTimes.txt');
+fireTimes=importdata('/home/william/nC_projects/PN1RS_151125/simulations/minis_151130/ornSpikeTimes.txt');
 
 
-%% Collect uEPSPs in an array
+%% Collect MEPSPs in an array
 
 leftCounter=1;
 rightCounter=1;
@@ -172,18 +173,62 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftUEPSPs{4}(leftCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-160:find(pn1RS_simTime==fireTimes(o))+4000);
-        leftContactNum{4}(leftCounter)=getSynapseNum(synIDs(o),PNs(3));
+        leftMEPSPs{4}(leftCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-40:find(pn1RS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{4}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-        rightUEPSPs{4}(rightCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-160:find(pn1RS_simTime==fireTimes(o))+4000);
-        rightContactNum{4}(rightCounter)=getSynapseNum(synIDs(o),PNs(3));
+        rightMEPSPs{4}(rightCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-40:find(pn1RS_simTime==fireTimes(o))+1000);
+        rightMEPSPs_idList{4}(rightCounter)=find(ORNs_Right==synIDs(o));
         rightCounter=rightCounter+1;
         
     end
 end
+
+%% Collect simulation results for P2RS
+
+pn2RS_Vm=importdata('/home/william/nC_projects/PN2RS_151125/simulations/minis_151130/neuron_PN2_RS_sk_480245_0.dat');
+pn2RS_simTime=importdata('/home/william/nC_projects/PN2RS_151125/simulations/minis_151130/time.dat');
+
+%collect ORN skel IDs from PN3LS hoc file and save them in a txt file
+idCommand=['grep -Po ''(?<=^synapse_)\d*'' ', ...
+    '/home/william/nC_projects/PN2RS_151125/simulations/minis_151130/PN2RS_151125.hoc > /home/william/nC_projects/PN2RS_151125/simulations/minis_151130/ornIDs.txt'];
+    
+system(idCommand);
+synIDs=importdata('/home/william/nC_projects/PN2RS_151125/simulations/minis_151130/ornIDs.txt');
+
+fireTimeCmd=['grep -Po ''((?<=.start = )\d*)'' ', ...
+    '/home/william/nC_projects/PN2RS_151125/simulations/minis_151130/PN2RS_151125.hoc > /home/william/nC_projects/PN2RS_151125/simulations/minis_151130/ornSpikeTimes.txt'];
+system(fireTimeCmd);
+fireTimes=importdata('/home/william/nC_projects/PN2RS_151125/simulations/minis_151130/ornSpikeTimes.txt');
+
+
+%% Collect MEPSPs in an array
+
+
+leftCounter=1;
+rightCounter=1;
+
+for o=1:length(synIDs)
+    
+    if ismember(synIDs(o),ORNs_Left) == 1
+        
+        leftMEPSPs{5}(leftCounter,:)= pn2RS_Vm(find(pn2RS_simTime==fireTimes(o))-40:find(pn2RS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{5}(leftCounter)=find(ORNs_Left==synIDs(o));
+        leftCounter=leftCounter+1;
+        
+    elseif ismember(synIDs(o),ORNs_Right) == 1
+        
+        rightMEPSPs{5}(rightCounter,:)= pn2RS_Vm(find(pn2RS_simTime==fireTimes(o))-40:find(pn2RS_simTime==fireTimes(o))+1000);
+        rightMEPSPs_idList{5}(rightCounter)=find(ORNs_Right==synIDs(o));
+        rightCounter=rightCounter+1;
+        
+    end
+end
+
+
+
 
 
 

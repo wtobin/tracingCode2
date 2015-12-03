@@ -80,14 +80,14 @@ scatter(mean(uEPSP_Amps(1:25,1:3)),mean(uEPSP_Amps(26:end,1:3)), 'filled')
 
 hold on
 
-scatter(mean(uEPSP_Amps(26:end,4)),mean(uEPSP_Amps(1:25,4)), 'filled','r')
+scatter(mean(uEPSP_Amps(26:end,4:5)),mean(uEPSP_Amps(1:25,4:5)), 'filled','r')
 
 set(gcf, 'Color', 'w')
 ax=gca;
 % ax.XTick=[0:10:110];
 % ax.YTick=[0:10:110];
-xlim([5 10]);
-ylim([5 10]);
+xlim([4 8]);
+ylim([4 8]);
 ax.FontSize=16;
 refline(1,0)
 xlabel('Mean Ipsi ORN uEPSP Amp (mV)', 'FontSize', 16);

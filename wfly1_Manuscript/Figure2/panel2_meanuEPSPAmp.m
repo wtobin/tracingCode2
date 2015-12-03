@@ -79,7 +79,7 @@ title('Mean ipsi ORN-->PN uEPSP Amp', 'FontSize', 18)
 
 
 figure()
-subplot(2,1,1)
+subplot(2,1,2)
 scatter(ones(1,length(ilAmps)),ilAmps)
 hold on
 scatter(2*ones(1,length(irAmps)), irAmps)
@@ -93,7 +93,7 @@ ax.FontSize=16;
 ylabel('uEPSP Amp (mV)', 'FontSize', 16);
 title('ipsi ORN-->PN uEPSP Amps', 'FontSize', 18)
 
-subplot(2,1,2)
+subplot(2,1,1)
 scatter(ones(1,length(ilNum)),ilNum)
 hold on
 scatter(2*ones(1,length(irNum)), irNum)
