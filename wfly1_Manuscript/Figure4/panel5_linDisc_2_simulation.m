@@ -32,30 +32,39 @@ for p=1 %:numel(PNs)
     PN=cell2mat(PN_Names(p));
     
     %path to the dir containing the hoc files to be run
-    path1=['/home/william/nC_projects/',PN,'_linDisSim/simulations/linDisSim'];
+    path1=['/home/simulation/nC_projects/',PN,'_linDisSim/simulations/linDisSim'];
     cd(path1)
+    system('nrnivmodl')
     
     %path to the dir containing the spikeVectors that specify the model
     %activity
-    path2=['/home/william/nC_projects/',PN,'_linDisSim/spikeVectors'];
+    path2=['/home/simulation/nC_projects/',PN,'_linDisSim/spikeVectors'];
     
     
     %find the total number of synapses
-    grepCommand=['grep -oP ''\[\d*\].ropen\("/home/william/nC_projects/',PN,'_linDisSim/spikeVectors/spikeVector\K\d*'' ' , PN,'_151125.hoc'];
+    grepCommand=['grep -oP ''\[\d*\].ropen\("/home/simulation/nC_projects/',PN,'_linDisSim/spikeVectors/spikeVector\K\d*'' ' , PN,'_151125.hoc'];
     [status, totSynapseNums]=system(grepCommand);
     totSynapseNums=str2num(totSynapseNums);
     
     
+     %Setsim duration
+    runTime=200; %in ms
+    runTCmd=['sed -i -e ''s#tstop\s\=\s.*#tstop \= ',num2str(runTime),'#'' ',PN, '_151125.hoc '];
+    system(runTCmd)
+    
+    
+    
     dFCount=1;
     
-    for dF = (.5:.5:5)
+    for dF = (.25:.25:2.5)
         
-        
+       
         
     for t=1:2
         
-        for rep=1:50
-            
+        for rep=1%:550
+           tic
+
             %initilize array to hold the synapse numbers activated in this
             %sim. It will be a 2d array in which one column hold synapse
             %numbers and the other holds a number which identifies the ORN
@@ -95,7 +104,7 @@ for p=1 %:numel(PNs)
                 
                 for o=1:numel(unique(activeSyns(:,2)))
                     
-                    spikeTrain(o,:)=makeSpikes(.001,2.25,.40);
+                    spikeTrain(o,:)=makeSpikes(.001,2.25,.20);
                     spikeTimes{o}=find(spikeTrain(o,:)==1);
                     
                 end
@@ -107,7 +116,7 @@ for p=1 %:numel(PNs)
                 
                 for o=1:numel(unique(activeSyns(:,2)))
                     
-                    spikeTrain(o,:)=makeSpikes(.001,2.5,.40);
+                    spikeTrain(o,:)=[makeSpikes(.001,2.25,.099),makeSpikes(.001,(2.25+dF),.10)];
                     spikeTimes{o}=find(spikeTrain(o,:)==1);
                     
                 end
@@ -141,11 +150,11 @@ for p=1 %:numel(PNs)
             pnVms(p,dFCount,t,rep,:)=pnVm1;
             
             
-            
+          toc  
         end
         
         % Calculate the mean voltage for all reps
-        vmMeans(p,dFCount,t,:)=mean(squeeze(pnVms(p,dFCount,t,:,:))');
+        vmMeans(p,dFCount,t,:)=mean(squeeze(pnVms(p,dFCount,t,:,4000:end))');
         
     end
     
@@ -174,7 +183,7 @@ for p=1 %:numel(PNs)
     
     %see how well it did on the test data
     performance(p,dFCount,2)= (sum(ctg(p,dFCount,2,find(vmMeans(p,dFCount,2,:)< thresh))==1)+...
-        sum(ctg(1,2,find(vmMeans(1,2,:)> thresh))==2))/numel(ctg(1,2,:))
+        sum(ctg(p,dFCount,2,find(vmMeans(p,dFCount,2,:)> thresh))==2))/numel(ctg(p,dFCount,2,:))
     
     
     dFCount=dFCount+1;
