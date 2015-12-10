@@ -285,7 +285,7 @@ for p=1%:length(PN_Names)
             %Search the simulation hoc file and return the synapse numbers
             %associated with each of these ORNs
             counter =1;
-PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
+
             
             for ro=1:length(skelIDsR)
                 
@@ -302,8 +302,7 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
             
         else % For L PNs
             
-            skelIDsL=ra
-PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};ndsample(ORNs_Left,2);
+            skelIDsL=randsample(ORNs_Left,2);
             
             %Search the simulation hoc file and return the synapse numbers
             %associated with each of these ORNs
@@ -374,8 +373,7 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};ndsample(ORNs_Left,2);
         pnVm1=importdata(pnResults.name);
         
         %PN voltage storage
-        twoSpikeVms(p,r
-PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};ep,:)=pnVm1;
+        twoSpikeVms(p,rep,:)=pnVm1;
 
         toc
     end
