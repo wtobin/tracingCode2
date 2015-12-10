@@ -192,8 +192,7 @@ for p=1%:length(PN_Names)
                 %associated with this ORN
                 
                 
-                grepCo
-PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};mmand=['grep -oP ''', num2str(skelID),'\[\d*\].ropen\("/home/william/nC_projects/',PN,'_linDisSim/spikeVectors/spikeVector\K\d*'' ' , PN,'_151125.hoc'];
+                grepCommand=['grep -oP ''', num2str(skelID),'\[\d*\].ropen\("/home/william/nC_projects/',PN,'_linDisSim/spikeVectors/spikeVector\K\d*'' ' , PN,'_151125.hoc'];
                 [status, syns]=system(grepCommand);
                 syns=str2num(syns);
                 

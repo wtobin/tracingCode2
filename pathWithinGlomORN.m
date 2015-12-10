@@ -1,6 +1,6 @@
-%The goal of this code is to calculate the path length of an axon
-%collateral within an individual glomerulus. Additionally I would also like
-%to find the number of presynaptic sites within the glomerulus
+%The goal of this code is to calculate the path length of a dendrite
+%within an individual glomerulus. Additionally I would also like
+%to find the number of postsynaptic ORN input sites within the glomerulus
 
 %% Load annotations and connectors
 
@@ -23,14 +23,17 @@ ORNs_Left(find(ORNs_Left == 401378))=[];
 
 ORNs=[ORNs_Left, ORNs_Right];
 
+%return all skeleton IDs of DM6 PNs
+PNs=annotations.DM6_0x20_PN;
 
-%for each ORN
 
-for o=1:length(ORNs)
+%for each PN
+
+for p=1:length(PNs)
 tic
 % Step #1 load ORN skeletons
 
-workingSkel=loadjson(['~/tracing/skeletons/',num2str(ORNs(o)),'.json']);
+workingSkel=loadjson(['~/tracing/skeletons/',num2str(PNs(p)),'.json']);
 
 
 % STEP 2: generate the directed, weighted adjacency matrix and graph obj
@@ -54,20 +57,20 @@ G=biograph(adjMat);
 % This loop runs over the the verts that will go into the Adj Mat and looks for
 % the start of the left axon/s
 
-axonCounterL=1;
-leftStart=[];
+dendCounter=1;
+start=[];
 
 for v =1:length(skelVertNames)
     
     if isempty(cell2mat(workingSkel.vertices.(cell2mat(skelVertNames(v))).labels)) == 1
     else
         
-    if regexp(cell2mat(workingSkel.vertices.(cell2mat(skelVertNames(v))).labels),'left axon') == 1
+    if regexp(cell2mat(workingSkel.vertices.(cell2mat(skelVertNames(v))).labels),'dendrite') == 1
         
-        leftStart(axonCounterL)=v;
+        start(dendCounter)=v;
         
         %leftStartNodeName=skelVertNames(v)
-        axonCounterL=axonCounterL+1;
+        dendCounter=dendCounter+1;
         
     else
     end
@@ -75,7 +78,7 @@ for v =1:length(skelVertNames)
 end
 
 
-for s = 1:length(leftStart)
+for s = 1:length(start)
 % step 4 identify all nodes that are descendants of the left axon start 
 
 
@@ -84,7 +87,7 @@ for s = 1:length(leftStart)
 %parent this should yield the indicies of all nodes (from skelVertNames)
 %involved in the collateral
 
-leftAxonInds=G.traverse(leftStart(s));
+dendInds=G.traverse(start(s));
 
 
 % Step 5 We want to calculate the total path length of this subgraph
@@ -98,20 +101,20 @@ leftAxonInds=G.traverse(leftStart(s));
 runningLength=[];
 
 
-for i=1:length(leftAxonInds)
+for i=1:length(dendInds)
     
     %We are going to ask whether it is connected to all other nodes in the
     %sub-arbor
     
-    others=leftAxonInds;
+    others=dendInds;
     others(i)=[];
     
     for j=others;
         
         
-        if adjMat(leftAxonInds(i),j) ~= 0
+        if adjMat(dendInds(i),j) ~= 0
             
-            runningLength=[runningLength, adjMat(leftAxonInds(i),j)];
+            runningLength=[runningLength, adjMat(dendInds(i),j)];
             
         else
         end
@@ -123,7 +126,7 @@ totalLength(s)=sum(runningLength);
 % Step 6 find all presynaptic sites in this subarbor
 preSiteCounter=0;
 
-for v=leftAxonInds
+for v=dendInds
     
     children=fieldnames(workingSkel.connectivity.(cell2mat(skelVertNames(v))));
     
@@ -143,8 +146,8 @@ preSiteNum(s)=preSiteCounter;
 
 end
 
-leftAxons{o}(1,:)=totalLength;
-leftAxons{o}(2,:)=preSiteNum;
+leftAxons{p}(1,:)=totalLength;
+leftAxons{p}(2,:)=preSiteNum;
 
 totalLength=[];
 preSiteNum=[];
@@ -240,8 +243,8 @@ preSiteNum(s)=preSiteCounter;
 
 end
 
-rightAxons{o}(1,:)=totalLength;
-rightAxons{o}(2,:)=preSiteNum;
+rightAxons{p}(1,:)=totalLength;
+rightAxons{p}(2,:)=preSiteNum;
    
 totalLength=[];
 preSiteNum=[];
@@ -258,31 +261,31 @@ save('rightAxons', 'rightAxons')
 
 % For each ORN calculate its total ipsi within glomerulus length 
 
-for o=1:length(ORNs)
+for p=1:length(ORNs)
     runL=[]
     runPS=[]
     
-    if o<=25
+    if p<=25
         
-        for j=1:size(leftAxons{o},2)
-            runL=[runL, leftAxons{o}(1,j)]
-            runPS=[runPS,leftAxons{o}(2,j)]
+        for j=1:size(leftAxons{p},2)
+            runL=[runL, leftAxons{p}(1,j)]
+            runPS=[runPS,leftAxons{p}(2,j)]
             
         end
         
-        cLengths(o)=sum(runL)
-        psSites(o)=sum(runPS)
+        cLengths(p)=sum(runL)
+        psSites(p)=sum(runPS)
         
     else
         
         
-        for j=1:size(rightAxons{o},2)
-            runL=[runL, rightAxons{o}(1,j)]
-            runPS=[runPS,rightAxons{o}(2,j)]
+        for j=1:size(rightAxons{p},2)
+            runL=[runL, rightAxons{p}(1,j)]
+            runPS=[runPS,rightAxons{p}(2,j)]
         end
         
-        cLengths(o)=sum(runL)
-        psSites(o)=sum(runPS)
+        cLengths(p)=sum(runL)
+        psSites(p)=sum(runPS)
     end
 end
             

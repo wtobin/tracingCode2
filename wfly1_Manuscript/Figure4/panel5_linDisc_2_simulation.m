@@ -26,7 +26,8 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
 %% Now I am going to run a simulation in which either the ipsi ORN poulation
 %is firing at 3Hz or 3Hz+ some ammount.
 
-for p=1 %:numel(PNs)
+%loop over PNs
+for p=1:numel(PNs)
     
     
     PN=cell2mat(PN_Names(p));
@@ -41,28 +42,46 @@ for p=1 %:numel(PNs)
     path2=['/home/simulation/nC_projects/',PN,'_linDisSim/spikeVectors'];
     
     
-    %find the total number of synapses
+    %find the spike Vector file Number each synapse looks to for its
+    %activity
+    
     grepCommand=['grep -oP ''\[\d*\].ropen\("/home/simulation/nC_projects/',PN,'_linDisSim/spikeVectors/spikeVector\K\d*'' ' , PN,'_151125.hoc'];
     [status, totSynapseNums]=system(grepCommand);
     totSynapseNums=str2num(totSynapseNums);
     
     
-     %Setsim duration
+    %Setsim duration
     runTime=200; %in ms
     runTCmd=['sed -i -e ''s#tstop\s\=\s.*#tstop \= ',num2str(runTime),'#'' ',PN, '_151125.hoc '];
     system(runTCmd)
     
     
+    % Find synapse ids for all ipsi ORN synapses
+     activeSyns=[];
+     
+    if strcmp(PN, 'PN1RS') == 1 || strcmp(PN,'PN2RS') == 1 %For Right PNs
+        
+        activeSyns=pullContactNums(ORNs_Right,path1,path2);
+        
+        
+    else % For L PNs
+        
+        activeSyns=pullContactNums(ORNs_Left,path1,path2);
+        
+    end
     
+    %loop over conditions
     dFCount=1;
-    
     for dF = (.25:.25:2.5)
         
        
-        
+    %Generate training and test datasets
+    
     for t=1:2
         
-        for rep=1%:550
+        %Running reps
+        
+        for rep=1:1000
            tic
 
             %initilize array to hold the synapse numbers activated in this
@@ -71,22 +90,7 @@ for p=1 %:numel(PNs)
             %the syn came from
             
             
-            activeSyns=[];
-            
-            
-            
-            % Find synapse ids for all ipsi ORN synapses
-            
-            if strcmp(PN, 'PN1RS') == 1 || strcmp(PN,'PN2RS') == 1 %For Right PNs
-                
-                activeSyns=pullContactNums(ORNs_Right,path1,path2);
-                
-                
-            else % For L PNs
-                
-                activeSyns=pullContactNums(ORNs_Left,path1,path2);
-                
-            end
+           
             
             % Decide whether it will be a spontaneous or driven trial
             ctg(p,dFCount,t,rep)=randi(2);
