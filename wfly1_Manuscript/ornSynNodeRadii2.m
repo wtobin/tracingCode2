@@ -75,22 +75,31 @@ for s=1:numel(synSec)
 end
 
 synSectDiamSum(p,1)=mean(synSecDs);
-synSectDiamSum(p,2)=std(synSecDs);
+synSectDiamSum(p,2)=std(synSecDs)/sqrt(numel(synSecDs));
 
-% figure()
-% set(gcf,'Color','w')
-% scatter(synSecDs,miniAmps)
-% ylabel('Mini Amp @ site of Synapse (mV)','FontSize',16)
-% xlabel('Mean Compartment Diam (um)','FontSize',16)
+% subplot(5,1,p)
 
 
+ set(gcf,'Color','w')
+ scatter((synSecDs).^-2/3,miniAmps)
+ hold on
+% title(PN_Names(p),'FontSize',12)
+% if p ==5
+ 
+ xlabel('Mean Compartment Diam ^-2/3 ','FontSize',16)
+% 
+% elseif p==4
+    ylabel('Mini Amp @ site of Synapse (mV)','FontSize',16)
+% end
 
 
-subplot(5,1,p)
-hist(synSecDs,50)
-xlim([0 1.5])
+% subplot(5,1,p)
+% hist(synSecDs,50)
+% xlim([0 .75])
+% ylim([0 20])
 
 clear sections diameters synSec miniAmps synSecDs mSecDiams uSections
+
 end
 % pull compartment #, L and diam from psections
 

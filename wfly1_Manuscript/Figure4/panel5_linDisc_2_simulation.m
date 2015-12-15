@@ -33,19 +33,19 @@ for p=1:numel(PNs)
     PN=cell2mat(PN_Names(p));
     
     %path to the dir containing the hoc files to be run
-    path1=['/home/simulation/nC_projects/',PN,'_linDisSim/simulations/linDisSim'];
+    path1=['~/nC_projects/',PN,'_linDisSim/simulations/linDisSim'];
     cd(path1)
-    system('nrnivmodl')
+    system('/groups/htem/code/neuron/nrn/bin/nrnivmodl')
     
     %path to the dir containing the spikeVectors that specify the model
     %activity
-    path2=['/home/simulation/nC_projects/',PN,'_linDisSim/spikeVectors'];
+    path2=['~/nC_projects/',PN,'_linDisSim/spikeVectors'];
     
     
     %find the spike Vector file Number each synapse looks to for its
     %activity
     
-    grepCommand=['grep -oP ''\[\d*\].ropen\("/home/simulation/nC_projects/',PN,'_linDisSim/spikeVectors/spikeVector\K\d*'' ' , PN,'_151125.hoc'];
+    grepCommand=['grep -oP ''\[\d*\].ropen\("/home/wft2/nC_projects/',PN,'_linDisSim/spikeVectors/spikeVector\K\d*'' ' , PN,'_151125.hoc'];
     [status, totSynapseNums]=system(grepCommand);
     totSynapseNums=str2num(totSynapseNums);
     

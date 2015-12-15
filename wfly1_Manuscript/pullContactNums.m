@@ -1,4 +1,4 @@
-function [ contacts ] = pullContactNums(skelIDs, path1, path2)
+function [ contacts ] = pullContactNums(skelIDs, path1)
 %pullContactNums Args:
 % skelIDs - list of skeleton IDs that synapse onto the PN being simulated
 % path1 - path to the dir containing the hoc file that specifies the simulation( modified by hocEdsv2.py)
@@ -25,7 +25,7 @@ contacts=[];
 
 for sk=1:length(skelIDs)
     
-    grepCommand=['grep -oP ''', num2str(skelIDs(sk)),'\[\d*\].ropen\("',path2,'/spikeVector\K\d*'' ' , hocFile];
+    grepCommand=['grep -oP ''', num2str(skelIDs(sk)),'\[\d*\].ropen\(".*/spikeVector\K\d*'' ' , hocFile];
     
     
     %         [status, synapseNumsR{ro}]=system(grepCommand);
