@@ -15,16 +15,15 @@ vt = rand(size(times));
 % Finally, create a vector of ones and zeros depending on whether the probability of firing
 % (spikesPerS*timeStepS) is greater than the corresponding random number.
 
-spikes = (spikesPerS*timeStepS) > vt;
-
-%set a refractory period
-
-while min(diff(find(spikes==1))) < 4
-    
-    vt = rand(size(times));
-    spikes = (spikesPerS*timeStepS) > vt;
-    
-end
+spikes = (spikesPerS*timeStepS) >= vt;
+% 
+% %set a refractory period
+% while min(diff(find(spikes==1))) < 4
+%     
+%     vt = rand(size(times));
+%     spikes = (spikesPerS*timeStepS) > vt;
+%     
+% end
 
 end
 

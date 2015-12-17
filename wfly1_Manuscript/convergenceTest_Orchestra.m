@@ -29,6 +29,7 @@ cd('~/nC_projects/PN1LS_allORNs/')
 %make a dir in simulations called convergTest
 system('mkdir simulations/convergTest')
 
+
 % Copy the contents of the generatedNEURON dir to convergTest
 
 system('cp -a generatedNEURON/. simulations/convergTest/')
@@ -56,6 +57,10 @@ system(hocEdCmd)
 system(['sed -i -e ''s#\/home\/simulation\/#\/home\/wft2\/#'' ', PN,'_allORNs.hoc'])
 
 
+%Set initial Vm
+initVm=-59.4; %in mv
+runVCmd=['sed -i -e ''s#v\s\=\s\-65\.\0#v = \',num2str(initVm),'#'' ', PN,'_allORNs.hoc'];
+system(runVCmd)
 
 %Save an empty txt file that I will write nrn run commands to
 empty=[];

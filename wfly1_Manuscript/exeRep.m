@@ -5,7 +5,7 @@ function [ output_args ] = exeRep( rep)
 %Currently it fills the spike vector dir with spontaneous activity for 
 
 %Add my matlab dir to the path 
-path(path,'/home/wft2/Matlab');
+addpath(genpath('/home/wft2/Matlab'));
 
 PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
 
@@ -15,8 +15,13 @@ PN=cell2mat(PN_Names(1));
 path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/convergTest/'];
 cd(path1)
 
+loopsPerRep=150;
+
+%I need a loop right here that will repeat this ~35 times
+for i= rep*loopsPerRep-loopsPerRep+1:rep*loopsPerRep
+
 %make a copy of the hoc file
-hocCpName=[PN, '_', num2str(rep) , '.hoc ' ];
+hocCpName=[PN, '_', num2str(i) , '.hoc ' ];
 cpCmd=['cp ',PN, '_allORNs.hoc ',hocCpName ];
 system(cpCmd);
 
@@ -37,7 +42,7 @@ activeSyns=[];
 activeSyns=pullContactNums(ORNs_Left,path1);
 
 % make a spikeVector dir for this sim
-svDirName=['spikeVectors_',num2str(rep)];
+svDirName=['spikeVectors_',num2str(i)];
 mkSVDirCmd=['mkdir ../../',svDirName];
 system(mkSVDirCmd);
 
@@ -51,8 +56,8 @@ chngSVDirCmd=['sed -i -e ''s#spikeVectors#',svDirName,'#'' ',hocCpName];
 system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
-mkdir(['results',num2str(rep)])
-chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',path1, 'results',num2str(rep),'/"#'' ',hocCpName];
+mkdir(['cnvTestResults',num2str(i)])
+chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',path1, 'cnvTestResults',num2str(i),'/"#'' ',hocCpName];
 system(chngResDir)
 
 %path to the dir containing the spikeVectors that specify this models
@@ -89,6 +94,12 @@ saveSpikeVectors(totSynapseNums,activeSyns,spikeTimes,path2)
 %add a line to my script that will run this simulation
 runCmd=['/groups/htem/code/neuron/nrn/x86_64/bin/nrniv ', hocCpName];
 system(runCmd);
+
+
+system(['rm -rf ',hocCpName])
+system(['rm -rf ../../',svDirName])
+
+end
 
 
 end

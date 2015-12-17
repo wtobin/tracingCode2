@@ -1,10 +1,9 @@
-function [ contacts ] = pullContactNums(skelIDs, path1)
+function [ contacts ] = pullContactNums(skelIDs, path1, hocFile)
 %pullContactNums Args:
 % skelIDs - list of skeleton IDs that synapse onto the PN being simulated
-% path1 - path to the dir containing the hoc file that specifies the simulation( modified by hocEdsv2.py)
-% path2 - path to the dir containg the spikeVectors that will be used to
-% specifify synapse activity in the sim
-
+% path1 - path to the sim dir containing hocFile
+% hocFile - name of the hoc file containing the contacts whose vecFile nums
+% you are pulling
 
 %It will return an array whose first column contains the
 %number of the spikeVector file this contact receives and the second
@@ -15,10 +14,6 @@ startingDir=pwd;
 cd(path1)
 
 %Find the name of the hoc file, must start w/ "PN"
-
-tmp=dir('PN*.hoc');
-hocFile=tmp.name;
-
 
 counter =1;
 contacts=[];
