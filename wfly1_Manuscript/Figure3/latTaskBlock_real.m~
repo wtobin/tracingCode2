@@ -101,19 +101,16 @@ end
 %while all other files are blank
 saveSpikeVectors_latTask(totSynapseNums,activeSynsL, activeSynsR,spikeTimesL,spikeTimesR,path2)
 
+
+
 %add a line to my script that will run this simulation
 runCmd=['/groups/htem/code/neuron/nrn/x86_64/bin/nrniv ', hocCpName];
 system(runCmd);
 
 
-
-%Save the spikeTimes arrays and trial hoc file to result results dir
-save([resultDir,'/spikeTimesL.mat'],'spikTimesL')
-save([resultDir,'/spikeTimesR.mat'],'spikTimesR')
-system(['mv ',hocCpName,' ',resultDir,'/'])
-
-%delete the spikeVector dir
+system(['rm -rf ',hocCpName])
 system(['rm -rf ../../',svDirName])
+
 
 end
 
