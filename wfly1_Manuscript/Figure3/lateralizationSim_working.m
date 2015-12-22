@@ -43,15 +43,6 @@ annotations=loadjson('~/tracing/sid_by_annotation.json');
 ORNs_Left=annotations.Left_0x20_ORN;
 ORNs_Right=annotations.Right_0x20_ORN;
 
-%exclude unilateral ORNs for now
-
-ORNs_Right(find(ORNs_Right == 499879))=[];
-ORNs_Left(find(ORNs_Left == 426230))=[];
-ORNs_Left(find(ORNs_Left == 401378))=[];
-%
-% %exclude ORN 8 because it was temporarily unilateral on 8/5 for testing
-% ORNs_Left(find(ORNs_Left == 593865))=[];
-
 ORNs=[ORNs_Left, ORNs_Right];
 
 

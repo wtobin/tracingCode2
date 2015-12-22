@@ -38,7 +38,6 @@ end
 activeSyns=[];
 activeSyns=pullContactNums(ipsiORNs,path1,hocCpName);
 
-
 %Here is where I distribute the ipsi ORN synapses equally among all ORNs
 %NEEDS TO BE TESTED
 
