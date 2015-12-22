@@ -30,7 +30,6 @@ system('mkdir simulations/detTask')
 
 
 % Copy the contents of the generatedNEURON dir to detTask
-
 system('cp -a generatedNEURON/. simulations/detTask/')
 
 
