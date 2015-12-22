@@ -105,9 +105,14 @@ saveSpikeVectors(totSynapseNums,activeSyns,spikeTimes,path2)
 runCmd=['/groups/htem/code/neuron/nrn/x86_64/bin/nrniv ', hocCpName];
 system(runCmd);
 
+%Save the spikeTimes arrays and trial hoc file to result results dir
+save([resultDir,'/spikeTimes.mat'],'spikTimes')
+system(['mv ',hocCpName,' ',resultDir,'/'])
 
-system(['rm -rf ',hocCpName])
+%delete the spikeVector dir
 system(['rm -rf ../../',svDirName])
+
+
 
 
 end
