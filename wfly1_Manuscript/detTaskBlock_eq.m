@@ -71,7 +71,7 @@ system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
 
-resultDir=['results/eq_dF',num2str(dF),'_rep',num2str(i)];
+resultDir=['results_reducedConductance/eq_dF',num2str(dF),'_rep',num2str(i)];
 mkdir(resultDir)
 chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',path1,resultDir,'/"#'' ',hocCpName];
 system(chngResDir)
@@ -107,7 +107,11 @@ runCmd=['/groups/htem/code/neuron/nrn/x86_64/bin/nrniv ', hocCpName];
 system(runCmd);
 
 
-system(['rm -rf ',hocCpName])
+%Save the spikeTimes arrays and trial hoc file to result results dir
+save([resultDir,'/spikeTimes.mat'],'spikeTimes')
+system(['mv ',hocCpName,' ',resultDir,'/'])
+
+%delete the spikeVector dir
 system(['rm -rf ../../',svDirName])
 
 
