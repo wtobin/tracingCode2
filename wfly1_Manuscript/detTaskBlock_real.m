@@ -1,20 +1,4 @@
-%{
 
-I need a function that accepts 
-
-
-
-dF - the difference between spontaneous and evoked rates
-
-PN - which PN will be used in the simulation
-
-It will then 
-
-for each jobNumetition 
-
-
-
-%}
 
 function [] = detTaskBlock_real( jobNum, reps, dF, PN)
 
@@ -71,7 +55,7 @@ system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
 
-resultDir=['results_reducedConductance/real_dF',num2str(dF),'_rep',num2str(i)];
+resultDir=['results_12Spikes/real_dF',num2str(dF),'_rep',num2str(i)];
 mkdir(resultDir)
 chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',path1,resultDir,'/"#'' ',hocCpName];
 system(chngResDir)
@@ -87,6 +71,7 @@ clear spikeTimes
 %generate a spike train that is spon rate for the first 100ms and spont+dF
 %for the 2nd 100ms
 
+
 for o=1:numel(unique(activeSyns(:,2)))
     
     spikeTrain(o,:)=[makeSpikes(.001,2.25,.099),makeSpikes(.001,(2.25+dF),.10)];
@@ -94,6 +79,21 @@ for o=1:numel(unique(activeSyns(:,2)))
     
 end
 
+%require 12 spikes to be fired
+while sum(spikeTrain(:))~=12
+    
+    
+   for o=1:numel(unique(activeSyns(:,2)))
+    
+    spikeTrain(o,:)=[makeSpikes(.001,2.25,.099),makeSpikes(.001,(2.25+dF),.10)];
+    spikeTimes{o}=find(spikeTrain(o,:)==1);
+    
+   end
+
+end
+    
+    
+    
 %Save a file for every synapse in the simulation. The files associated
 %with the selected ORNs should contain the above generated spike times
 %while all other files are blank

@@ -5,7 +5,7 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
 
 for p=1:numel(PN_Names)
     
-    PN=PN_Names(p);
+    PN=cell2mat(PN_Names(p));
     
 
 %Move to the PN project directory
@@ -18,7 +18,7 @@ system('mkdir simulations/latTask')
 system('cp -a generatedNEURON/. simulations/latTask/')
 
 % Go to the lat Task dir
-cd simulation/latTask
+cd simulations/latTask
 
 %copy vecEvent.mod to this Dir
 system('cp /groups/htem/code/neuron/nrn/share/examples/nrniv/netcon/vecevent.mod ./')

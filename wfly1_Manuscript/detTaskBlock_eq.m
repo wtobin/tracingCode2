@@ -43,17 +43,17 @@ activeSyns=pullContactNums(ipsiORNs,path1,hocCpName);
 
 %shuffle the rows of activesyns
 activeSyns=activeSyns(randperm(size(activeSyns,1),size(activeSyns,1)),:);
-rem=[];
+remain=[];
 
 for e=1:floor(size(activeSyns,1)/numel(ipsiORNs))
     
     activeSyns(e*numel(ipsiORNs)-numel(ipsiORNs)+1:e*numel(ipsiORNs),2)=[1:numel(ipsiORNs)];
-    rem(e*numel(ipsiORNs)-numel(ipsiORNs)+1:e*numel(ipsiORNs))=1;
+    remain(e*numel(ipsiORNs)-numel(ipsiORNs)+1:e*numel(ipsiORNs))=1;
     
 end
 
-activeSyns(sum(rem)+1:end,2)=randsample(numel(ipsiORNs),size(activeSyns,1)-sum(rem));
-clear rem
+activeSyns(sum(remain)+1:end,2)=randsample(numel(ipsiORNs),size(activeSyns,1)-sum(remain));
+clear remain
 
 % make a spikeVector dir for this sim
 svDirName=['spikeVectors_',num2str(i)];
@@ -70,7 +70,6 @@ chngSVDirCmd=['sed -i -e ''s#spikeVectors#',svDirName,'#'' ',hocCpName];
 system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
-
 resultDir=['results_reducedConductance/eq_dF',num2str(dF),'_rep',num2str(i)];
 mkdir(resultDir)
 chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',path1,resultDir,'/"#'' ',hocCpName];

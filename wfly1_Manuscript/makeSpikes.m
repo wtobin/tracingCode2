@@ -25,5 +25,7 @@ while min(diff(find(spikes==1))) < 4
     
 end
 
+
+
 end
 
