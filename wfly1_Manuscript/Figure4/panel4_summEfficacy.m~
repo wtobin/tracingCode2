@@ -44,5 +44,4 @@ xlabel('uEPSP Amp (mV)', 'FontSize',18)
 ylabel('sum mEPSP Amp (mV)', 'FontSize',18)
 legend({'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS', 'PN2 RS'}, 'Location', 'NorthWest')
 
-refline(1,0)
 

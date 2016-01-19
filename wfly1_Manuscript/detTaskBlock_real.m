@@ -2,6 +2,9 @@
 
 function [] = detTaskBlock_real( jobNum, reps, dF, PN)
 
+%Make sure rng is not going to repeat itself 
+rng('shuffle');
+
 %Add my matlab dir to the path 
 addpath(genpath('/home/wft2/Matlab'));
 
@@ -54,10 +57,10 @@ chngSVDirCmd=['sed -i -e ''s#spikeVectors#',svDirName,'#'' ',hocCpName];
 system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
-
-resultDir=['results_12Spikes/real_dF',num2str(dF),'_rep',num2str(i)];
+htemGroupBase=['/groups/htem/analysis/wfly1/nC_projects/',PN,'_allORNs/simulations/detTask'];
+resultDir=[htemGroupBase,'/results_dRate/real_dF',num2str(dF),'_rep',num2str(i)];
 mkdir(resultDir)
-chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',path1,resultDir,'/"#'' ',hocCpName];
+chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',resultDir,'/"#'' ',hocCpName];
 system(chngResDir)
 
 %path to the dir containing the spikeVectors that specify this models
@@ -79,21 +82,6 @@ for o=1:numel(unique(activeSyns(:,2)))
     
 end
 
-%require 12 spikes to be fired
-while sum(spikeTrain(:))~=12
-    
-    
-   for o=1:numel(unique(activeSyns(:,2)))
-    
-    spikeTrain(o,:)=[makeSpikes(.001,2.25,.099),makeSpikes(.001,(2.25+dF),.10)];
-    spikeTimes{o}=find(spikeTrain(o,:)==1);
-    
-   end
-
-end
-    
-    
-    
 %Save a file for every synapse in the simulation. The files associated
 %with the selected ORNs should contain the above generated spike times
 %while all other files are blank
@@ -111,8 +99,6 @@ system(['mv ',hocCpName,' ',resultDir,'/'])
 
 %delete the spikeVector dir
 system(['rm -rf ../../',svDirName])
-
-
 
 
 end

@@ -29,14 +29,14 @@ for f=1:numel(totSynapseNums)
         % empty spikeTimes array, it snarls nrn. [] seems to
         % do fine?
         
-        if isempty(spikeTimesL{activeSyns(find(activeSyns(:,1) == s),2)}) == 1
+        if isempty(spikeTimesL{activeSynsL(find(activeSynsL(:,1) == s),2)}) == 1
             
             vector=[];
             save([p,'/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
             
         else
             
-            vector=spikeTimesL{activeSyns(find(activeSyns(:,1) == s),2)};
+            vector=spikeTimesL{activeSynsL(find(activeSynsL(:,1) == s),2)};
             save([p,'/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
             
         end
@@ -46,14 +46,15 @@ for f=1:numel(totSynapseNums)
         % empty spikeTimes array, it snarls nrn. [] seems to
         % do fine?
         
-        if isempty(spikeTimesR{activeSyns(find(activeSynsR(:,1) == s),2)}) == 1
+      
+        if isempty(spikeTimesR{activeSynsR(find(activeSynsR(:,1) == s),2)}) == 1
             
             vector=[];
             save([p,'/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
             
         else
             
-            vector=spikeTimesR{activeSyns(find(activeSyns(:,1) == s),2)};
+            vector=spikeTimesR{activeSynsR(find(activeSynsR(:,1) == s),2)};
             save([p,'/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
             
         end
