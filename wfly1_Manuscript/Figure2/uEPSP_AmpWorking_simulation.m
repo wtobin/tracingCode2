@@ -13,12 +13,6 @@ ORNs=[ORNs_Left, ORNs_Right];
 %return all skeleton IDs of DM6 PNs
 PNs=annotations.DM6_0x20_PN;
 
-%return all LN skel IDs
-LNs=annotations.LN;
-LNs=[LNs, annotations.potential_0x20_LN];
-LNs=[LNs, annotations.Prospective_0x20_LN];
-LNs=[LNs, annotations.Likely_0x20_LN];
-
 
 %Load the connector structure
 load('/home/simulation/tracing/conns.mat')
@@ -50,36 +44,37 @@ for o=1:length(ornSkelIDs)
     
     if ismember(ornSkelIDs(o),ORNs_Left) == 1
         
-        leftUEPSPs{1}(leftCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-160:find(pn1LS_simTime==fireTimes(o))+4000);
+        leftUEPSPs{1}(leftCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-160:find(pn1LS_simTime==fireTimes(o))+7840);
         leftContactNum{1}(leftCounter)=getSynapseNum(ornSkelIDs(o),PNs(2));
         
-        %store the skeleton ID associated with each unitary in leftUEPSPs_idList 
+        %store the skeleton ID associated with each unitary in leftUEPSPs_idList
         leftUEPSPs_idList{1}(leftCounter)=ornSkelIDs(o);
         leftCounter=leftCounter+1;
         
     elseif ismember(ornSkelIDs(o),ORNs_Right) == 1
         
-       rightUEPSPs{1}(rightCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-160:find(pn1LS_simTime==fireTimes(o))+4000);
-      rightContactNum{1}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(2));
-      rightUEPSPs_idList{1}(rightCounter)=find(ORNs_Right==ornSkelIDs(o));
-       rightCounter=rightCounter+1;
+        rightUEPSPs{1}(rightCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-160:find(pn1LS_simTime==fireTimes(o))+7840);
+        rightContactNum{1}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(2));
+        
+        rightUEPSPs_idList{1}(rightCounter)=ornSkelIDs(o);
+        rightCounter=rightCounter+1;
         
     end
 end
 
 %% Collect simulation results for PN2LS
 
-pn2LS_Vm=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2LS/simulations/Sim_2/neuron_PN2_LS_sk_427345_0.dat');
-pn2LS_simTime=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2LS/simulations/Sim_2/time.dat');
+pn2LS_Vm=importdata('/home/simulation/nC_projects/PN2LS_allORNs/simulations/unitaries/neuron_PN2_LS_sk_427345_0.dat');
+pn2LS_simTime=importdata('/home/simulation/nC_projects/PN2LS_allORNs/simulations/unitaries/time.dat');
 
 %collect ORN skel IDs from PN1LS hoc file and save them in a txt file
-idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2LS/generatedNEURON/PN2LS.hoc > /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2LS/generatedNEURON/ornIDs.txt ';
+idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/simulation/nC_projects/PN2LS_allORNs/simulations/unitaries/PN2LS_allORNs.hoc > /home/simulation/nC_projects/PN2LS_allORNs/simulations/unitaries/ornIDs.txt ';
 system(idCommand);
-ornSkelIDs=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2LS/generatedNEURON/ornIDs.txt');
+ornSkelIDs=importdata('/home/simulation/nC_projects/PN2LS_allORNs/simulations/unitaries/ornIDs.txt');
 
-fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2LS/generatedNEURON/PN2LS.hoc > /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2LS/generatedNEURON/ornSpikeTimes.txt';
+fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/simulation/nC_projects/PN2LS_allORNs/simulations/unitaries/PN2LS_allORNs.hoc > /home/simulation/nC_projects/PN2LS_allORNs/simulations/unitaries/ornSpikeTimes.txt';
 system(fireTimeCmd);
-fireTimes=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN2LS/generatedNEURON/ornSpikeTimes.txt');
+fireTimes=importdata('/home/simulation/nC_projects/PN2LS_allORNs/simulations/unitaries/ornSpikeTimes.txt');
 
 
 %% Collect uEPSPs in an array
@@ -91,14 +86,22 @@ for o=1:length(ornSkelIDs)
     
     if ismember(ornSkelIDs(o),ORNs_Left) == 1
         
-        leftUEPSPs{2}(leftCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-160:find(pn2LS_simTime==fireTimes(o))+4000);
-        leftContactNum{2}(leftCounter)=getSynapseNum(ornSkelIDs(o),PNs(1));
+        leftUEPSPs{2}(leftCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-160:find(pn2LS_simTime==fireTimes(o))+7840);
+        leftContactNum{2}(leftCounter)=getSynapseNum(ornSkelIDs(o),PNs(3));
+    
+        
+        
+        %store the skeleton ID associated with each unitary in leftUEPSPs_idList
+        leftUEPSPs_idList{2}(leftCounter)=ornSkelIDs(o);
         leftCounter=leftCounter+1;
         
     elseif ismember(ornSkelIDs(o),ORNs_Right) == 1
         
-        rightUEPSPs{2}(rightCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-160:find(pn2LS_simTime==fireTimes(o))+4000);
-        rightContactNum{2}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(1));
+        rightUEPSPs{2}(rightCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-160:find(pn2LS_simTime==fireTimes(o))+7840);
+        rightContactNum{2}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(3));
+     
+        
+        rightUEPSPs_idList{2}(rightCounter)=ornSkelIDs(o);
         rightCounter=rightCounter+1;
         
     end
@@ -107,17 +110,17 @@ end
 
 %% Collect simulation results for PN3LS
 
-pn3LS_Vm=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN3LS/simulations/Sim_2/neuron_PN3_LS_sk_668267_0.dat');
-pn3LS_simTime=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN3LS/simulations/Sim_2/time.dat');
+pn3LS_Vm=importdata('/home/simulation/nC_projects/PN3LS_allORNs/simulations/unitaries/neuron_PN3_LS_sk_668267_0.dat');
+pn3LS_simTime=importdata('/home/simulation/nC_projects/PN3LS_allORNs/simulations/unitaries/time.dat');
 
 %collect ORN skel IDs from PN1LS hoc file and save them in a txt file
-idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN3LS/generatedNEURON/PN3LS.hoc > /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN3LS/generatedNEURON/ornIDs.txt ';
+idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/simulation/nC_projects/PN3LS_allORNs/simulations/unitaries/PN3LS_allORNs.hoc > /home/simulation/nC_projects/PN3LS_allORNs/simulations/unitaries/ornIDs.txt ';
 system(idCommand);
-ornSkelIDs=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN3LS/generatedNEURON/ornIDs.txt');
+ornSkelIDs=importdata('/home/simulation/nC_projects/PN3LS_allORNs/simulations/unitaries/ornIDs.txt');
 
-fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN3LS/generatedNEURON/PN3LS.hoc > /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN3LS/generatedNEURON/ornSpikeTimes.txt';
+fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/simulation/nC_projects/PN3LS_allORNs/simulations/unitaries/PN3LS_allORNs.hoc > /home/simulation/nC_projects/PN3LS_allORNs/simulations/unitaries/ornSpikeTimes.txt';
 system(fireTimeCmd);
-fireTimes=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN3LS/generatedNEURON/ornSpikeTimes.txt');
+fireTimes=importdata('/home/simulation/nC_projects/PN3LS_allORNs/simulations/unitaries/ornSpikeTimes.txt');
 
 
 %% Collect uEPSPs in an array
@@ -129,14 +132,22 @@ for o=1:length(ornSkelIDs)
     
     if ismember(ornSkelIDs(o),ORNs_Left) == 1
         
-        leftUEPSPs{3}(leftCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-160:find(pn3LS_simTime==fireTimes(o))+4000);
-        leftContactNum{3}(leftCounter)=getSynapseNum(ornSkelIDs(o),PNs(2));
+        leftUEPSPs{3}(leftCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-160:find(pn3LS_simTime==fireTimes(o))+7840);
+        leftContactNum{3}(leftCounter)=getSynapseNum(ornSkelIDs(o),PNs(1));
+        
+        
+        
+        %store the skeleton ID associated with each unitary in leftUEPSPs_idList
+        leftUEPSPs_idList{3}(leftCounter)=ornSkelIDs(o);
         leftCounter=leftCounter+1;
         
     elseif ismember(ornSkelIDs(o),ORNs_Right) == 1
         
-        rightUEPSPs{3}(rightCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-160:find(pn3LS_simTime==fireTimes(o))+4000);
-        rightContactNum{3}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(2));
+        rightUEPSPs{3}(rightCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-160:find(pn3LS_simTime==fireTimes(o))+7840);
+        rightContactNum{3}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(1));
+        
+        
+        rightUEPSPs_idList{3}(rightCounter)=ornSkelIDs(o);
         rightCounter=rightCounter+1;
         
     end
@@ -145,17 +156,17 @@ end
 
 %% Collect simulation results for PN1RS
 
-pn1RS_Vm=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN1RS/simulations/Sim_2/neuron_PN1_RS_sk_638603_0.dat');
-pn1RS_simTime=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN1RS/simulations/Sim_2/time.dat');
+pn1RS_Vm=importdata('/home/simulation/nC_projects/PN1RS_allORNs/simulations/unitaries/neuron_PN1_RS_sk_638603_0.dat');
+pn1RS_simTime=importdata('/home/simulation/nC_projects/PN1RS_allORNs/simulations/unitaries/time.dat');
 
 %collect ORN skel IDs from PN1LS hoc file and save them in a txt file
-idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN1RS/generatedNEURON/PN1RS.hoc > /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN1RS/generatedNEURON/ornIDs.txt ';
+idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/simulation/nC_projects/PN1RS_allORNs/simulations/unitaries/PN1RS_allORNs.hoc > /home/simulation/nC_projects/PN1RS_allORNs/simulations/unitaries/ornIDs.txt ';
 system(idCommand);
-ornSkelIDs=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN1RS/generatedNEURON/ornIDs.txt');
+ornSkelIDs=importdata('/home/simulation/nC_projects/PN1RS_allORNs/simulations/unitaries/ornIDs.txt');
 
-fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN1RS/generatedNEURON/PN1RS.hoc > /home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN1RS/generatedNEURON/ornSpikeTimes.txt';
+fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/simulation/nC_projects/PN1RS_allORNs/simulations/unitaries/PN1RS_allORNs.hoc > /home/simulation/nC_projects/PN1RS_allORNs/simulations/unitaries/ornSpikeTimes.txt';
 system(fireTimeCmd);
-fireTimes=importdata('/home/simulation/Documents/MATLAB/tracingCode2/wfly1_Manuscript/nC_projects/PN1RS/generatedNEURON/ornSpikeTimes.txt');
+fireTimes=importdata('/home/simulation/nC_projects/PN1RS_allORNs/simulations/unitaries/ornSpikeTimes.txt');
 
 
 %% Collect uEPSPs in an array
@@ -167,18 +178,75 @@ for o=1:length(ornSkelIDs)
     
     if ismember(ornSkelIDs(o),ORNs_Left) == 1
         
-        leftUEPSPs{4}(leftCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-160:find(pn1RS_simTime==fireTimes(o))+4000);
-        leftContactNum{4}(leftCounter)=getSynapseNum(ornSkelIDs(o),PNs(3));
+        leftUEPSPs{4}(leftCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-160:find(pn1RS_simTime==fireTimes(o))+7840);
+        leftContactNum{4}(leftCounter)=getSynapseNum(ornSkelIDs(o),PNs(5));
+       
+        
+        
+        %store the skeleton ID associated with each unitary in leftUEPSPs_idList
+        leftUEPSPs_idList{4}(leftCounter)=ornSkelIDs(o);
         leftCounter=leftCounter+1;
         
     elseif ismember(ornSkelIDs(o),ORNs_Right) == 1
         
-        rightUEPSPs{4}(rightCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-160:find(pn1RS_simTime==fireTimes(o))+4000);
-        rightContactNum{4}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(3));
+        rightUEPSPs{4}(rightCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-160:find(pn1RS_simTime==fireTimes(o))+7840);
+        rightContactNum{4}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(5));
+      
+        
+        rightUEPSPs_idList{4}(rightCounter)=ornSkelIDs(o);
         rightCounter=rightCounter+1;
         
     end
 end
+
+
+%% Collect simulation results for pn2RS
+
+pn2RS_Vm=importdata('/home/simulation/nC_projects/PN2RS_allORNs/simulations/unitaries/neuron_PN2_RS_sk_480245_0.dat');
+pn2RS_simTime=importdata('/home/simulation/nC_projects/PN2RS_allORNs/simulations/unitaries/time.dat');
+
+%collect ORN skel IDs from PN1LS hoc file and save them in a txt file
+idCommand='grep -Po ''(?<=objref spikesource_)\d*'' /home/simulation/nC_projects/PN2RS_allORNs/simulations/unitaries/PN2RS_allORNs.hoc > /home/simulation/nC_projects/PN2RS_allORNs/simulations/unitaries/ornIDs.txt ';
+system(idCommand);
+ornSkelIDs=importdata('/home/simulation/nC_projects/PN2RS_allORNs/simulations/unitaries/ornIDs.txt');
+
+fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' /home/simulation/nC_projects/PN2RS_allORNs/simulations/unitaries/PN2RS_allORNs.hoc > /home/simulation/nC_projects/PN2RS_allORNs/simulations/unitaries/ornSpikeTimes.txt';
+system(fireTimeCmd);
+fireTimes=importdata('/home/simulation/nC_projects/PN2RS_allORNs/simulations/unitaries/ornSpikeTimes.txt');
+
+
+%% Collect uEPSPs in an array
+
+leftCounter=1;
+rightCounter=1;
+
+for o=1:length(ornSkelIDs)
+    
+    if ismember(ornSkelIDs(o),ORNs_Left) == 1
+        
+        leftUEPSPs{5}(leftCounter,:)= pn2RS_Vm(find(pn2RS_simTime==fireTimes(o))-160:find(pn2RS_simTime==fireTimes(o))+7840);
+        leftContactNum{5}(leftCounter)=getSynapseNum(ornSkelIDs(o),PNs(4));
+        
+        
+        
+        %store the skeleton ID associated with each unitary in leftUEPSPs_idList
+        leftUEPSPs_idList{5}(leftCounter)=ornSkelIDs(o);
+        leftCounter=leftCounter+1;
+        
+    elseif ismember(ornSkelIDs(o),ORNs_Right) == 1
+        
+        rightUEPSPs{5}(rightCounter,:)= pn2RS_Vm(find(pn2RS_simTime==fireTimes(o))-160:find(pn2RS_simTime==fireTimes(o))+7840);
+        rightContactNum{5}(rightCounter)=getSynapseNum(ornSkelIDs(o),PNs(4));
+       
+        
+        rightUEPSPs_idList{5}(rightCounter)=ornSkelIDs(o);
+        rightCounter=rightCounter+1;
+        
+    end
+end
+
+
+
 
 
 
