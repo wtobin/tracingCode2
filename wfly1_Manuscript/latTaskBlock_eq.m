@@ -156,7 +156,11 @@ for i = jobNum*reps-reps+1:jobNum*reps
         
         %Set the name of the directory to which the results will be saved
         htemGroupBase=['/groups/htem/analysis/wfly1/nC_projects/',PN,'_allORNs/simulations/latTask'];
+<<<<<<< HEAD
         resultDir=[htemGroupBase,'/results_fixedSpikeCount/eq_L',num2str(lCount),'_R',num2str(rCount),'_rep', num2str(i)];
+=======
+        resultDir=[htemGroupBase,'/results_fixedSpikeCount/real_L',num2str(lCount),'_R',num2str(rCount),'_rep', num2str(i)];
+>>>>>>> eb8628976359ed13cf0138e2d8f7fa1e2c8784bb
         mkdir(resultDir)
         chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',resultDir,'/"#'' ',hocCpName];
         system(chngResDir)

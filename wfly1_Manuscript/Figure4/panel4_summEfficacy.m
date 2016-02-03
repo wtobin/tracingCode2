@@ -14,10 +14,9 @@ for p=1:5
     
     for o=1:length(ORNs_Left)
         
-        ampArray(p,o,1)=max(leftUEPSPs{p}(o,:))-mean(leftUEPSPs{p}(o,1:40));
+        ampArray(p,o,1)=max(leftUEPSPs{p}(o,:)+59.4);
 
-        ampArray(p,o,2)=(max(leftUEPSPs{p}(o,:))-mean(leftUEPSPs{p}(o,1:40)))/sum(max(leftMEPSPs{p}(find(leftMEPSPs_idList{p}==o),:)')...
-            -mean(leftMEPSPs{p}(find(leftMEPSPs_idList{p}==o),1:40)'));
+        ampArray(p,o,2)=sum(max(leftMEPSPs{p}(find(leftMEPSPs_idList{p}==leftUEPSPs_idList{1}(o)),:)')+59.4);
 
     end
    
@@ -42,7 +41,8 @@ end
 
 
 xlabel('uEPSP Amp (mV)', 'FontSize',18)
-ylabel('Mean mEPSP Amp (mV)', 'FontSize',18)
-legend({'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS', 'PN2 RS'}, 'Location', 'SouthWest')
+ylabel('sum mEPSP Amp (mV)', 'FontSize',18)
+legend({'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS', 'PN2 RS'}, 'Location', 'NorthWest')
 
+refline(1,0)
 

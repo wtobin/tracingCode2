@@ -1,5 +1,5 @@
 % 
-% function [] = condInvestBlock_eq( jobNum, reps, dF, PN)
+% function [] = linearityInvestigationBlock_eq( jobNum, reps, dF, PN)
 
 %define some needed variables
 i=1;
@@ -9,21 +9,23 @@ PN='PN1LS';
 %Add my matlab dir to the path 
 addpath(genpath('/home/simulation/Documents/MATLAB'));
 
+
+
 %path to the dir containing the hoc files to be run
-path1=['/home/simulation/nC_projects/',PN,'_allORNs/simulations/condInvest/'];
-cd(path1)
+path1=['/home/simulation/nC_projects/',PN,'_allORNs/simulations/linearityInvestigation/'];
+%make the folder
+makeResultDir=['mkdir ',path1];
+system(makeResultDir)
 
 %Move to the PN project directory
 cd(['~/nC_projects/',PN,'_allORNs/'])
 
-%make a dir in simulations for my investigation of synaptic conductances
-system('mkdir simulations/condInvest')
 
-%Copy the contents of the generatedNEURON dir to condInvest
-system('cp -a generatedNEURON/. simulations/condInvest/')
+%Copy the contents of the generatedNEURON dir to linearityInvestigation
+system('cp -a generatedNEURON/. simulations/linearityInvestigation/')
 
-%move to condInvest
-cd('simulations/condInvest')
+%move to linearityInvestigation
+cd('simulations/linearityInvestigation')
 
 %copy vecEvent.mod to this Dir
 system('cp /home/simulation/neuron/nrn/share/examples/nrniv/netcon/vecevent.mod ./')
@@ -49,7 +51,7 @@ runTCmd=['sed -i -e ''s#tstop\s\=\s.*#tstop \= ',num2str(runTime),'#'' ',PN,'_al
 system(runTCmd)
 
 %make a copy of the hoc file
-hocCpName=[PN, '_', num2str(i) , '_TEST.hoc ' ];
+hocCpName=[PN, '_', num2str(i) , '_CP.hoc ' ];
 cpCmd=['cp ',PN, '_allORNs.hoc ',hocCpName ];
 system(cpCmd);
 
@@ -77,8 +79,8 @@ end
 
 activeSyns=[];
 activeSyns=pullContactNums(ipsiORNs,path1,hocCpName);
-activeSyns=activeSyns(randperm(size(activeSyns,1),size(activeSyns,1)),:);
-activeSyns=activeSyns(:,1);
+% activeSyns=activeSyns(randperm(size(activeSyns,1),size(activeSyns,1)),:);
+% activeSyns=activeSyns(:,1);
 
 % make a spikeVector dir for this sim
 svDirName=['spikeVectors_',num2str(i)];
@@ -86,7 +88,7 @@ mkSVDirCmd=['mkdir ../../',svDirName];
 system(mkSVDirCmd);
 
 % Change the simReference = line in the hoc file and simsDir
-simName='condInvest';
+simName='linearityInvestigation';
 simRefCmd=['sed -i -e ''s/simReference\s\=\s\".*\"/simReference \= \"',simName,'\"/'' ',hocCpName];
 system(simRefCmd)
 
@@ -95,7 +97,7 @@ chngSVDirCmd=['sed -i -e ''s#spikeVectors#',svDirName,'#'' ',hocCpName];
 system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
-resultDir=['results_linearityTest/case5_redCondSeq'];
+resultDir=['results_linearityTest/seq'];
 mkdir(resultDir)
 chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',path1,resultDir,'/"#'' ',hocCpName];
 system(chngResDir)
