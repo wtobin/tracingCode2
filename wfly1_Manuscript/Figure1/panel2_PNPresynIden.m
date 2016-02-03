@@ -11,25 +11,15 @@ annotations=loadjson('~/tracing/sid_by_annotation.json');
 ORNs_Left=annotations.Left_0x20_ORN;
 ORNs_Right=annotations.Right_0x20_ORN;
 
-%exclude unilateral ORNs for now
-
-ORNs_Right(find(ORNs_Right == 499879))=[];
-ORNs_Left(find(ORNs_Left == 426230))=[];
-ORNs_Left(find(ORNs_Left == 401378))=[];
-% 
-% %exclude ORN 8 because it was temporarily unilateral on 8/5 for testing 
-% ORNs_Left(find(ORNs_Left == 593865))=[];
-
 ORNs=[ORNs_Left, ORNs_Right];
 
 %return all skeleton IDs of DM6 PNs
-PNs=annotations.PN;
+% PNs=annotations.DM6_0x20_PN;
+PNs=sort(annotations.DM6_0x20_PN);
 
 %return all LN skel IDs
 LNs=annotations.LN;
 LNs=[LNs, annotations.potential_0x20_LN];
-LNs=[LNs, annotations.Prospective_0x20_LN];
-LNs=[LNs, annotations.Likely_0x20_LN];
 
 
 %Load the connector structure
@@ -164,7 +154,9 @@ end
 [v i]=sort(sum(idenCounts), 'descend');
 
 labels={'ORN','PN','Multi-glomerular'};
+
 order=[5,1,2,3,4];  
+
 pnLabels={'PN1 LS', 'PN2 LS', 'PN3 LS', 'PN1 RS','PN2 RS'};
 
 %Raw Numbers
@@ -176,6 +168,7 @@ ax.XTickLabel=pnLabels;
 ax.FontSize=18;
 set(gcf,'color','w')
 ylabel('Presynaptic Profile Num')
+savefig('panel2Raw.fig')
 
 
 %Fractions
@@ -199,6 +192,9 @@ ax.XLim=[-.2 6.0]
 set(gcf,'color','w')
 ylabel('Fraction Presynaptic Profiles')
 
+savefig('panel2nrm.fig')
+
+
 %Pie chart of average across PNs
 
 figure()
@@ -212,5 +208,6 @@ for i=1:5
     h(textInds(i)).FontSize=16;
 end
 
+savefig('panel2pie.fig')
 
 

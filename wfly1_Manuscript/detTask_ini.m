@@ -24,13 +24,10 @@ ORNs=[ORNs_Left, ORNs_Right];
 %Move to the PN1 LS project directory
 cd('~/nC_projects/PN1LS_allORNs/')
 
-
 %make a dir in simulations called detTask
 system('mkdir simulations/detTask')
 
-
 % Copy the contents of the generatedNEURON dir to detTask
-
 system('cp -a generatedNEURON/. simulations/detTask/')
 
 PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
@@ -61,4 +58,9 @@ initVm=-59.4; %in mv
 runVCmd=['sed -i -e ''s#v\s\=\s\-65\.\0#v = \',num2str(initVm),'#'' ', PN,'_allORNs.hoc'];
 system(runVCmd)
 
+
+%Setsim duration
+runTime=400; %in ms
+runTCmd=['sed -i -e ''s#tstop\s\=\s.*#tstop \= ',num2str(runTime),'#'' ',PN,'_allORNs.hoc'];
+system(runTCmd)
 

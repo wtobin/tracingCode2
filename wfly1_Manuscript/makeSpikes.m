@@ -18,6 +18,7 @@ vt = rand(size(times));
 spikes = (spikesPerS*timeStepS) >= vt;
 
 %set a refractory period
+
 while min(diff(find(spikes==1))) < 4
     
     vt = rand(size(times));

@@ -1,5 +1,5 @@
 
-function [] = detTaskBlock_eq( jobNum, reps, dF, PN)
+function [] = detTaskBlock_eq_fixedSpike( jobNum, reps, dF, PN, spikeNum,resDirName)
 
 %Make sure rng is not going to repeat itself 
 rng('shuffle');
@@ -11,7 +11,7 @@ addpath(genpath('/home/wft2/Matlab'));
 path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/detTask_eq/'];
 cd(path1)
 
-%loop over repetitions
+%I need a loop right here that will jobNumeat this ~35 times
 for i= jobNum*reps-reps+1:jobNum*reps
 
 %make a copy of the hoc file
@@ -74,8 +74,8 @@ system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
 htemGroupBase=['/groups/htem/analysis/wfly1/nC_projects/',PN,'_allORNs/simulations/detTask'];
-resultDir=[htemGroupBase,'/results_dRate/eq_dF',num2str(dF),'_rep',num2str(i)];
-mkdir(resultDir)
+resultDir=[htemGroupBase,'/results_fixedSpike_',resDirName,'/eq_dF',num2str(dF),'_rep',num2str(i)];
+mkdir(resultDir);
 chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',resultDir,'/"#'' ',hocCpName];
 system(chngResDir)
 
@@ -92,11 +92,25 @@ clear spikeTimes
 
 for o=1:numel(unique(activeSyns(:,2)))
     
-    spikeTrain(o,:)=[makeSpikes(.001,2.25,.099),makeSpikes(.001,(2.25+dF),.10)];
+    spikeTrain(o,:)=[makeSpikes(.001,(2.25+dF),.20)];
     spikeTimes{o}=find(spikeTrain(o,:)==1);
     
 end
 
+
+%require spikeNum spikes to be fired
+while sum(spikeTrain(:))~=spikeNum
+    
+    
+   for o=1:numel(unique(activeSyns(:,2)))
+    
+    spikeTrain(o,:)=[makeSpikes(.001,(2.25+dF),.20)];
+    spikeTimes{o}=find(spikeTrain(o,:)==1);
+    
+   end
+
+end
+    
 
 %Save a file for every synapse in the simulation. The files associated
 %with the selected ORNs should contain the above generated spike times
@@ -120,9 +134,6 @@ system(['rm -rf ../../',svDirName])
 
 
 end
-
-
-
 
 
 end

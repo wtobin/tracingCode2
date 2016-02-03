@@ -186,7 +186,7 @@ legend(labels(i),'Location', 'NorthEast')
 
 ax=gca;
 ax.FontSize=18;
-ax.YLim=[0, 1.3];
+ax.YLim=[0, 1.5];
 ax.XLim=[-.2 60]
 set(gcf,'color','w')
 ylabel('Fraction Presynaptic Profiles')

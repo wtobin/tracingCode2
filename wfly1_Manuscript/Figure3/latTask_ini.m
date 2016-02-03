@@ -40,10 +40,27 @@ runVCmd=['sed -i -e ''s#v\s\=\s\-65\.\0#v = \',num2str(initVm),'#'' ', PN,'_allO
 system(runVCmd)
 
 %Setsim duration
-runTime=200; %in ms
+runTime=400; %in ms
 runTCmd=['sed -i -e ''s#tstop\s\=\s.*#tstop \= ',num2str(runTime),'#'' ',PN,'_allORNs.hoc'];
 system(runTCmd)
 
+
+
+end
+
+
+for p=1:numel(PN_Names)
+    
+    PN=cell2mat(PN_Names(p));
+    
+
+%Move to the PN project directory
+cd(['~/nC_projects/',PN,'_allORNs/'])
+
+% Go to the lat Task dir
+cd simulations/latTask
+
+system('mkdir logs')
 
 
 end
