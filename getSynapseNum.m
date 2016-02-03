@@ -2,6 +2,8 @@ function [ synNum ] = getSynapseNum( skel1, skel2)
 % getSynapseNum accepts two skeleton IDs and returns the number of synapses
 % made by skel1 onto skel2
 
+curDir=pwd;
+
 %move to the tracing data directory
 cd('~/tracing')
 
@@ -38,6 +40,8 @@ for i= 1 : length(connFields)
     end
 end
 synNum=synCounter;
+
+cd(curDir)
 
 end
 

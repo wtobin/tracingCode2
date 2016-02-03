@@ -10,19 +10,9 @@ annotations=loadjson('~/tracing/sid_by_annotation.json');
 ORNs_Left=annotations.Left_0x20_ORN;
 ORNs_Right=annotations.Right_0x20_ORN;
 
-%exclude unilateral ORNs for now
-
-ORNs_Right(find(ORNs_Right == 499879))=[];
-ORNs_Left(find(ORNs_Left == 426230))=[];
-ORNs_Left(find(ORNs_Left == 401378))=[];
-
-%exclude ORN 8 because it was temporarily unilateral on 8/5 for testing 
-ORNs_Left(find(ORNs_Left == 593865))=[];
-
-
 
 %return all skeleton IDs of DM6 PNs
-PNs=annotations.PN;
+PNs=annotations.DM6_0x20_PN;
 
 % Loop over each PN and calculate the contact averaged path length for each
 % ORN. I would like to compare ipsi and contra.
@@ -35,8 +25,7 @@ for c=1:length(PNs)
     workingPN=loadjson(strcat('~/tracing/skeletons/', num2str(PNs(c)),'.json'));
     
     % generate an adjacency matrix indicating skeleton node connectivity
-    
-    [ edgeMatrix, verts ] = getSkelAdjMat_DW( workingPN );
+    [ edgeMatrix, verts ] = getSkelAdjMat_DW_ORN( workingPN );
     
     %Find its primary branch point
     
@@ -44,7 +33,7 @@ for c=1:length(PNs)
     for i=1:length(verts);
         if isempty(workingPN.vertices.(cell2mat(verts(i))).labels) == 1
             
-        elseif strcmp(cell2mat(workingPN.vertices.(cell2mat(verts(i))).labels), 'primary branch point') == 1
+        elseif strcmp(cell2mat(workingPN.vertices.(cell2mat(verts(i))).labels), 'soma') == 1
            
             integrator=verts(i);
         else
@@ -52,9 +41,7 @@ for c=1:length(PNs)
         end
     end
    
-        
-    
-    
+
     
     %Loop over ORNs and for each one calculate the contact averaged path
     %length to root
@@ -81,6 +68,92 @@ for c=1:length(PNs)
     
 end
     
+
+
+
+%% shuffling and equalizing contact num PN1LS ONLY
+
+    
+    %Load the PN skeleton into the workspace
+    workingPN=loadjson(strcat('~/tracing/skeletons/', num2str(PNs(2)),'.json'));
+    
+    % generate an adjacency matrix indicating skeleton node connectivity
+    [ edgeMatrix, verts ] = getSkelAdjMat_DW_ORN( workingPN );
+    
+    %Find its primary branch point
+    
+   
+    for i=1:length(verts);
+        if isempty(workingPN.vertices.(cell2mat(verts(i))).labels) == 1
+            
+        elseif strcmp(cell2mat(workingPN.vertices.(cell2mat(verts(i))).labels), 'soma') == 1
+           
+            integrator=verts(i);
+        else
+            
+        end
+    end
+   
+
+   
+    %Loop over ORNs and for each one calculate the contact averaged path
+    %length to root
+    ornContacts=[];
+    
+    for o=1:length(ORNs_Left);
+        
+        workingORN=ORNs_Left(o);
+        inputSyns=getSynapseVerts(workingPN,workingORN);
+        ornContacts=[ornContacts;inputSyns'];
+        
+    end
+    
+for reps =369:100000
+   
+%shuffle the rows of inputSyns
+ornContactsShuff=ornContacts(randperm(size(ornContacts,1),size(ornContacts,1)),:);
+counter=1;
+
+for e=1:floor(size(ornContactsShuff,1)/numel(ORNs_Left))
+    
+    for o=1:numel(ORNs_Left)
+    
+        shuffEqConORNs{o}(e,:)=ornContactsShuff(counter,:);
+        counter=counter+1;
+        
+    end
+
+end
+
+remainingVerts=ornContacts(counter:end,:);
+counter2=1;
+
+for r=randsample([1:numel(ORNs_Left)],numel(remainingVerts))
+
+    shuffEqConORNs{r}=[shuffEqConORNs{r};remainingVerts(counter2)];
+    counter2=counter2+1;
+end
+    
+
+
+    for o=1:size(shuffEqConORNs,2)
+
+        %Contact Averaged Path Lengths (CAPLs) calculated and stored
+        [CAPL_Shuff(reps,o), std(o), indLengths{o},paths{o}]=meanPathToIntegrator(workingPN,edgeMatrix,verts,shuffEqConORNs{o},integrator);
+        
+    end
+    
+    popMeanCAPL(reps)=mean(CAPL_Shuff(reps,:));
+
+   reps
+end
+    
+    
+    
+    
+
+
+
 
 %% some plotting
 % 
