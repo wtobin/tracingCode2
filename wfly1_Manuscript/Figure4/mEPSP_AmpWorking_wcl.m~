@@ -62,14 +62,14 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftMEPSPs{1}(leftCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-160:find(pn1LS_simTime==fireTimes(o))+7840);
-        leftMEPSPs_idList{1}(leftCounter)=synIDs(o);
+        leftMEPSPs{1}(leftCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-40:find(pn1LS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{1}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-       rightMEPSPs{1}(rightCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-160:find(pn1LS_simTime==fireTimes(o))+7840);
-       rightMEPSPs_idList{1}(rightCounter)=synIDs(o);
+       rightMEPSPs{1}(rightCounter,:)= pn1LS_Vm(find(pn1LS_simTime==fireTimes(o))-40:find(pn1LS_simTime==fireTimes(o))+1000);
+       rightMEPSPs_idList{1}(rightCounter)=find(ORNs_Right==synIDs(o));
        rightCounter=rightCounter+1;
         
     end
@@ -100,14 +100,14 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftMEPSPs{2}(leftCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-160:find(pn2LS_simTime==fireTimes(o))+7840);
-        leftMEPSPs_idList{2}(leftCounter)=synIDs(o);
+        leftMEPSPs{2}(leftCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-40:find(pn2LS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{2}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-        rightMEPSPs{2}(rightCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-160:find(pn2LS_simTime==fireTimes(o))+7840);
-        rightMEPSPs_idList{2}(rightCounter)=synIDs(o);
+        rightMEPSPs{2}(rightCounter,:)= pn2LS_Vm(find(pn2LS_simTime==fireTimes(o))-40:find(pn2LS_simTime==fireTimes(o))+1000);
+        rightMEPSPs_idList{2}(rightCounter)=find(ORNs_Right==synIDs(o));
         rightCounter=rightCounter+1;
         
     end
@@ -138,14 +138,14 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftMEPSPs{3}(leftCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-160:find(pn3LS_simTime==fireTimes(o))+7840);
-        leftMEPSPs_idList{3}(leftCounter)=synIDs(o);
+        leftMEPSPs{3}(leftCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-40:find(pn3LS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{3}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-        rightMEPSPs{3}(rightCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-160:find(pn3LS_simTime==fireTimes(o))+7840);
-        rightMEPSPs_idList{3}(rightCounter)=synIDs(o);
+        rightMEPSPs{3}(rightCounter,:)= pn3LS_Vm(find(pn3LS_simTime==fireTimes(o))-40:find(pn3LS_simTime==fireTimes(o))+1000);
+        rightMEPSPs_idList{3}(rightCounter)=find(ORNs_Right==synIDs(o));
         rightCounter=rightCounter+1;
         
     end
@@ -176,14 +176,14 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftMEPSPs{4}(leftCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-160:find(pn1RS_simTime==fireTimes(o))+7840);
-        leftMEPSPs_idList{4}(leftCounter)=synIDs(o);
+        leftMEPSPs{4}(leftCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-40:find(pn1RS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{4}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-        rightMEPSPs{4}(rightCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-160:find(pn1RS_simTime==fireTimes(o))+7840);
-        rightMEPSPs_idList{4}(rightCounter)=synIDs(o);
+        rightMEPSPs{4}(rightCounter,:)= pn1RS_Vm(find(pn1RS_simTime==fireTimes(o))-40:find(pn1RS_simTime==fireTimes(o))+1000);
+        rightMEPSPs_idList{4}(rightCounter)=find(ORNs_Right==synIDs(o));
         rightCounter=rightCounter+1;
         
     end
@@ -217,14 +217,14 @@ for o=1:length(synIDs)
     
     if ismember(synIDs(o),ORNs_Left) == 1
         
-        leftMEPSPs{5}(leftCounter,:)= pn2RS_Vm(find(pn2RS_simTime==fireTimes(o))-160:find(pn2RS_simTime==fireTimes(o))+7840);
-        leftMEPSPs_idList{5}(leftCounter)=synIDs(o);
+        leftMEPSPs{5}(leftCounter,:)= pn2RS_Vm(find(pn2RS_simTime==fireTimes(o))-40:find(pn2RS_simTime==fireTimes(o))+1000);
+        leftMEPSPs_idList{5}(leftCounter)=find(ORNs_Left==synIDs(o));
         leftCounter=leftCounter+1;
         
     elseif ismember(synIDs(o),ORNs_Right) == 1
         
-        rightMEPSPs{5}(rightCounter,:)= pn2RS_Vm(find(pn2RS_simTime==fireTimes(o))-160:find(pn2RS_simTime==fireTimes(o))+7840);
-        rightMEPSPs_idList{5}(rightCounter)=synIDs(o);
+        rightMEPSPs{5}(rightCounter,:)= pn2RS_Vm(find(pn2RS_simTime==fireTimes(o))-40:find(pn2RS_simTime==fireTimes(o))+1000);
+        rightMEPSPs_idList{5}(rightCounter)=find(ORNs_Right==synIDs(o));
         rightCounter=rightCounter+1;
         
     end

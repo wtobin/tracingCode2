@@ -35,7 +35,7 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
 % make a copy of the original generatedNEURON directory and call it
 % localMini
 
-for p=1:length(PN_Names)
+for p=2:length(PN_Names)
     
     PN=PN_Names{p};
     
@@ -73,7 +73,7 @@ for p=1:length(PN_Names)
     system(simPatCmd)
     
     % Change the simReference = line in the hoc file and simsDir
-    simName='localMinis';
+    simName='localMini';
     simRefCmd=['sed -i -e ''s/simReference\s\=\s\".*\"/simReference \= \"',simName,'\"/'' ',PN, '_allORNs.hoc'];
     system(simRefCmd)
     

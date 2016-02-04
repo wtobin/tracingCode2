@@ -21,22 +21,24 @@ ORNs=[ORNs_Left, ORNs_Right];
 
 %%
 
+for i = 2:5
+   
+PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
+PN=cell2mat(PN_Names(i)); 
+
 %Move to the PN1 LS project directory
-cd('~/nC_projects/PN1LS_allORNs/')
+cd(['~/nC_projects/',PN,'_allORNs/'])
 
 %make a dir in simulations called detTask
 system('mkdir simulations/detTask')
 
-% Copy the contents of the generatedNEURON dir to detTask
-system('cp -a generatedNEURON/. simulations/detTask/')
-
-PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
-PN=cell2mat(PN_Names(1));
-
-
-%path to the dir containing the hoc files to be run
+ %path to the dir containing the hoc files to be run
 path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/detTask/'];
 cd(path1)
+ 
+
+% Copy the contents of the generatedNEURON dir to detTask
+system('cp -a ../../generatedNEURON/. ./')
 
 %copy vecEvent.mod to this Dir
 system('cp /groups/htem/code/neuron/nrn/share/examples/nrniv/netcon/vecevent.mod ./')
@@ -54,7 +56,7 @@ system(['sed -i -e ''s#\/home\/simulation\/#\/home\/wft2\/#'' ', PN,'_allORNs.ho
 
 
 %Set initial Vm
-initVm=-59.4; %in mv
+initVm=-60; %in mv
 runVCmd=['sed -i -e ''s#v\s\=\s\-65\.\0#v = \',num2str(initVm),'#'' ', PN,'_allORNs.hoc'];
 system(runVCmd)
 
@@ -64,3 +66,4 @@ runTime=400; %in ms
 runTCmd=['sed -i -e ''s#tstop\s\=\s.*#tstop \= ',num2str(runTime),'#'' ',PN,'_allORNs.hoc'];
 system(runTCmd)
 
+end

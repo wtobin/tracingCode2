@@ -8,6 +8,9 @@ annotations=loadjson('~/tracing/sid_by_annotation.json');
 ORNs_Left=annotations.Left_0x20_ORN;
 ORNs_Right=annotations.Right_0x20_ORN;
 
+%exclude unilateral ORNs for now
+
+
 ORNs=[ORNs_Left, ORNs_Right];
 
 %return all skeleton IDs of DM6 PNs
@@ -24,13 +27,6 @@ for i = 1:numel(selFn)
 end
 
 LNs = unique(LNs);
-
-%
-% LNs=annotations.LN;
-% LNs=[LNs, annotations.potential_0x20_LN];
-% LNs=[LNs, annotations.Prospective_0x20_LN];
-% LNs=[LNs, annotations.Likely_0x20_LN];
-
 
 %Load the connector structure
 load('~/tracing/conns.mat')
