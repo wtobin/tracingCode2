@@ -8,14 +8,10 @@ annotations=loadjson('~/tracing/sid_by_annotation.json');
 ORNs_Left=annotations.Left_0x20_ORN;
 ORNs_Right=annotations.Right_0x20_ORN;
 
-%exclude unilateral ORNs for now
-
-
 ORNs=[ORNs_Left, ORNs_Right];
 
 %return all skeleton IDs of DM6 PNs
 PNs=sort(annotations.DM6_0x20_PN);
-
 
 % return all skel IDs with *LN* in fieldname
 Fn = fieldnames(annotations);
@@ -40,9 +36,9 @@ pn1LS_Vm=importdata('~/nC_projects/PN1LS_allORNs/simulations/minis/neuron_PN1_LS
 pn1LS_simTime=importdata('~/nC_projects/PN1LS_allORNs/simulations/minis/time.dat');
 
 %collect ORN skel IDs from PN1LS hoc file, one for every synapse,  and save them in a txt file
-idCommand='grep -Po ''(?<=^synapse_)\d*'' ~/nC_projects/PN1LS_allORNs/simulations/minis/PN1LS_allORNs.hoc > ~/nC_projects/PN1LS_allORNs/simulations/minis/synapseIDs.txt ';
+idCommand='grep -Po ''(?<=^synapse_)\d*'' ~/nC_projects/PN1LS_allORNs/simulations/minis/PN1LS_allORNs.hoc > ~/nC_projects/PN1LS_allORNs/simulations/minis/ornIDs.txt ';
 system(idCommand);
-synIDs=importdata('~/nC_projects/PN1LS_allORNs/simulations/minis/synapseIDs.txt');
+synIDs=importdata('~/nC_projects/PN1LS_allORNs/simulations/minis/ornIDs.txt');
 
 fireTimeCmd='grep -Po ''((?<=.start = )\d*)'' ~/nC_projects/PN1LS_allORNs/simulations/minis/PN1LS_allORNs.hoc > ~/nC_projects/PN1LS_allORNs/simulations/minis/ornSpikeTimes.txt';
 system(fireTimeCmd);
