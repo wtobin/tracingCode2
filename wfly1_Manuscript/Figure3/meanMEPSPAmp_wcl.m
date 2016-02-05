@@ -85,11 +85,11 @@ xlim([0.5 2.5])
 % ylim([0 80])
 ax = gca;
 ax.XTick = [1 2];
-ax.XTickLabel = {'Left';'Right'};
+ax.XTickLabel = {'Left PNs';'Right PNs'};
 ax.FontSize=16;
 ylabel('mEPSP Amp (mV)')
 axis square
-saveas(gcf,'mEPSPmAmps','epsc')
+saveas(gcf,'mEPSPAmps','epsc')
 
 
 %% Permutation test (p~ 0.57)

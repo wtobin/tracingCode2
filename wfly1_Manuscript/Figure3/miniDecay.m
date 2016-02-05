@@ -83,7 +83,43 @@ for p=1:5
     
 end
 
+%% L v R local mEPSP amplitude
 
+lAmp=[localMiniAmps{1},localMiniAmps{2},localMiniAmps{3}];
+rAmp=[localMiniAmps{4},localMiniAmps{5}];
+
+gpsU = [ones(size(lAmp)),2.*ones(size(rAmp))];
+valsU = [lAmp,rAmp];
+[YUmean,YUsem,YUstd,YUci] = grpstats(valsU,gpsU,{'mean','sem','std','meanci'});
+
+
+%% Simple bar plot Left-Right PN mEPSP decay
+%Ipsi and contra broken out
+
+%move to the figure directory to save the plot
+cd('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/Figure3/')
+
+figure
+set(gcf,'Color', 'w')
+bar(YUmean,.4,'FaceColor','k','LineWidth',2)
+hold on
+he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
+he.LineWidth=1;
+xlim([0.5 2.5])
+% ylim([0 80])
+ax = gca;
+ax.XTick = [1 2];
+ax.XTickLabel = {'Left PNs';'RightPNs'};
+ax.FontSize=16;
+ylabel('Local mEPSP Amp (mV)')
+axis square
+saveas(gcf,'localMiniAmp','epsc')
+
+
+
+
+
+%% mEPSP Decay
 
 lDecay=[leftDecay{1},rightDecay{1},leftDecay{2},rightDecay{2},leftDecay{3},rightDecay{3}];
 rDecay=[leftDecay{4},rightDecay{4},leftDecay{5},rightDecay{5}];
@@ -109,9 +145,9 @@ xlim([0.5 2.5])
 % ylim([0 80])
 ax = gca;
 ax.XTick = [1 2];
-ax.XTickLabel = {'Left';'Right'};
+ax.XTickLabel = {'Left PNs';'Right PNs'};
 ax.FontSize=16;
-ylabel('mEPSP fractional decay')
+ylabel('mEPSP Somatic Amp/Local Amp ')
 axis square
 saveas(gcf,'mEPSPDecay','epsc')
 

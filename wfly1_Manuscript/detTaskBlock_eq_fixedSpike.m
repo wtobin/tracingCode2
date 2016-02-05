@@ -8,7 +8,7 @@ rng('shuffle');
 addpath(genpath('/home/wft2/Matlab'));
 
 %path to the dir containing the hoc files to be run
-path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/detTask_eq/'];
+path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/detTask/'];
 cd(path1)
 
 %I need a loop right here that will jobNumeat this ~35 times

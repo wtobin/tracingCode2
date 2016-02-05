@@ -71,8 +71,7 @@ path2=['/home/wft2/nC_projects/',PN,'_allORNs/',svDirName];
 clear spikeTrain
 clear spikeTimes
 
-%generate a spike train that is spon rate for the first 100ms and spont+dF
-%for the 2nd 100ms
+%generate a spike train that is spon rate + dF
 
 
 for o=1:numel(unique(activeSyns(:,2)))
