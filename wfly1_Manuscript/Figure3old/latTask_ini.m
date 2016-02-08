@@ -35,7 +35,7 @@ system(hocEdCmd)
 system(['sed -i -e ''s#\/home\/simulation\/#\/home\/wft2\/#'' ', PN,'_allORNs.hoc'])
 
 %Set initial Vm
-initVm=-59.4; %in mv
+initVm=-60.0; %in mv
 runVCmd=['sed -i -e ''s#v\s\=\s\-65\.\0#v = \',num2str(initVm),'#'' ', PN,'_allORNs.hoc'];
 system(runVCmd)
 
