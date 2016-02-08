@@ -132,33 +132,36 @@ saveas(gcf,'stripChart_normVals','epsc')
 
 figure()
 set(gcf, 'Color', 'w')
-histogram(pooledNormOrnToP, 'FaceColor','k')
-xlim([-.1 2.5])
+h1=histogram(pooledNormOrnToP,12, 'FaceColor','k', 'Normalization', 'pdf');
+xlim([min(h1.BinEdges)-.05 max(h1.BinEdges)+.05])
 ax = gca;
 ax.FontSize=16;
 ylabel('Frequency')
 xlabel('Synapses')
 axis square
+saveas(gcf,'synapses','epsc')
 
 figure()
 set(gcf, 'Color', 'w')
-histogram(pooledMiniAmps, 'FaceColor','k')
-xlim([.94 1.05])
-xlim([.94 1.05])
+h2=histogram(pooledMiniAmps, 12, 'FaceColor','k');
+% xlim([min(h2.BinEdges)-.05 max(h2.BinEdges)+.05])
+xlim([.05 max(h2.BinEdges)+.05])
 ax = gca;
 ax.FontSize=16;
 ylabel('Frequency')
 xlabel('Mean mEPSP Amplitude')
 axis square
+saveas(gcf,'meanMini','epsc')
 
 figure()
 set(gcf, 'Color', 'w')
-histogram(normSumEff(:), 'FaceColor','k')
-% xlim([-.1 2.5])
+h3=histogram(normSumEff(:), 12, 'FaceColor','k');
+xlim([min(h3.BinEdges)-.05 max(h3.BinEdges)+.05]);
 ax = gca;
 ax.FontSize=16;
 ylabel('Frequency')
 xlabel('Summation Efficacy')
 axis square
+saveas(gcf,'summationEfficacy','epsc')
 
 

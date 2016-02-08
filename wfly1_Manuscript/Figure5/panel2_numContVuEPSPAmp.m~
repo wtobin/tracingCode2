@@ -14,14 +14,14 @@ for p=1:5
     
     for l=1:size(leftUEPSPs{p},1)
         uepspContNum(p,counter,1)=max(leftUEPSPs{p}(l,:))+60;
-        uepspContNum(p,counter,2)=getSynapseNum(leftUEPSPs_idList{p}(l), PnOrder(p));
+        uepspContNum(p,counter,2)=getSynapseNum(leftUEPSPs_idList{p}(l), PNs(PnOrder(p)));
         counter=counter+1;
     end
     
     for r=1:size(rightUEPSPs{p},1)
         uepspContNum(p,counter,1)=max(rightUEPSPs{p}(r,:))+60;
-        uepspContNum(p,counter,2)=getSynapseNum(rightUEPSPs_idList{p}(r), PnOrder(p));
-        
+        uepspContNum(p,counter,2)=getSynapseNum(rightUEPSPs_idList{p}(r), PNs(PnOrder(p)));
+        counter=counter+1;
     end
     
     
@@ -32,6 +32,16 @@ end
 
 figure
 set(gcf,'Color','w')
-scatter(uepspContNum(
+
+gscatter(uepspContNum(:,:,1),uepspContNum(:,:,2),[ones(size(uepspContNum(1:3,:,2)));2*ones(size(uepspContNum(4:5,:,1)))])
 
 
+labels={'PN1LS','PN2LS','PN3LS','PN1RS','PN2RS'};
+
+ax=gca;
+ax.FontSize=16;
+ylabel('uEPSP Amplitude (mV)')
+xlabel('Synapse Number')
+legend(labels,'Location','NorthWest')
+axis square
+saveas(gcf,'contNumVuEPSPAmp','epsc')

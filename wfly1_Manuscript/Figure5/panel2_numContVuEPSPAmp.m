@@ -32,8 +32,16 @@ end
 
 figure
 set(gcf,'Color','w')
-for p=1:5
-scatter(uepspContNum(p,:,1),uepspContNum(p,:,2))
-hold on
+
+gscatter(uepspContNum(:,:,2),uepspContNum(:,:,1),[ones(size(uepspContNum(1:3,:,2)));2*ones(size(uepspContNum(4:5,:,1)))],[],[],[], 'off')
 
 
+labels={'Left PNs','Right PNs'};
+
+ax=gca;
+ax.FontSize=16;
+ylabel('uEPSP Amplitude (mV)')
+xlabel('Synapse Number')
+legend(labels,'Location','NorthWest')
+axis square
+saveas(gcf,'contNumVuEPSPAmp','epsc')
