@@ -30,18 +30,32 @@ end
 
 %% Plotting
 
-figure
+figure()
 set(gcf,'Color','w')
 
-gscatter(uepspContNum(:,:,2),uepspContNum(:,:,1),[ones(size(uepspContNum(1:3,:,2)));2*ones(size(uepspContNum(4:5,:,1)))],[],[],[], 'off')
+colors=['k','r','b','m','c'];
+% 
+% gscatter(uepspContNum(:,:,2),uepspContNum(:,:,1),[ones(size(uepspContNum(1:3,:,2)));2*ones(size(uepspContNum(4:5,:,1)))],[],[],[], 'off')
+for p=1:5
+    
+    if p<=3
+        scatter(uepspContNum(p,1:27,2),uepspContNum(p,1:27,1),[],colors(p))
+        hold on
+        scatter(uepspContNum(p,28:end,2),uepspContNum(p,28:end,1),'^',colors(p))
+    else
+        
+        scatter(uepspContNum(p,1:26,2),uepspContNum(p,1:26,1),'^',colors(p))
+        hold on
+        scatter(uepspContNum(p,27:end,2),uepspContNum(p,27:end,1),[],colors(p))
+    end
+end
 
-
-labels={'Left PNs','Right PNs'};
+labels={'Ipsi ORNs','Contra ORNs'};
 
 ax=gca;
 ax.FontSize=16;
 ylabel('uEPSP Amplitude (mV)')
 xlabel('Synapse Number')
 legend(labels,'Location','NorthWest')
-axis square
-saveas(gcf,'contNumVuEPSPAmp','epsc')
+saveas(gcf,'contNumVuEPSPAmp_triangle','epsc')
+saveas(gcf,'contNumVuEPSPAmp_triangle')

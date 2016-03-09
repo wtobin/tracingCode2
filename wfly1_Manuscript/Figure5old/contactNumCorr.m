@@ -14,8 +14,8 @@ ornCounter=1;
 
 for l=1:numel(ORNs_Left)
     
-    ipsiFract(ornCounter)=mean(contactNum(l,[1:3])./sum(contactNum(1:25,[1:3])));
-    contraFract(ornCounter)=mean(contactNum(l,[4,5])./sum(contactNum(1:25,[4,5])));
+    ipsiFract(ornCounter)=mean(contactNum(l,[1,2,5])./sum(contactNum(1:27,[1,2,5])));
+    contraFract(ornCounter)=mean(contactNum(l,[3,4])./sum(contactNum(1:27,[3,4])));
     ornCounter=ornCounter+1
     
 end
@@ -24,8 +24,8 @@ rightORNInds=numel(ORNs_Left)+1:numel(ORNs_Left)+numel(ORNs_Right);
 
 for r=rightORNInds(1):rightORNInds(end)
     
-    ipsiFract(ornCounter)=mean(contactNum(r,[4,5])./sum(contactNum(rightORNInds,[4,5])));
-    contraFract(ornCounter)=mean(contactNum(r,[1:3])./sum(contactNum(rightORNInds,[1:3])));
+    ipsiFract(ornCounter)=mean(contactNum(r,[3,4])./sum(contactNum(rightORNInds,[3,4])));
+    contraFract(ornCounter)=mean(contactNum(r,[1,2,5])./sum(contactNum(rightORNInds,[1,2,5])));
     ornCounter=ornCounter+1
     
 end
@@ -38,7 +38,8 @@ set(gcf, 'Color', 'w')
 
 scatter(ipsiFract(1:25),contraFract(1:25), 'filled')
 hold on
-scatter(ipsiFract(26:end),contraFract(26:end), 'r', 'filled')
+% scatter(ipsiFract(26:end),contraFract(26:end), 'r', 'filled')
+scatter(contraFract(26:end),ipsiFract(26:end), 'r', 'filled')
 xlim([0 .07])
 ylim([0 0.07])
 

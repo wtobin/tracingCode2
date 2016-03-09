@@ -134,7 +134,7 @@ end
 
 %% Collect simulation results for PN3LS
 
-
+baseDir='~/nC_projects/';
 pn3LS_Vm=importdata(strcat(baseDir, 'PN3LS_allORNs/simulations/unitaries/neuron_PN3_LS_sk_668267_0.dat'));
 pn3LS_simTime=importdata(strcat(baseDir, 'PN3LS_allORNs/simulations/unitaries/time.dat'));
 
@@ -185,7 +185,7 @@ end
 
 
 %% Collect simulation results for PN1RS
-
+baseDir='~/nC_projects/';
 pn1RS_Vm=importdata(strcat(baseDir, 'PN1RS_allORNs/simulations/unitaries/neuron_PN1_RS_sk_638603_0.dat'));
 pn1RS_simTime=importdata(strcat(baseDir, 'PN1RS_allORNs/simulations/unitaries/time.dat'));
 

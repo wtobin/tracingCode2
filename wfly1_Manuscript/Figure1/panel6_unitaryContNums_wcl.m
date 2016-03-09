@@ -9,21 +9,11 @@ annotations=loadjson('~/tracing/sid_by_annotation.json');
 ORNs_Left=annotations.Left_0x20_ORN;
 ORNs_Right=annotations.Right_0x20_ORN;
 
-% %exclude unilateral ORNs for now
-% 
-% ORNs_Right(find(ORNs_Right == 499879))=[];
-% % ORNs_Left(find(ORNs_Left == 426230))=[]; % resolved
-% ORNs_Left(find(ORNs_Left == 401378))=[];
-% % 
-% %exclude ORN 8 because it was temporarily unilateral on 8/5 for testing 
-% ORNs_Left(find(ORNs_Left == 593865))=[];
-
 ORNs=[ORNs_Left, ORNs_Right];
 
 %return all skeleton IDs of DM6 PNs
-% PNs=annotations.PN;
 PNs=sort(annotations.DM6_0x20_PN);
-% PNs=annotations.DM6_0x20_PN;
+
 
 % return all skel IDs with *LN* in fieldname
 Fn = fieldnames(annotations);
@@ -35,13 +25,6 @@ for i = 1:numel(selFn)
 end
 
 LNs = unique(LNs);
-
-%
-% LNs=annotations.LN;
-% LNs=[LNs, annotations.potential_0x20_LN];
-% LNs=[LNs, annotations.Prospective_0x20_LN];
-% LNs=[LNs, annotations.Likely_0x20_LN];
-
 
 %Load the connector structure
 load('~/tracing/conns.mat')
@@ -173,9 +156,9 @@ save('lnToOrn','lnToOrn')
 %% Plotting
 
 
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/ornToPn.mat')
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/ornToLn.mat')
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/ornToOrn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToOrn.mat')
 
 figure()
 set(gcf,'color','w')
@@ -207,9 +190,9 @@ ax.FontSize=16;
 
 
 
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/pnToPn.mat')
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/pnToLn.mat')
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/pnToOrn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToOrn.mat')
      
 subplot(3,1,2)
 
@@ -238,9 +221,9 @@ ax.FontSize=16;
 
 subplot(3,1,3)
 
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/lnToPn.mat')
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/lnToLn.mat')
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript/Figure1/lnToOrn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/Figure1/lnToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/Figure1/lnToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/Figure1/lnToOrn.mat')
 
 lnUnitaries{1}=lnToPn(find(lnToPn>3));
 lnUnitaries{2}=lnToLn(find(lnToLn>3));

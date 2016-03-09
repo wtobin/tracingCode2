@@ -6,9 +6,11 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
 
 for p=1:5
     
+
+         
     PN=PN_Names{p};
     
-%define the base path to results
+    %define the base path to results
     base12=['~/nC_projects/',PN,'_allORNs/simulations/detTask/results_fixedSpike_12Spikes'];
     
     % find the names of all reps in the 12 spike REAL case
@@ -28,6 +30,10 @@ for p=1:5
         
     end
     
+    if p==3
+         base12=['~/nC_projects/',PN,'_allORNs/simulations/detTask_eq/results_fixedSpike_12Spikes'];
+    else
+    end
     % find the names of all reps in the 12 spike REAL case
     eq12Dirs=dir([base12,'/eq_*']);
     dataFileName=ls([base12,'/',eq12Dirs(1).name]);
@@ -43,7 +49,7 @@ for p=1:5
         counter=counter+1;
     end
     
-%define the base path to results
+    %define the base path to results
     base13=['~/nC_projects/',PN,'_allORNs/simulations/detTask/results_fixedSpike_13Spikes'];
     
     % find the names of all reps in the 13 spike REAL case
@@ -63,6 +69,12 @@ for p=1:5
         
     end
     
+     if p==3
+         base13=['~/nC_projects/',PN,'_allORNs/simulations/detTask_eq/results_fixedSpike_13Spikes'];
+    else
+    end
+    
+    
     % find the names of all reps in the 13 spike REAL case
     eq13Dirs=dir([base13,'/eq_*']);
     dataFileName=ls([base13,'/',eq13Dirs(1).name]);
@@ -78,7 +90,7 @@ for p=1:5
         counter=counter+1;
     end
     
-%define the base path to results
+    %define the base path to results
     base14=['~/nC_projects/',PN,'_allORNs/simulations/detTask/results_fixedSpike_14Spikes'];
     
     % find the names of all reps in the 14 spike REAL case
@@ -98,6 +110,13 @@ for p=1:5
         
     end
     
+      if p==3
+         base14=['~/nC_projects/',PN,'_allORNs/simulations/detTask_eq/results_fixedSpike_14Spikes'];
+    else
+    end
+    
+    
+    
     % find the names of all reps in the 14 spike REAL case
     eq14Dirs=dir([base14,'/eq_*']);
     dataFileName=ls([base14,'/',eq14Dirs(1).name]);
@@ -113,7 +132,7 @@ for p=1:5
         counter=counter+1;
     end
     
-%define the base path to results
+    %define the base path to results
     base15=['~/nC_projects/',PN,'_allORNs/simulations/detTask/results_fixedSpike_15Spikes'];
     
     % find the names of all reps in the 15 spike REAL case
@@ -133,6 +152,14 @@ for p=1:5
         
     end
     
+    
+    if p==3
+         base15=['~/nC_projects/',PN,'_allORNs/simulations/detTask_eq/results_fixedSpike_15Spikes'];
+    else
+    end
+    
+    
+    
     % find the names of all reps in the 15 spike REAL case
     eq15Dirs=dir([base15,'/eq_*']);
     dataFileName=ls([base15,'/',eq15Dirs(1).name]);
@@ -149,7 +176,7 @@ for p=1:5
     end
     
     
-     for c=1:3
+    for c=1:3
         
         if c==1
             predictors=[real12Means(p,1:2500)';real13Means(p,1:2500)'];
@@ -189,7 +216,7 @@ for p=1:5
     end
     
     
-
+    
     for c=1:3
         
         if c==1
@@ -228,38 +255,26 @@ for p=1:5
     end
     
   
+    
 end
 
+%% Plotting
 
-  plot(performance_real(:,2))
-    hold on
-    plot(performance_eq(:,2))
-    shg
-    set(gcf,'Color','w')
-    xTick([1:1:3])
-    tic([1:1:3])
-    f1=figure()
-    set(gcf, 'Color', 'w');
-    plot(performance_real)
-    hold on
-    plot(performance_eq)
-    close all
-    f1=figure()
-    set(gcf, 'Color', 'w');
-    plot(performance_real(:,2))
-    hold on
-    plot(performance_eq(:,2))
-    set(gca, 'XTick',[1:1:3])
-    f1=figure()
-    set(gcf, 'Color', 'w');
-    plot(performance_real(:,2))
-    hold on
-    plot(performance_eq(:,2))
-    set(gca, 'XTick',[1:1:3])
-    xlabel('Spike Count Difference')
-    ylabel('Performance')
-    leg={'real contact num', 'equalized'};
-    legend(leg, 'Position','NorthWest')
-    legend(leg, 'Location','NorthWest')
 
+    
+plot(performance_real(:,:,2)', 'b')
+hold on
+plot(performance_eq(:,:,2)', 'r')
+
+
+set(gcf,'Color','w')
+ax=gca;
+ax.XTick=[1:1:3];
+xlabel('Spike Count Difference')
+ylabel('Performance')
+leg={'real contact num', 'equalized'};
+
+legend(leg, 'Location','SouthEast')
+saveas(gcf,'detTaskPerformance')
+saveas(gcf,'detTaskPerformance','epsc')
 

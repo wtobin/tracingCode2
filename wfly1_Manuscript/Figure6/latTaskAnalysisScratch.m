@@ -16,17 +16,17 @@ for s=1:2
             
             
            pn=PN_Names{p};
-           base=['/home/simulation/nC_projects/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
+           base=['/home/simulation/nC_projects_retired160201/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
            resultFiles=dir([base,'real_L',num2str(d),'_R12_rep*']);
            dataFileName=ls([base,resultFiles(1).name]);
-           dataFileName=strtrim(dataFileName);
+           dataFileName=strtrim(dataFileName(1:29));
 
            
           
            for t=1:length(resultFiles)
               
                pnvm_working=importdata([base,resultFiles(t).name, '/',dataFileName]);
-               vmMeans(s,dSpikeCounter,p,t)=mean(pnvm_working+59.4);
+               vmMeans(s,dSpikeCounter,p,t)=mean(pnvm_working+60);
                
            end
       
@@ -47,17 +47,17 @@ for s=1:2
         for p=1:5
             
            pn=PN_Names{p};
-           base=['/home/simulation/nC_projects/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
+           base=['/home/simulation/nC_projects_retired160201/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
            resultFiles=dir([base,'real_L12_R',num2str(d),'_rep*']);
            dataFileName=ls([base,resultFiles(1).name]);
-           dataFileName=strtrim(dataFileName);
+           dataFileName=strtrim(dataFileName(1:29));
 
            
            
            for t=1:length(resultFiles)
                
                pnvm_working=importdata([base,resultFiles(t).name, '/',dataFileName]);
-               vmMeans(s,dSpikeCounter,p,t)=mean(pnvm_working+59.4);
+               vmMeans(s,dSpikeCounter,p,t)=mean(pnvm_working+60);
                
            end
         
@@ -90,7 +90,7 @@ for s=1:2
             
             
            pn=PN_Names{p};
-           base=['/home/simulation/nC_projects/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
+           base=['/home/simulation/nC_projects_retired160201/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
            resultFiles=dir([base,'eq_L',num2str(d),'_R12_rep*']);
            dataFileName=ls([base,resultFiles(1).name]);
            dataFileName=strtrim(dataFileName(1:29));
@@ -100,7 +100,7 @@ for s=1:2
            for t=1:length(resultFiles)
               
                pnvm_working=importdata([base,resultFiles(t).name, '/',dataFileName]);
-               vmMeans_eq(s,dSpikeCounter,p,t)=mean(pnvm_working+59.4);
+               vmMeans_eq(s,dSpikeCounter,p,t)=mean(pnvm_working+60);
                
            end
       
@@ -121,7 +121,7 @@ for s=1:2
         for p=1:5
             
            pn=PN_Names{p};
-           base=['/home/simulation/nC_projects/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
+           base=['/home/simulation/nC_projects_retired160201/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
            resultFiles=dir([base,'eq_L12_R',num2str(d),'_rep*']);
            dataFileName=ls([base,resultFiles(1).name]);
            dataFileName=strtrim(dataFileName(1:29));
@@ -131,7 +131,7 @@ for s=1:2
            for t=1:length(resultFiles)
                
                pnvm_working=importdata([base,resultFiles(t).name, '/',dataFileName]);
-               vmMeans_eq(s,dSpikeCounter,p,t)=mean(pnvm_working+59.4);
+               vmMeans_eq(s,dSpikeCounter,p,t)=mean(pnvm_working+60);
                
            end
         
@@ -178,15 +178,15 @@ xlim([4 8])
 if l ==1
     
 title([num2str(d-1) ' more spikes in L ORNs'])
-meanDiff=['meanL - meanR = ',num2str(mean(meansL)-mean(meansR))];
-text(6.5,350,meanDiff)
+meanDiffL=['meanL - meanR = ',num2str(mean(meansL)-mean(meansR))];
+text(6.5,350,meanDiffL)
 legend({'L PNs', 'R PNs'}, 'Location', 'NorthWest')
 
 else
     
 title([num2str(d-1) ' more spikes in R ORNs'])
-meanDiff=['meanL - meanR = ',num2str(mean(meansL)-mean(meansR))];
-text(6.5,350,meanDiff)
+meanDiffL=['meanL - meanR = ',num2str(mean(meansL)-mean(meansR))];
+text(6.5,350,meanDiffL)
 legend({'L PNs', 'R PNs'}, 'Location', 'NorthWest') 
 
 end
@@ -219,15 +219,15 @@ xlim([4 8])
 if l ==1
     
 title([num2str(d-1) ' more spikes in L ORNs'])
-meanDiff=['meanL - meanR = ',num2str(mean(meansL)-mean(meansR))];
-text(6.5,350,meanDiff)
+meanDiffL=['meanL - meanR = ',num2str(mean(meansL)-mean(meansR))];
+text(6.5,350,meanDiffL)
 legend({'L PNs', 'R PNs'}, 'Location', 'NorthWest')
 
 else
     
 title([num2str(d-1) ' more spikes in R ORNs'])
-meanDiff=['meanL - meanR = ',num2str(mean(meansL)-mean(meansR))];
-text(6.5,350,meanDiff)
+meanDiffL=['meanL - meanR = ',num2str(mean(meansL)-mean(meansR))];
+text(6.5,350,meanDiffL)
 legend({'L PNs', 'R PNs'}, 'Location', 'NorthWest') 
 
 end
@@ -264,10 +264,10 @@ for d=1:4
 meansL=mean(squeeze(vmMeans(1,d,1:3,:)));
 meansR=mean(squeeze(vmMeans(1,d,4:5,:)));
 
-meanDiff(d,:)=meansL-meansR;
+meanDiffL(d,:)=meansL-meansR;
 
 
-histogram(meanDiff(d,:), 46)
+histogram(meanDiffL(d,:), 46)
 hold on
 
 
@@ -318,27 +318,27 @@ for c=1:3
     
     if c==1
         
-        predictors=[meanDiff(1,1:2500)';meanDiff(2,1:2500)'];
-        categories=[ones(size(meanDiff(1,1:2500)'));2*ones(size(meanDiff(2,1:2500)'))];
+        predictors=[meanDiffL(1,1:2500)';meanDiffL(2,1:2500)'];
+        categories=[ones(size(meanDiffL(1,1:2500)'));2*ones(size(meanDiffL(2,1:2500)'))];
         
-        testVals=[meanDiff(1,2501:end)';meanDiff(2,2501:end)'];
-        testCat=[ones(size(meanDiff(1,2501:end)'));2*ones(size(meanDiff(2,2501:end)'))];
+        testVals=[meanDiffL(1,2501:end)';meanDiffL(2,2501:end)'];
+        testCat=[ones(size(meanDiffL(1,2501:end)'));2*ones(size(meanDiffL(2,2501:end)'))];
         
     elseif c==2
         
-        predictors=[meanDiff(1,1:2500)';meanDiff(3,1:2500)'];
-        categories=[ones(size(meanDiff(1,1:2500)'));2*ones(size(meanDiff(3,1:2500)'))];
+        predictors=[meanDiffL(1,1:2500)';meanDiffL(3,1:2500)'];
+        categories=[ones(size(meanDiffL(1,1:2500)'));2*ones(size(meanDiffL(3,1:2500)'))];
         
-        testVals=[meanDiff(1,2501:end)';meanDiff(3,2501:end)'];
-        testCat=[ones(size(meanDiff(1,2501:end)'));2*ones(size(meanDiff(3,2501:end)'))];
+        testVals=[meanDiffL(1,2501:end)';meanDiffL(3,2501:end)'];
+        testCat=[ones(size(meanDiffL(1,2501:end)'));2*ones(size(meanDiffL(3,2501:end)'))];
         
     elseif c==3
         
-        predictors=[meanDiff(1,1:2500)';meanDiff(4,1:2500)'];
-        categories=[ones(size(meanDiff(1,1:2500)'));2*ones(size(meanDiff(4,1:2500)'))];
+        predictors=[meanDiffL(1,1:2500)';meanDiffL(4,1:2500)'];
+        categories=[ones(size(meanDiffL(1,1:2500)'));2*ones(size(meanDiffL(4,1:2500)'))];
         
-        testVals=[meanDiff(1,2501:end)';meanDiff(4,2501:end)'];
-        testCat=[ones(size(meanDiff(1,2501:end)'));2*ones(size(meanDiff(4,2501:end)'))];
+        testVals=[meanDiffL(1,2501:end)';meanDiffL(4,2501:end)'];
+        testCat=[ones(size(meanDiffL(1,2501:end)'));2*ones(size(meanDiffL(4,2501:end)'))];
         
         
     end
@@ -353,11 +353,11 @@ thresh=-K/L;
 
 %see how well it did on the training data
 
-performance_real(c,1)=(sum(categories(find(predictors<thresh))== 1)+...
+performance_realL(c,1)=(sum(categories(find(predictors<thresh))== 1)+...
 sum(categories(find(predictors>thresh))== 2))/numel(categories)
 
 %see how well it did on the test data
-performance_real(c,2)=(sum(testCat(find(testVals<thresh))== 1)+...
+performance_realL(c,2)=(sum(testCat(find(testVals<thresh))== 1)+...
 sum(testCat(find(testVals>thresh))== 2))/numel(testCat)
 
 end
@@ -403,11 +403,11 @@ thresh=-K/L;
 
 %see how well it did on the training data
 
-performance_eq(c,1)=(sum(categories(find(predictors<thresh))== 1)+...
+performance_eqL(c,1)=(sum(categories(find(predictors<thresh))== 1)+...
 sum(categories(find(predictors>thresh))== 2))/numel(categories)
 
 %see how well it did on the test data
-performance_eq(c,2)=(sum(testCat(find(testVals<thresh))== 1)+...
+performance_eqL(c,2)=(sum(testCat(find(testVals<thresh))== 1)+...
 sum(testCat(find(testVals>thresh))== 2))/numel(testCat)
 
 end
@@ -415,9 +415,9 @@ end
 figure()
 set(gcf, 'Color', 'w')
 
-plot(performance_real(:,2))
+plot(performance_realL(:,2))
 hold on
-plot(performance_eq(:,2))
+plot(performance_eqL(:,2))
 ax=gca;
 ax.XTick=[1:1:3];
 
@@ -449,10 +449,10 @@ for d=1:4
 meansL=mean(squeeze(vmMeans(2,d,1:3,:)));
 meansR=mean(squeeze(vmMeans(2,d,4:5,:)));
 
-meanDiff(d,:)=meansR-meansL;
+meanDiffR(d,:)=meansR-meansL;
 
 
-histogram(meanDiff(d,:), 46)
+histogram(meanDiffR(d,:), 46)
 hold on
 
 
@@ -504,27 +504,27 @@ for c=1:3
     
     if c==1
         
-        predictors=[meanDiff(1,1:2500)';meanDiff(2,1:2500)'];
-        categories=[ones(size(meanDiff(1,1:2500)'));2*ones(size(meanDiff(2,1:2500)'))];
+        predictors=[meanDiffR(1,1:2500)';meanDiffR(2,1:2500)'];
+        categories=[ones(size(meanDiffR(1,1:2500)'));2*ones(size(meanDiffR(2,1:2500)'))];
         
-        testVals=[meanDiff(1,2501:end)';meanDiff(2,2501:end)'];
-        testCat=[ones(size(meanDiff(1,2501:end)'));2*ones(size(meanDiff(2,2501:end)'))];
+        testVals=[meanDiffR(1,2501:end)';meanDiffR(2,2501:end)'];
+        testCat=[ones(size(meanDiffR(1,2501:end)'));2*ones(size(meanDiffR(2,2501:end)'))];
         
     elseif c==2
         
-        predictors=[meanDiff(1,1:2500)';meanDiff(3,1:2500)'];
-        categories=[ones(size(meanDiff(1,1:2500)'));2*ones(size(meanDiff(3,1:2500)'))];
+        predictors=[meanDiffR(1,1:2500)';meanDiffR(3,1:2500)'];
+        categories=[ones(size(meanDiffR(1,1:2500)'));2*ones(size(meanDiffR(3,1:2500)'))];
         
-        testVals=[meanDiff(1,2501:end)';meanDiff(3,2501:end)'];
-        testCat=[ones(size(meanDiff(1,2501:end)'));2*ones(size(meanDiff(3,2501:end)'))];
+        testVals=[meanDiffR(1,2501:end)';meanDiffR(3,2501:end)'];
+        testCat=[ones(size(meanDiffR(1,2501:end)'));2*ones(size(meanDiffR(3,2501:end)'))];
         
     elseif c==3
         
-        predictors=[meanDiff(1,1:2500)';meanDiff(4,1:2500)'];
-        categories=[ones(size(meanDiff(1,1:2500)'));2*ones(size(meanDiff(4,1:2500)'))];
+        predictors=[meanDiffR(1,1:2500)';meanDiffR(4,1:2500)'];
+        categories=[ones(size(meanDiffR(1,1:2500)'));2*ones(size(meanDiffR(4,1:2500)'))];
         
-        testVals=[meanDiff(1,2501:end)';meanDiff(4,2501:end)'];
-        testCat=[ones(size(meanDiff(1,2501:end)'));2*ones(size(meanDiff(4,2501:end)'))];
+        testVals=[meanDiffR(1,2501:end)';meanDiffR(4,2501:end)'];
+        testCat=[ones(size(meanDiffR(1,2501:end)'));2*ones(size(meanDiffR(4,2501:end)'))];
         
         
     end
@@ -539,11 +539,11 @@ thresh=-K/L;
 
 %see how well it did on the training data
 
-performance_real(c,1)=(sum(categories(find(predictors<thresh))== 1)+...
+performance_realR(c,1)=(sum(categories(find(predictors<thresh))== 1)+...
 sum(categories(find(predictors>thresh))== 2))/numel(categories)
 
 %see how well it did on the test data
-performance_real(c,2)=(sum(testCat(find(testVals<thresh))== 1)+...
+performance_realR(c,2)=(sum(testCat(find(testVals<thresh))== 1)+...
 sum(testCat(find(testVals>thresh))== 2))/numel(testCat)
 
 end
@@ -589,11 +589,11 @@ thresh=-K/L;
 
 %see how well it did on the training data
 
-performance_eq(c,1)=(sum(categories(find(predictors<thresh))== 1)+...
+performance_eqR(c,1)=(sum(categories(find(predictors<thresh))== 1)+...
 sum(categories(find(predictors>thresh))== 2))/numel(categories)
 
 %see how well it did on the test data
-performance_eq(c,2)=(sum(testCat(find(testVals<thresh))== 1)+...
+performance_eqR(c,2)=(sum(testCat(find(testVals<thresh))== 1)+...
 sum(testCat(find(testVals>thresh))== 2))/numel(testCat)
 
 end
@@ -609,13 +609,28 @@ ax=gca;
 ax.XTick=[1:1:3];
 
 xlabel('Num of additional spikes in R ORN pool')
-ylabel('Lin Disc Classifier Performance')
-legend({'real contact nums', 'Equalized Contact Nums'}, 'Location', 'Northwest')
+ylabel('Performance')
+legend({'Real Contact Nums', 'Equalized Contact Nums'}, 'Location', 'Northwest')
 title('discriminability of difference histograms')
 
 
 
 
+%% Plotting
 
 
+figure()
+set(gcf, 'Color', 'w')
 
+plot([performance_realL(:,2),performance_realR(:,2)] ,'b')
+hold on
+plot([performance_eqL(:,2),performance_eqR(:,2)] ,'r')
+
+ax=gca;
+ax.XTick=[1:1:3]
+xlabel('Spike Difference')
+ylabel('Performance')
+legend({'Real Contact Numbers', 'Equalized Contact Numbers'}, 'Location', 'NorthWest')
+
+saveas(gcf,'lateralizationPerformance','epsc')
+saveas(gcf,'lateralizationPerformance')

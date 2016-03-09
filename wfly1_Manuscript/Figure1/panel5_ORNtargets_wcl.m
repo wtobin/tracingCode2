@@ -12,21 +12,11 @@ annotations=loadjson('~/tracing/sid_by_annotation.json');
 ORNs_Left=annotations.Left_0x20_ORN;
 ORNs_Right=annotations.Right_0x20_ORN;
 
-% %exclude unilateral ORNs for now
-% 
-% ORNs_Right(find(ORNs_Right == 499879))=[];
-% % ORNs_Left(find(ORNs_Left == 426230))=[]; % resolved
-% ORNs_Left(find(ORNs_Left == 401378))=[];
-% % 
-% %exclude ORN 8 because it was temporarily unilateral on 8/5 for testing 
-% ORNs_Left(find(ORNs_Left == 593865))=[];
-
 ORNs=[ORNs_Left, ORNs_Right];
 
 %return all skeleton IDs of DM6 PNs
-% PNs=annotations.PN;
 PNs=sort(annotations.DM6_0x20_PN);
-% PNs=annotations.DM6_0x20_PN;
+
 
 % return all skel IDs with *LN* in fieldname
 Fn = fieldnames(annotations);
@@ -38,13 +28,6 @@ for i = 1:numel(selFn)
 end
 
 LNs = unique(LNs);
-
-%
-% LNs=annotations.LN;
-% LNs=[LNs, annotations.potential_0x20_LN];
-% LNs=[LNs, annotations.Prospective_0x20_LN];
-% LNs=[LNs, annotations.Likely_0x20_LN];
-
 
 %Load the connector structure
 load('~/tracing/conns.mat')
@@ -222,7 +205,7 @@ end
 
 figure()
 h=bar(normIden,'stacked');
-legend(labels(i),'Location', 'NorthEast')
+% legend(labels(i),'Location', 'NorthEast')
 
 for k =1:3
     set(h(k),'facecolor',myC(k,:))
@@ -234,8 +217,10 @@ ax.FontSize=11;
 ax.YLim=[0, 1.2];
 ax.XLim=[.5 51.5]
 set(gcf,'color','w')
-ylabel('Fraction Postsynaptic Profiles')
-xlabel('ORNs')
+ylabel('Fraction Postsynaptic')
+% xlabel('ORNs')
+ax.XTick=[];
+saveas(gcf,'ornPostCategorization_fract','epsc')
 
 %% Pie chart of average across PNs
 

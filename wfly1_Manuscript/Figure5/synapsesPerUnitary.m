@@ -5,17 +5,16 @@
 
 load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToPn.mat')
 
-%normalize each column by its mean
+ipsiConsL(1:27,1:3)=ornToPn(1:27,[1,2,5]);
+ipsiConsR(1:26,1:2)=ornToPn(28:end,[3,4]);
+normIpsiConsL=bsxfun(@rdivide, ipsiConsL,sum(ipsiConsL));
+normIpsiConsR=bsxfun(@rdivide, ipsiConsR,sum(ipsiConsR));
 
-for c=1:5
-    
-normOrnToPn(:,c)=ornToPn(:,c)./mean(ornToPn(:,c))
 
-end
 
 %pool these values and exclude zeros
-pooledNormOrnToP=normOrnToPn(:);
-pooledNormOrnToP(pooledNormOrnToP==0)=[];
+pooledNormIpsiOrnToP=[normIpsiConsL(:);normIpsiConsR(:)];
+
 
 % %% histogram option
 % 
@@ -74,11 +73,18 @@ pooledMiniAmps=[normMeanMinisL(:);normMeanMinisR(:)];
 
 %% normalized Summation efficacy
 
+% for p=1:5
+%     
+%     normSumEff(:,p)=sumEff{p}./mean(sumEff{p});
+%     
+% end
+
 for p=1:5
     
-    normSumEff(:,p)=sumEff{p}./mean(sumEff{p});
+    pooledSumEff(:,p)=sumEff{p};
     
 end
+
 
 
 %% Strip chart 
@@ -92,8 +98,8 @@ for z = 1:3
     if z==1
         
         jitterAmount = 0.1;
-        jitterValuesX = 2*(rand(1,length(pooledNormOrnToP))-0.5)*jitterAmount;   % +/-jitterAmount max
-        scatter(ones(1,length(pooledNormOrnToP))+jitterValuesX,pooledNormOrnToP, 17,'k')
+        jitterValuesX = 2*(rand(1,length(pooledNormIpsiOrnToP))-0.5)*jitterAmount;   % +/-jitterAmount max
+        scatter(ones(1,length(pooledNormIpsiOrnToP))+jitterValuesX,pooledNormIpsiOrnToP, 17,'k')
         hold on
         
     elseif z==2
@@ -132,37 +138,41 @@ saveas(gcf,'stripChart_normVals','epsc')
 
 figure()
 set(gcf, 'Color', 'w')
-h1=histogram(pooledNormOrnToP,12, 'FaceColor','k', 'Normalization', 'pdf');
-xlim([min(h1.BinEdges)-.05 max(h1.BinEdges)+.05])
+h1=histogram(pooledNormIpsiOrnToP,12, 'FaceColor','k');
+xlim([0 .07])
 ax = gca;
 ax.FontSize=16;
 ylabel('Frequency')
-xlabel('Synapses')
+xlabel('Fractional Input')
 axis square
-saveas(gcf,'synapses_v2','epsc')
+text(.005, 30, ['CV: ',num2str(std(pooledNormIpsiOrnToP)/mean(pooledNormIpsiOrnToP))], 'FontSize',16)
+saveas(gcf,'ipsiFractionalInput','epsc')
+saveas(gcf,'ipsiFractionalInput')
 
 figure()
 set(gcf, 'Color', 'w')
-h2=histogram(pooledMiniAmps, 12, 'FaceColor','k', 'Normalization', 'pdf');
-% xlim([min(h2.BinEdges)-.05 max(h2.BinEdges)+.05])
-xlim([.05 2.31])
+h2=histogram(pooledMiniAmps, 12, 'FaceColor','k');
 ax = gca;
 ax.FontSize=16;
 ylabel('Frequency')
-xlabel('Mean mEPSP Amplitude')
+xlabel('Mean mEPSP Amplitude (Still Mean Normalized)')
+text(.955, 60, ['CV: ',num2str(nanstd(pooledMiniAmps)/nanmean(pooledMiniAmps))], 'FontSize',16)
 axis square
-saveas(gcf,'meanMini_v2','epsc')
+saveas(gcf,'meanMini_v3','epsc')
+saveas(gcf,'meanMini_v3')
+
 
 figure()
 set(gcf, 'Color', 'w')
-h3=histogram(normSumEff(:), 12, 'FaceColor','k', 'Normalization', 'pdf');
+h3=histogram(pooledSumEff(:), 12, 'FaceColor','k');
 % xlim([min(h3.BinEdges)-.05 max(h3.BinEdges)+.05]);
-xlim([.05 2.31])
+% xlim([.05 2.31])
 ax = gca;
 ax.FontSize=16;
 ylabel('Frequency')
 xlabel('Summation Efficacy')
-axis square
-saveas(gcf,'summationEfficacy_v2','epsc')
-
+text(.77, 50, ['CV: ',num2str(nanstd(pooledSumEff)/nanmean(pooledSumEff))], 'FontSize',16)
+% axis square
+saveas(gcf,'summationEfficacy_v3','epsc')
+saveas(gcf,'summationEfficacy_v3')
 
