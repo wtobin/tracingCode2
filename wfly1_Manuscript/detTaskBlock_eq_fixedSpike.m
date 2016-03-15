@@ -8,7 +8,7 @@ rng('shuffle');
 addpath(genpath('/home/wft2/Matlab'));
 
 %path to the dir containing the hoc files to be run
-path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/detTask/'];
+path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/detTask_eq/'];
 cd(path1)
 
 %I need a loop right here that will jobNumeat this ~35 times
@@ -64,7 +64,7 @@ mkSVDirCmd=['mkdir ../../',svDirName];
 system(mkSVDirCmd);
 
 % Change the simReference = line in the hoc file and simsDir
-simName='detTask';
+simName='detTask_eq';
 simRefCmd=['sed -i -e ''s/simReference\s\=\s\".*\"/simReference \= \"',simName,'\"/'' ',hocCpName];
 system(simRefCmd)
 
@@ -73,7 +73,7 @@ chngSVDirCmd=['sed -i -e ''s#spikeVectors#',svDirName,'#'' ',hocCpName];
 system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
-htemGroupBase=['/groups/htem/analysis/wfly1/nC_projects/',PN,'_allORNs/simulations/detTask'];
+htemGroupBase=['/groups/htem/analysis/wfly1/nC_projects/',PN,'_allORNs/simulations/detTask_eq'];
 resultDir=[htemGroupBase,'/results_fixedSpike_',resDirName,'/eq_dF',num2str(dF),'_rep',num2str(i)];
 mkdir(resultDir);
 chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',resultDir,'/"#'' ',hocCpName];

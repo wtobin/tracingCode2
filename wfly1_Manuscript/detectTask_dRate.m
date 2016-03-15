@@ -16,7 +16,7 @@ for each jobNumetition
 
 %}
 
-function [] = detectTask( jobNum, reps, dF, PN)
+function [] = detectTask_dRate( jobNum, reps, dF, PN)
 
 
 %Make sure rng is not going to repeat itself 
@@ -26,14 +26,8 @@ rng('shuffle');
 addpath(genpath('/home/wft2/Matlab'));
 
 %path to the dir containing the hoc files to be run
-path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/detTask/'];
+path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/detTask_dRate/'];
 cd(path1)
-
-%Make a vector containing the category of each rep, 1 = spontaneous 2 =
-%driven
-
-ctgs=randi(2,reps);
-ctgCounter=1;
 
 %I need a loop right here that will jobNumeat this ~35 times
 for i= jobNum*reps-reps+1:jobNum*reps
@@ -71,7 +65,7 @@ mkSVDirCmd=['mkdir ../../',svDirName];
 system(mkSVDirCmd);
 
 % Change the simReference = line in the hoc file and simsDir
-simName='detTask';
+simName='detTask_dRate';
 simRefCmd=['sed -i -e ''s/simReference\s\=\s\".*\"/simReference \= \"',simName,'\"/'' ',hocCpName];
 system(simRefCmd)
 
@@ -80,57 +74,28 @@ chngSVDirCmd=['sed -i -e ''s#spikeVectors#',svDirName,'#'' ',hocCpName];
 system(chngSVDirCmd)
 
 %Set the name of the directory to which the results will be saved
-if ctg(ctgCounter) == 1
-    resultDir=['dtResultSpon_',num2str(i)];
-    
-else
-     resultDir=['dtResultDri_',num2str(i)];
-end
-
+htemGroupBase=['/groups/htem/analysis/wfly1/nC_projects/',PN,'_allORNs/simulations/detTask_dRate'];
+resultDir=[htemGroupBase,'/results_dRate_',resDirName,'/real_dF',num2str(dF),'_rep',num2str(i)];
 mkdir(resultDir)
-chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',path1,resultDir,'/"#'' ',hocCpName];
+chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',resultDir,'/"#'' ',hocCpName];
 system(chngResDir)
 
 %path to the dir containing the spikeVectors that specify this models
 %activity
 path2=['/home/wft2/nC_projects/',PN,'_allORNs/',svDirName];
 
-%Fill the directory with spontaneous or driven spikes according to the
-%corresponding value in ctgs
-
 %Clear the spike trains/times variables
 clear spikeTrain
 clear spikeTimes
 
+%generate a spike train that is spon rate + dF
 
-%generate a spike train at the spon rate for all neurons
-%that will be activated
-if ctg(ctgCounter) == 1
-        
-        %generate a spike train at the spon rate for all neurons
-        %that will be activated
-        
-        for o=1:numel(unique(activeSyns(:,2)))
-            
-            spikeTrain(o,:)=makeSpikes(.001,2.25,.20);
-            spikeTimes{o}=find(spikeTrain(o,:)==1);
-            
-        end
-        
-    else
-        
-        %generate a spike train at the driven rate for all neurons
-        %that will be activated
-        
-        for o=1:numel(unique(activeSyns(:,2)))
-            
-            spikeTrain(o,:)=[makeSpikes(.001,2.25,.099),makeSpikes(.001,(2.25+dF),.10)];
-            spikeTimes{o}=find(spikeTrain(o,:)==1);
-            
-        end
-        
-    end
-
+for o=1:numel(unique(activeSyns(:,2)))
+    
+    spikeTrain(o,:)=[makeSpikes(.001,2.25,.10),makeSpikes(.001,(2.25+dF),.10)];
+    spikeTimes{o}=find(spikeTrain(o,:)==1);
+    
+end
 
 %Save a file for every synapse in the simulation. The files associated
 %with the selected ORNs should contain the above generated spike times
@@ -138,21 +103,19 @@ if ctg(ctgCounter) == 1
 
 saveSpikeVectors(totSynapseNums,activeSyns,spikeTimes,path2)
 
-
-%add a line to my script that will run this simulation
+%run this simulation
 runCmd=['/groups/htem/code/neuron/nrn/x86_64/bin/nrniv ', hocCpName];
 system(runCmd);
 
+%Save the spikeTimes arrays and trial hoc file to result results dir
+save([resultDir,'/spikeTimes.mat'],'spikeTimes')
+system(['mv ',hocCpName,' ',resultDir,'/'])
 
-system(['rm -rf ',hocCpName])
+%delete the spikeVector dir
 system(['rm -rf ../../',svDirName])
 
-ctgCounter=ctgCounter+1;
 
 end
-
-
-
 
 
 end
