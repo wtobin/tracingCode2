@@ -1,0 +1,1 @@
+This directory contains code for generating the panels in what is currently figure one of our manuscript. This figure is currently being called "Cells and Connections comprising the glomerular circuit"
