@@ -72,13 +72,6 @@ end
 
 LNs = unique(LNs);
 
-%
-% LNs=annotations.LN;
-% LNs=[LNs, annotations.potential_0x20_LN];
-% LNs=[LNs, annotations.Prospective_0x20_LN];
-% LNs=[LNs, annotations.Likely_0x20_LN];
-
-
 %Load the connector structure
 load('~/tracing/conns.mat')
 
