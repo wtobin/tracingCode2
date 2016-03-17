@@ -1,5 +1,5 @@
-% The goal here is to generate a pie chart of input profile identity for
-% PNs
+% The goal here is to generate a two bar stacked bar graph where the bars
+% represent the number of MG-->PN synapses each PN receives 
 
 %% Load annotations and connectors
  clear
@@ -15,9 +15,8 @@ ORNs_Right=annotations.Right_0x20_ORN;
 ORNs=[ORNs_Left, ORNs_Right];
 
 %return all skeleton IDs of DM6 PNs
-% PNs=annotations.PN;
 PNs=sort(annotations.DM6_0x20_PN);
-% PNs=annotations.DM6_0x20_PN;
+
 
 % return all skel IDs with *LN* in fieldname
 Fn = fieldnames(annotations);
@@ -29,13 +28,6 @@ for i = 1:numel(selFn)
 end
 
 LNs = unique(LNs);
-
-%
-% LNs=annotations.LN;
-% LNs=[LNs, annotations.potential_0x20_LN];
-% LNs=[LNs, annotations.Prospective_0x20_LN];
-% LNs=[LNs, annotations.Likely_0x20_LN];
-
 
 %Load the connector structure
 load('~/tracing/conns.mat')
@@ -90,7 +82,6 @@ end
 
 
 
-
 %% Categorize presynaptic profiles
 
 % Question, how many profiles can be accounted for as ORNs, PNs and LNs?
@@ -129,10 +120,9 @@ end
 
 
 %% Plotting
-leftPNMGInputs=[
 
 figure()
-bar([preSyn; ornToRPN],.7, 'stacked')
+bar([[sum(preSynID{1}==3),sum(preSynID{2}==3),sum(preSynID{5}==3)];[0,sum(preSynID{4}==3),sum(preSynID{3}==3)]],.7, 'stacked')
 set(gcf, 'Color', 'w')
 colormap('winter')
 ax=gca;
@@ -140,12 +130,11 @@ xlim([0 3]);
 ax.XTick=[1:2];
 ax.XTickLabel={'Left PNs', 'Right PNs'};
 ax.FontSize=14;
-ylabel('ORN-->PN Contact Num', 'FontSize', 16);
+ylabel('MG-->PN Contact Num', 'FontSize', 16);
 
 axis square
 
-saveas(gcf,'ornToPNSynNums')
-saveas(gcf,'ornToPNSynNums','epsc')
-
+saveas(gcf,'mgToPNSynNums')
+saveas(gcf,'mgToPNSynNums','epsc')
 
 

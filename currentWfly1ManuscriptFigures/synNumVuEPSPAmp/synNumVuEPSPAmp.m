@@ -51,10 +51,10 @@ for p=1:5
     if p<=3
         scatter(uepspContNum(p,1:27,2),uepspContNum(p,1:27,1),[],colors(p))
         hold on
-        scatter(uepspContNum(p,28:end,2),uepspContNum(p,28:end,1),'^',colors(p))
+        scatter(uepspContNum(p,28:end,2),uepspContNum(p,28:end,1),'filled',colors(p))
     else
         
-        scatter(uepspContNum(p,1:26,2),uepspContNum(p,1:26,1),'^',colors(p))
+        scatter(uepspContNum(p,1:26,2),uepspContNum(p,1:26,1),'filled',colors(p))
         hold on
         scatter(uepspContNum(p,27:end,2),uepspContNum(p,27:end,1),[],colors(p))
     end
@@ -67,5 +67,6 @@ ax.FontSize=16;
 ylabel('uEPSP Amplitude (mV)')
 xlabel('Synapse Number')
 legend(labels,'Location','NorthWest')
-saveas(gcf,'contNumVuEPSPAmp_triangle','epsc')
-saveas(gcf,'contNumVuEPSPAmp_triangle')
+
+saveas(gcf,'synNumVuEPSPAmp','epsc')
+saveas(gcf,'synNumVuEPSPAmp')

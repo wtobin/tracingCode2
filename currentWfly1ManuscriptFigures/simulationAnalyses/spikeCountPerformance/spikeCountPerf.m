@@ -276,6 +276,6 @@ leg={'real contact num', 'equalized'};
 
 legend(leg, 'Location','SouthEast')
 
-saveas(gcf,'detTaskPerformance')
-saveas(gcf,'detTaskPerformance','epsc')
+saveas(gcf,'spikeCountPerf')
+saveas(gcf,'spikeCountPerf','epsc')
 

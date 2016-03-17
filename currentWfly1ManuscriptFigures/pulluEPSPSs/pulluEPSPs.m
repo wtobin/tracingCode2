@@ -9,7 +9,7 @@ ORNs_Left=annotations.Left_0x20_ORN;
 ORNs_Right=annotations.Right_0x20_ORN;
 
 ORNs=[ORNs_Left, ORNs_Right];
-
+            
 %return all skeleton IDs of DM6 PNs
 PNs=sort(annotations.DM6_0x20_PN);
 

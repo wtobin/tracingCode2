@@ -156,97 +156,97 @@ save('lnToOrn','lnToOrn')
 %% Plotting
 
 
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToPn.mat')
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToLn.mat')
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/ornToOrn.mat')
-
-figure()
-set(gcf,'color','w')
-
-
-ornUnitaries{1}=ornToPn(find(ornToPn>3));
-ornUnitaries{2}=ornToLn(find(ornToLn>3));
-ornUnitaries{3}=ornToOrn(find(ornToOrn>3));
-
-subplot(3,1,1)
-
-for t=1:3
-
-jitterAmount = 0.25;
-jitterValuesX = 2*(rand(1,length(ornUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
-
-scatter(t*ones(1,length(ornUnitaries{t}))+jitterValuesX,ornUnitaries{t})
-hold on
-
-end
-
-ax=gca;
-% ylabel('Connections per Unitary w/ >3 connections')
-ax.XLim=[0 4];
-ax.YLim=[0 60];
-ax.XTick=[1:3];
-ax.XTickLabel={'ORN-->PN','ORN-->LN','ORN-->ORN'};
-ax.FontSize=16;
-
-
-
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToPn.mat')
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToLn.mat')
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/pnToOrn.mat')
-     
-subplot(3,1,2)
-
-pnUnitaries{1}=pnToPn(find(pnToPn>3));
-pnUnitaries{2}=pnToLn(find(pnToLn>3));
-pnUnitaries{3}=pnToOrn(find(pnToOrn>3));
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/ornToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/ornToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/ornToOrn.mat')
+% 
+% figure()
+% set(gcf,'color','w')
+% 
+% 
+% ornUnitaries{1}=ornToPn(find(ornToPn>3));
+% ornUnitaries{2}=ornToLn(find(ornToLn>3));
+% ornUnitaries{3}=ornToOrn(find(ornToOrn>3));
+% 
+% subplot(3,1,1)
+% 
+% for t=1:3
+% 
+% jitterAmount = 0.25;
+% jitterValuesX = 2*(rand(1,length(ornUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
+% 
+% scatter(t*ones(1,length(ornUnitaries{t}))+jitterValuesX,ornUnitaries{t})
+% hold on
+% 
+% end
+% 
+% ax=gca;
+% % ylabel('Connections per Unitary w/ >3 connections')
+% ax.XLim=[0 4];
+% ax.YLim=[0 60];
+% ax.XTick=[1:3];
+% ax.XTickLabel={'ORN-->PN','ORN-->LN','ORN-->ORN'};
+% ax.FontSize=16;
+% 
 
 
-for t=1:3
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/pnToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/pnToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/pnToOrn.mat')
+%      
+% subplot(3,1,2)
+% 
+% pnUnitaries{1}=pnToPn(find(pnToPn>3));
+% pnUnitaries{2}=pnToLn(find(pnToLn>3));
+% pnUnitaries{3}=pnToOrn(find(pnToOrn>3));
+% 
+% 
+% for t=1:3
+% 
+% jitterAmount = 0.25;
+% jitterValuesX = 2*(rand(1,length(pnUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
+% 
+% scatter(t*ones(1,length(pnUnitaries{t}))+jitterValuesX,pnUnitaries{t})
+% hold on
+% 
+% end
+% 
+% ax=gca;
+% ylabel('Connections per unitary w/ >3 connections', 'FontSize', 16)
+% ax.XLim=[0 4];
+% ax.YLim=[0 60];
+% ax.XTick=[1:3];
+% ax.XTickLabel={'PN-->PN','PN-->LN','PN-->ORN'};
+% ax.FontSize=16;
+% 
+% subplot(3,1,3)
 
-jitterAmount = 0.25;
-jitterValuesX = 2*(rand(1,length(pnUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
-
-scatter(t*ones(1,length(pnUnitaries{t}))+jitterValuesX,pnUnitaries{t})
-hold on
-
-end
-
-ax=gca;
-ylabel('Connections per unitary w/ >3 connections', 'FontSize', 16)
-ax.XLim=[0 4];
-ax.YLim=[0 60];
-ax.XTick=[1:3];
-ax.XTickLabel={'PN-->PN','PN-->LN','PN-->ORN'};
-ax.FontSize=16;
-
-subplot(3,1,3)
-
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/lnToPn.mat')
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/lnToLn.mat')
-load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript/lnToOrn.mat')
-
-lnUnitaries{1}=lnToPn(find(lnToPn>3));
-lnUnitaries{2}=lnToLn(find(lnToLn>3));
-lnUnitaries{3}=lnToOrn(find(lnToOrn>3));
-
-
-for t=1:3
-
-jitterAmount = 0.25;
-jitterValuesX = 2*(rand(1,length(lnUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
-
-scatter(t*ones(1,length(lnUnitaries{t}))+jitterValuesX,lnUnitaries{t})
-hold on
-
-end
-
-ax=gca;
-% ylabel('Connections per Unitary w/ >3 connections')
-ax.XLim=[0 4];
-ax.YLim=[0 60];
-ax.XTick=[1:3];
-ax.XTickLabel={'LN-->PN','LN-->LN','LN-->ORN'};
-ax.FontSize=16;
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/lnToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/lnToLn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/lnToOrn.mat')
+% 
+% lnUnitaries{1}=lnToPn(find(lnToPn>3));
+% lnUnitaries{2}=lnToLn(find(lnToLn>3));
+% lnUnitaries{3}=lnToOrn(find(lnToOrn>3));
+% 
+% 
+% for t=1:3
+% 
+% jitterAmount = 0.25;
+% jitterValuesX = 2*(rand(1,length(lnUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
+% 
+% scatter(t*ones(1,length(lnUnitaries{t}))+jitterValuesX,lnUnitaries{t})
+% hold on
+% 
+% end
+% 
+% ax=gca;
+% % ylabel('Connections per Unitary w/ >3 connections')
+% ax.XLim=[0 4];
+% ax.YLim=[0 60];
+% ax.XTick=[1:3];
+% ax.XTickLabel={'LN-->PN','LN-->LN','LN-->ORN'};
+% ax.FontSize=16;
 
 %% Plotting for ORN and PN connections only
 
@@ -284,5 +284,5 @@ ax.XTick=[1:4];
 ax.XTickLabel={'ORN-->PN','PN-->PN','PN-->ORN','ORN-->ORN'};
 ax.FontSize=10;
 
-saveas(gcf,'fig1PanelG')
-saveas(gcf,'fig1PanelG','epsc')
+saveas(gcf,'uniConNums')
+saveas(gcf,'uniConNums','epsc')
