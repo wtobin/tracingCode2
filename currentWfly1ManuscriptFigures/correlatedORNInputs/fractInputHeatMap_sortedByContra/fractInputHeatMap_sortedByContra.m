@@ -81,7 +81,7 @@ colorbar()
 xlabel('Left PNs', 'FontSize',18)
 ylabel('Left ORNs', 'FontSize',18)
 
-saveas(gcf,'fractInputHeatmap_leftOLeftP','epsc')
+saveas(gcf,'fractInputHeatmap_leftOLeftP','tiff')
 saveas(gcf,'fractInputHeatmap_leftOLeftP')
 
 
@@ -92,7 +92,7 @@ colorbar()
 xlabel('Right PNs', 'FontSize',18)
 ylabel('Left ORNs', 'FontSize',18)
 
-saveas(gcf,'fractInputHeatmap_leftORightP','epsc')
+saveas(gcf,'fractInputHeatmap_leftORightP','tiff')
 saveas(gcf,'fractInputHeatmap_leftORightP')
  
 
@@ -105,7 +105,7 @@ colorbar()
 xlabel('Left PNs', 'FontSize',18)
 ylabel('Right ORNs', 'FontSize',18)
 
-saveas(gcf,'fractInputHeatmap_rightOLeftP','epsc')
+saveas(gcf,'fractInputHeatmap_rightOLeftP','tiff')
 saveas(gcf,'fractInputHeatmap_rightOLeftP')
 
 
@@ -117,7 +117,7 @@ colorbar()
 xlabel('Right PNs', 'FontSize',18)
 ylabel('Right ORNs', 'FontSize',18)
 
-saveas(gcf,'fractInputHeatmap_rightORightP','epsc')
+saveas(gcf,'fractInputHeatmap_rightORightP','tiff')
 saveas(gcf,'fractInputHeatmap_rightORightP')
  
 
