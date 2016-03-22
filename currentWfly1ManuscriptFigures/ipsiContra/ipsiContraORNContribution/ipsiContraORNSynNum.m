@@ -29,24 +29,39 @@ set(gcf,'Color','w')
 
 for p=1:5
     
-    scatter(numIpsi(p,2),numIpsi(p,1), 'Filled', 'k')
+    scatter(numIpsi(p,2),numIpsi(p,1),54 , 'Filled', 'k')
     hold on
-    scatter(numContra(p,2),numContra(p,1),'Filled', 'k')
+    scatter(numContra(p,2),numContra(p,1),54,'Filled', 'k')
    
-    line([1 2 ], [numIpsi(p,1), numContra(p,1)],'Color', 'k')
+    line([1 2 ], [numIpsi(p,1), numContra(p,1)],'Color', 'k', 'LineWidth',1)
     
-    xlim([0.5 2.5])
-    ylim([200 1000])
+   
     
 end
 
+
+xlim([0.5 2.5])
+ylim([300 900])
+
 ax=gca;
 ax.XTick=[1,2];
-ax.XTickLabel={'Ipsi ORNs','Contra ORNs'}
-ax.YTick=[200:200:1000];
+ax.XTickLabel={'Ipsi','Contra'};
+ax.FontSize=16;
+ax.YTick=[300:300:900];
+ax.TickDir='out';
+ax.LineWidth=1;
+pbaspect([1 1.65 1])
+
+
 ylabel('Synapse Number')
 
 saveas(gcf,'ipsiContraORNSynNum')
 saveas(gcf,'ipsiContraORNSynNum', 'epsc')
+
+
+%% Stats
+
+[h,p]=ttest(numIpsi(:,2),numContra(:,2))
+
 
 

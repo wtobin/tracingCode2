@@ -88,8 +88,9 @@ ylabel('mean mEPSP Amplitude (mV)');
 
 saveas(gcf,'meanIpsiContraMiniAmps');
 saveas(gcf,'meanIpsiContraMiniAmps', 'epsc');
-% 
-% 
+
+
+
 % %% collecting ipsi-contra mEPSPs assuming
 % 
 % ipsi_mEPSPs = cell2mat(indAmpsI)';

@@ -70,9 +70,12 @@ rightCounter=1;
 
 for p=1:5
         
-        errorbar([1 2],[miniMeans(p,1) miniMeans(p,2)],...
-            [sem(p,1) sem(p,2)],...
-            'Color','k', 'Marker', 'o', 'MarkerFaceColor','k')
+        scatter([1 2],[miniMeans(p,1) miniMeans(p,2)],...
+            54,'Filled','k')
+        
+          line([1 2 ], [miniMeans(p,1) miniMeans(p,2)]...
+            ,'Color', 'k', 'LineWidth',1)
+        
         hold on
     
 end
@@ -82,12 +85,26 @@ ylim([.1 .4])
 
 ax=gca;
 ax.XTick=[1,2];
-ax.XTickLabel={'Ipsi ORNs','Contra ORNs'};
-ax.YTick=[4:1:7];
+ax.XTickLabel={'Ipsi','Contra'};
+ax.YTick=[.1:.1:4];
+ax.FontSize=16;
+ax.TickDir='out';
+ax.LineWidth=1;
+pbaspect([1 1.65 1])
+
 ylabel('mean mEPSP Amplitude (mV)');
+
+
 
 saveas(gcf,'meanIpsiContraMiniAmps');
 saveas(gcf,'meanIpsiContraMiniAmps', 'epsc');
+
+
+%% Stats
+
+[h,p]=ttest(miniMeans(:,1),miniMeans(:,2))
+
+
 % 
 % 
 % %% collecting ipsi-contra mEPSPs assuming
