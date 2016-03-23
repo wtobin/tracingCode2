@@ -43,30 +43,37 @@ end
 figure()
 set(gcf,'Color','w')
 
-colors=['k','r','b','m','c'];
+% colors=['k','r','b','m','c'];
+colors={[0.53, 0.40, 0.67];...
+        [0.23, 0.76, 0.85];...
+        [0.05, 0.66, 0.40];...
+        [0.30, 0.18, 0.55];...
+        [0.12, 0.59, 0.64]};
+
 % 
 % gscatter(uepspContNum(:,:,2),uepspContNum(:,:,1),[ones(size(uepspContNum(1:3,:,2)));2*ones(size(uepspContNum(4:5,:,1)))],[],[],[], 'off')
 for p=1:5
     
     if p<=3
-        scatter(uepspContNum(p,1:27,2),uepspContNum(p,1:27,1),[],colors(p))
+        scatter(uepspContNum(p,1:27,2),uepspContNum(p,1:27,1),[],colors{p})
         hold on
-        scatter(uepspContNum(p,28:end,2),uepspContNum(p,28:end,1),'filled',colors(p))
+        scatter(uepspContNum(p,28:end,2),uepspContNum(p,28:end,1),[],colors{p},'filled')
     else
         
-        scatter(uepspContNum(p,1:26,2),uepspContNum(p,1:26,1),'filled',colors(p))
+        scatter(uepspContNum(p,1:26,2),uepspContNum(p,1:26,1),[],colors{p},'filled')
         hold on
-        scatter(uepspContNum(p,27:end,2),uepspContNum(p,27:end,1),[],colors(p))
+        scatter(uepspContNum(p,27:end,2),uepspContNum(p,27:end,1),[],colors{p})
     end
 end
 
-labels={'Ipsi ORNs','Contra ORNs'};
+labels={'ipsi connections','contra connections'};
 
 ax=gca;
 ax.FontSize=16;
+set(gca,'Xtick',0:10:60)
 ylabel('uEPSP Amplitude (mV)')
 xlabel('Synapse Number')
-legend(labels,'Location','NorthWest')
+legend(labels,'Location','Southeast')
 
 saveas(gcf,'synNumVuEPSPAmp','epsc')
 saveas(gcf,'synNumVuEPSPAmp')
