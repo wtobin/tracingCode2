@@ -28,16 +28,18 @@
     
 %Plotting
 
+nBins = 10; % 160323WCL: was 5
+
 figure()
 set(gcf, 'Color', 'w')
-h1=histogram(sumEff, 5, 'FaceColor','k');
+h1=histogram(sumEff, nBins, 'FaceColor','k');
 xlim([0 2*mean(sumEff)])
 ax = gca;
 ax.FontSize=16;
 ylabel('# of connections')
 xlabel('summation efficacy')
-axis square
-text(.005, 8, ['CV: ',num2str(std(sumEff)/mean(sumEff))], 'FontSize',16)
+% axis square
+text(.005, 4, ['CV: ',num2str(std(sumEff)/mean(sumEff))], 'FontSize',16)
 
 saveas(gcf,'summEfficacyExample','epsc')
 saveas(gcf,'summEfficacyExample')
