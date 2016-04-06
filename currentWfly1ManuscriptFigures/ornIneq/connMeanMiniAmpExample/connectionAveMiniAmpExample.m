@@ -19,17 +19,21 @@ for m=1:length(leftORNs)
 end
 
 
+
 %plotting
+
+nBins = 10; % 160323WCL: was 5
+
 figure()
 set(gcf, 'Color', 'w')
-h1=histogram(leftMiniAmps, 5, 'FaceColor','k');
+h1=histogram(leftMiniAmps, nBins, 'FaceColor','k');
 xlim([0 2*mean(leftMiniAmps)])
 ax = gca;
 ax.FontSize=16;
 ylabel('# of connections')
 xlabel('mean mEPSP amp')
-axis square
-text(.002, 8, ['CV: ',num2str(std(leftMiniAmps)/mean(leftMiniAmps))], 'FontSize',16)
+% axis square
+text(.002, 5, ['CV: ',num2str(std(leftMiniAmps)/mean(leftMiniAmps))], 'FontSize',16)
 
 saveas(gcf,'connAveMiniAmpExample','epsc')
 saveas(gcf,'connAveMiniAmpExample')

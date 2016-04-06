@@ -12,8 +12,7 @@
  %tracingCode2/wfly1_Manuscript_Archive16March2016/leftRightMinisAndUnitaries/summationEfficacy.m
  
  
-clear sumEff;
-
+ 
 %loop over PNs
 for p=1:5
     

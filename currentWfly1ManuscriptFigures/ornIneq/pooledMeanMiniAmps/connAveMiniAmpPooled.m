@@ -41,16 +41,19 @@ pooledNormIpsiMini=[normIpsiMiniL(:);normIpsiMiniR(:)];
 
 
 %plotting
+
+nBins = 10; % 160323WCL: was 5
+
 figure()
 set(gcf, 'Color', 'w')
-h1=histogram(pooledNormIpsiMini, 5, 'FaceColor','k');
+h1=histogram(pooledNormIpsiMini, nBins, 'FaceColor','k');
 xlim([0 2*mean(pooledNormIpsiMini)])
 ax = gca;
 ax.FontSize=16;
 ylabel('# of connections')
 xlabel('normalized mean mEPSP amp')
-axis square
-text(.02, 55, ['CV: ',num2str(std(pooledNormIpsiMini)/mean(pooledNormIpsiMini))], 'FontSize',16)
+% axis square
+text(.02, 30, ['CV: ',num2str(std(pooledNormIpsiMini)/mean(pooledNormIpsiMini))], 'FontSize',16)
 
 saveas(gcf,'connAveMiniAmpPooled','epsc')
 saveas(gcf,'connAveMiniAmpPooled')
