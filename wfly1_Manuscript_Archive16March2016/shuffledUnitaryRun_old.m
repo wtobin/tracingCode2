@@ -12,7 +12,7 @@ addpath(genpath('/home/wft2/Matlab'));
 path1=['/home/wft2/nC_projects/',PN,'_allORNs/simulations/shuffUnitaries/'];
 cd(path1)
 
-%I need a loop right here that will repeat this jobNum times
+%I need a loop right here that will jobNumeat this ~35 times
 for i= jobNum*reps-reps+1:jobNum*reps
 
 %make a copy of the hoc file
@@ -109,6 +109,94 @@ save([resultDir,'/activeSyns'],'activeSyns')
 
 %move the hoc file to the results dir
 system(['mv ',hocCpName,' ',resultDir,'/'])
+
+%delete the spikeVector dir
+system(['rm -rf ../../',svDirName])
+
+% Now repeat the simulation causing all mEPSPs to fire sequentially in the
+% order they are found in activeSyns, saving each to its own file
+
+
+% remake a copy of the hoc file
+hocCpName=[PN, '_', num2str(i) , '.hoc ' ];
+cpCmd=['cp ',PN, '_allORNs.hoc ',hocCpName ];
+system(cpCmd);
+
+
+% remake a spikeVector dir for this sim
+svDirName=['spikeVectors_',num2str(i)];
+mkSVDirCmd=['mkdir ../../',svDirName];
+system(mkSVDirCmd);
+
+% Change the simReference = line in the hoc file and simsDir
+simName='shuffUnitaries';
+simRefCmd=['sed -i -e ''s/simReference\s\=\s\".*\"/simReference \= \"',simName,'\"/'' ',hocCpName];
+system(simRefCmd)
+
+% Change the hoc file code to look to this spikeVector dir
+chngSVDirCmd=['sed -i -e ''s#spikeVectors#',svDirName,'#'' ',hocCpName];
+system(chngSVDirCmd)
+
+%Set the name of the directory to which the results will be saved
+htemGroupBase=['/groups/htem/analysis/wfly1/nC_projects/',PN,'_allORNs/simulations/shuffUnitaries'];
+resultDir=[htemGroupBase,'/results/rep',num2str(i),'/minis'];
+mkdir(resultDir)
+chngResDir=['sed -i -e ''s#{ sprint(targetDir, "%s%s/", simsDir, simReference)}#targetDir="',resultDir,'/"#'' ',hocCpName];
+system(chngResDir)
+
+%path to the dir containing the spikeVectors that specify this models
+%activity
+path2=['/home/wft2/nC_projects/',PN,'_allORNs/',svDirName];
+
+%Setsim duration
+runTime=220; %in ms
+runTCmd=['sed -i -e ''s#tstop\s\=\s.*#tstop \= ',num2str(runTime),'#'' ',hocCpName];
+system(runTCmd)
+
+for t=1:numel(activeSyns(:,1))
+
+%Save a spike vector file for each active synapse. Drive the first syn to
+%fire at 100ms and all others in 200ms increments
+
+
+for f=1:numel(totSynapseNums)
+    
+    s=totSynapseNums(f);
+    
+    if s == activeSyns(t,1)
+   
+        vector=20;
+        save([path2,'/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
+        
+        
+    else
+     
+        vector=[];
+        save([path2,'/spikeVector',num2str(totSynapseNums(f)),'.txt'],'vector','-ascii')
+        
+    end
+    
+end
+
+
+
+
+% run this simulation
+runCmd=['/groups/htem/code/neuron/nrn/x86_64/bin/nrniv ', hocCpName];
+system(runCmd);
+
+
+system(['mv ',resultDir,'/neuron_PN1_LS_sk_419138_0.dat ',resultDir,'/mini',num2str(t),'.dat'])
+
+
+end
+
+
+%move the hoc file to the results dir
+system(['mv ',hocCpName,' ',resultDir,'/'])
+
+%Save the activeSyns arrays and to result results dir
+save([resultDir,'/activeSyns'],'activeSyns')
 
 %delete the spikeVector dir
 system(['rm -rf ../../',svDirName])

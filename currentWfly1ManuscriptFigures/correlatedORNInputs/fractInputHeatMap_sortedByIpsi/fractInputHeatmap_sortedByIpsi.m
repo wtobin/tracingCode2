@@ -51,10 +51,11 @@ load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/ornToP
     
 
 % Now divide each element by the sum of the column it is in
-
+contactNum_Fract=zeros(53,5);
 for c=1:5
     
-    contactNum_Fract(:,c)=ornsToPn(:,c)./sum(ornsToPn(:,c));
+    contactNum_Fract(1:27,c)=ornsToPn(1:27,c)./sum(ornsToPn(1:27,c));
+    contactNum_Fract(28:end,c)=ornsToPn(28:end,c)./sum(ornsToPn(28:end,c));
     
 end
 
@@ -77,10 +78,13 @@ sorted_ContNumFracts(length(ORNs_Left)+1:length(ORNs_Left)+length(ORNs_Right),:)
 
 figure()
 set(gcf, 'Color', 'w')
-imagesc(sorted_ContNumFracts(1:27,1:3), [.006 .035])
+imagesc(sorted_ContNumFracts(1:27,1:3), [.006 .065])
 colorbar()
 xlabel('Left PNs', 'FontSize',18)
 ylabel('Left ORNs', 'FontSize',18)
+ax=gca;
+ax.XTick=[];
+ax.YTick=[];
 
 saveas(gcf,'fractInputHeatmap_leftOLeftP','tiff')
 saveas(gcf,'fractInputHeatmap_leftOLeftP')
@@ -88,23 +92,27 @@ saveas(gcf,'fractInputHeatmap_leftOLeftP')
 
 figure()
 set(gcf, 'Color', 'w')
-imagesc(sorted_ContNumFracts(1:27,4:5), [.006 .035])
+imagesc(sorted_ContNumFracts(1:27,4:5), [.006 .065])
 colorbar()
 xlabel('Right PNs', 'FontSize',18)
 ylabel('Left ORNs', 'FontSize',18)
+ax=gca;
+ax.XTick=[];
+ax.YTick=[];
 
 saveas(gcf,'fractInputHeatmap_leftORightP','tiff')
 saveas(gcf,'fractInputHeatmap_leftORightP')
  
 
-
-
 figure()
 set(gcf, 'Color', 'w')
-imagesc(sorted_ContNumFracts(28:end,1:3), [.006 .035])
+imagesc(sorted_ContNumFracts(28:end,1:3), [.006 .065])
 colorbar()
 xlabel('Left PNs', 'FontSize',18)
 ylabel('Right ORNs', 'FontSize',18)
+ax=gca;
+ax.XTick=[];
+ax.YTick=[];
 
 saveas(gcf,'fractInputHeatmap_rightOLeftP','tiff')
 saveas(gcf,'fractInputHeatmap_rightOLeftP')
@@ -113,10 +121,13 @@ saveas(gcf,'fractInputHeatmap_rightOLeftP')
 
 figure()
 set(gcf, 'Color', 'w')
-imagesc(sorted_ContNumFracts(28:end,4:5), [.006 .035])
+imagesc(sorted_ContNumFracts(28:end,4:5), [.006 .065])
 colorbar()
 xlabel('Right PNs', 'FontSize',18)
 ylabel('Right ORNs', 'FontSize',18)
+ax=gca;
+ax.XTick=[];
+ax.YTick=[];
 
 saveas(gcf,'fractInputHeatmap_rightORightP','tiff')
 saveas(gcf,'fractInputHeatmap_rightORightP')
