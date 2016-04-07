@@ -52,6 +52,7 @@ load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/ornToP
 
 % Now divide each element by the sum of the column it is in
 contactNum_Fract=zeros(53,5);
+
 for c=1:5
     
     contactNum_Fract(1:27,c)=ornsToPn(1:27,c)./sum(ornsToPn(1:27,c));

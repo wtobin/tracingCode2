@@ -83,5 +83,5 @@ saveas(gcf,'fractionalInputScatter')
 
 %% Stats
 
-[r,p]=corr([mean(contactNum_Fract(1:27,[1,2,5]),2);mean(contactNum_Fract(28:end,[1,2,5]),2)]...
-    ,[mean(contactNum_Fract(1:27,[3,4]),2);mean(contactNum_Fract(28:end,[3,4]),2)])
+[h,p=corr([mean(contactNum_Fract(1:27,[1,2,5]),2);mean(contactNum_Fract(28:end,[1,2,5]),2)]...
+    ,[])

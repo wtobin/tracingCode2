@@ -61,7 +61,7 @@ saveas(gcf,'ipsiContraORNSynNum', 'epsc')
 
 %% Stats
 
-[h,p]=ttest(numIpsi(:,2),numContra(:,2))
+[h,p, ci,stats]=ttest(numIpsi(:,1),numContra(:,1))
 
 
 

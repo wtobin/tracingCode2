@@ -27,13 +27,13 @@ ORNs=[ORNs_Left, ORNs_Right];
 PNs=annotations.DM6_0x20_PN;
 
 
-%for each PN
+%for each ORN
 
-for p=1:length(PNs)
+for p=1:length(ORNs)
 tic
 % Step #1 load ORN skeletons
 
-workingSkel=loadjson(['~/tracing/skeletons/',num2str(PNs(p)),'.json']);
+workingSkel=loadjson(['~/tracing/skeletons/',num2str(ORNs(p)),'.json']);
 
 
 % STEP 2: generate the directed, weighted adjacency matrix and graph obj
