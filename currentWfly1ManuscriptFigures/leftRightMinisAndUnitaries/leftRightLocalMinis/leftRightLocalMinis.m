@@ -95,15 +95,16 @@ valsU = [lAmp,rAmp];
 %Ipsi and contra broken out
 
 %move to the figure directory to save the plot
-cd('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/leftRightMinisAndUnitaries/localMinis/')
+cd('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/leftRightMinisAndUnitaries/leftRightLocalMinis/')
 
 figure
 set(gcf,'Color', 'w')
-bar(YUmean,.4,'FaceColor','k','LineWidth',2)
-hold on
-he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
-he.LineWidth=1;
-xlim([0.5 2.5])
+boxplot(valsU,gpsU, 'notch', 'on', 'Color', 'k')
+% bar(YUmean,.4,'FaceColor','k','LineWidth',2)
+% hold on
+% he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
+% he.LineWidth=1;
+% xlim([0.5 2.5])
 % ylim([0 80])
 ax = gca;
 ax.XTick = [1 2];
@@ -111,8 +112,8 @@ ax.XTickLabel = {'Left PNs';'RightPNs'};
 ax.FontSize=16;
 ylabel('Local mEPSP Amp (mV)')
 axis square
-saveas(gcf,'meanmEPSPAmpLvR')
-saveas(gcf,'meanmEPSPAmpLvR','epsc')
+saveas(gcf,'localmEPSPAmpLvR')
+saveas(gcf,'localmEPSPAmpLvR','epsc')
 
 
 

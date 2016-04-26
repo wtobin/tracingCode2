@@ -52,11 +52,11 @@ valsU = [ilAmps,clAmps,irAmps,crAmps];
 %Ipsi and contra broken out
 
 figure
-bar(YUmean,.4,'FaceColor','k','LineWidth',2)
-hold on
-he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
-he.LineWidth=1;
-xlim([0.5 4.5])
+boxplot(valsU,gpsU)
+
+% he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
+% he.LineWidth=1;
+% xlim([0.5 4.5])
 % ylim([0 80])
 ax = gca;
 ax.XTick = [1:1:4];
@@ -77,11 +77,11 @@ valsU = [ilAmps,clAmps,irAmps,crAmps];
 
 figure
 set(gcf,'Color', 'w')
-bar(YUmean,.4,'FaceColor','k','LineWidth',2)
-hold on
-he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
-he.LineWidth=1;
-xlim([0.5 2.5])
+boxplot(valsU,gpsU, 'Colors', 'k')
+% hold on
+% he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
+% he.LineWidth=1;
+% xlim([0.5 2.5])
 % ylim([0 80])
 ax = gca;
 ax.XTick = [1 2];
@@ -89,8 +89,8 @@ ax.XTickLabel = {'Left PNs';'Right PNs'};
 ax.FontSize=16;
 ylabel('uEPSP Amp (mV)')
 axis square
-saveas(gcf,'fig3PanelC','epsc')
-saveas(gcf,'fig3PanelC')
+saveas(gcf,'leftRightUniAmpsBoxplots','epsc')
+saveas(gcf,'leftRightUniAmpsBoxplots')
 
 %% Permutation test (p > 0.77)
 nPerm = 10000;

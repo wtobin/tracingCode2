@@ -29,12 +29,13 @@ valsU = [leftInputRs,rightInputRs];
 %plotting
 figure
 set(gcf,'Color', 'w')
-bar(YUmean,.4,'FaceColor','k','LineWidth',2)
-hold on
-he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
-he.LineWidth=1;
-xlim([0.5 2.5])
- ylim([0 1.8])
+boxplot(valsU,gpsU, 'Colors','k')
+% bar(YUmean,.4,'FaceColor','k','LineWidth',2)
+% hold on
+% he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are std
+% he.LineWidth=1;
+% xlim([0.5 2.5])
+%  ylim([0 1.8])
 ax = gca;
 ax.XTick = [1 2];
 ax.XTickLabel = {'Left PNs';'RightPNs'};

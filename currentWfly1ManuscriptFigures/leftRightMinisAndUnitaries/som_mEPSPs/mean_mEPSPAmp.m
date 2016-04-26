@@ -77,11 +77,11 @@ valsU = [ilmAmps,clmAmps,irmAmps,crmAmps];
 
 figure
 set(gcf,'Color', 'w')
-bar(YUmean,.4,'FaceColor','k','LineWidth',2)
-hold on
-he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are sem
-he.LineWidth=1;
-xlim([0.5 2.5])
+boxplot(valsU,gpsU,'Colors','k')
+% hold on
+% he = errorbar(YUmean,YUsem,'k','LineStyle','none'); % error bars are sem
+% he.LineWidth=1;
+% xlim([0.5 2.5])
 % ylim([0 80])
 ax = gca;
 ax.XTick = [1 2];
@@ -90,8 +90,8 @@ ax.FontSize=16;
 ylabel('mEPSP Amp (mV)')
 axis square
 
-saveas(gcf,'fig3PanelD','epsc')
-saveas(gcf,'fig3PanelD')
+saveas(gcf,'leftRightMiniAmpBoxplots','epsc')
+saveas(gcf,'leftRightMiniAmpBoxplots')
 
 %% Permutation test (p~ 0.57)
 nPerm = 10000;

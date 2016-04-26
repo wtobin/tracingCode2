@@ -24,6 +24,23 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
         %Load the pnVm
         pnvm_working=importdata([base1Hz,'/',real1HzDirs(r).name, '/',dataFileName]);
         pnVmsCollected_real(1,counter,:)=pnvm_working;
+        
+%         abvThreshSamps=find(pnvm_working(4000:8000)>=-45);
+%         
+%         if isempty(abvThreshSamps)==1
+%             
+%             
+%         else
+%         
+%         firstCrossing(counter)=abvThreshSamps(1)/40;
+%         counter=counter+1;
+%         
+%         end
+        
+        
+        
+        
+        
         aboveThresh=find(pnvm_working(4000:8000)>=-45);
         
         if isempty(aboveThresh) == 1
