@@ -80,9 +80,9 @@ sorted_ContNumFracts(length(ORNs_Left)+1:length(ORNs_Left)+length(ORNs_Right),:)
 figure()
 set(gcf, 'Color', 'w')
 imagesc(sorted_ContNumFracts(1:27,1:3), [.006 .065])
-colorbar()
-xlabel('Left PNs', 'FontSize',18)
-ylabel('Left ORNs', 'FontSize',18)
+% colorbar()
+% xlabel('Left PNs', 'FontSize',18)
+% ylabel('Left ORNs', 'FontSize',18)
 ax=gca;
 ax.XTick=[];
 ax.YTick=[];
@@ -94,9 +94,9 @@ saveas(gcf,'fractInputHeatmap_leftOLeftP')
 figure()
 set(gcf, 'Color', 'w')
 imagesc(sorted_ContNumFracts(1:27,4:5), [.006 .065])
-colorbar()
-xlabel('Right PNs', 'FontSize',18)
-ylabel('Left ORNs', 'FontSize',18)
+% colorbar()
+% xlabel('Right PNs', 'FontSize',18)
+% ylabel('Left ORNs', 'FontSize',18)
 ax=gca;
 ax.XTick=[];
 ax.YTick=[];
@@ -108,9 +108,9 @@ saveas(gcf,'fractInputHeatmap_leftORightP')
 figure()
 set(gcf, 'Color', 'w')
 imagesc(sorted_ContNumFracts(28:end,1:3), [.006 .065])
-colorbar()
-xlabel('Left PNs', 'FontSize',18)
-ylabel('Right ORNs', 'FontSize',18)
+% colorbar()
+% xlabel('Left PNs', 'FontSize',18)
+% ylabel('Right ORNs', 'FontSize',18)
 ax=gca;
 ax.XTick=[];
 ax.YTick=[];
@@ -123,9 +123,9 @@ saveas(gcf,'fractInputHeatmap_rightOLeftP')
 figure()
 set(gcf, 'Color', 'w')
 imagesc(sorted_ContNumFracts(28:end,4:5), [.006 .065])
-colorbar()
-xlabel('Right PNs', 'FontSize',18)
-ylabel('Right ORNs', 'FontSize',18)
+% colorbar()
+% xlabel('Right PNs', 'FontSize',18)
+% ylabel('Right ORNs', 'FontSize',18)
 ax=gca;
 ax.XTick=[];
 ax.YTick=[];
