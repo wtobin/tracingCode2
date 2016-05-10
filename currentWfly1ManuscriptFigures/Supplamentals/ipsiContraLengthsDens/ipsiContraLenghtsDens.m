@@ -88,6 +88,8 @@ ax.XTickLabel={'ipsi axons','contra axons'};
 ax.FontSize=16;
 ylabel('cable length(nm)','FontSize',16);
 axis square
+ylim([0 2*10^5])
+ax.YTick=[0:1*10^5:2*10^5]
 saveas(gcf,'ipsiContraLength')
 saveas(gcf,'ipsiContraLength','png')
 
@@ -100,5 +102,8 @@ ax.XTickLabel={'ipsi axons','contra axons'};
 ylabel('tbar density (tbars/nm)', 'FontSize',16);
 axis square
 ax.FontSize=16;
+ylim([0 6*10^-4])
+
+
 saveas(gcf,'ipsiContraDens')
 saveas(gcf,'ipsiContraDens','png')
