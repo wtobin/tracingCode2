@@ -157,7 +157,7 @@ ax.FontSize=16;
 axis square
 
 saveas(gcf,'ipsiContraFractPNConns')
-saveas(gcf,'ipsiContraFractPNConns','png')
+saveas(gcf,'ipsiContraFractPNConns','epsc')
 
 
 

@@ -75,59 +75,53 @@ end
 
 %% Collect conn nums 
 
-load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornPNConnDensity/leftAxonConnNums')
-load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornPNConnDensity/rightAxonConnNums')
+load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornPostsynOrphans/rightPostProfiles.mat')
+load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornPostsynOrphans/leftPostProfiles.mat')
 
 
-
-% For each ORN collect its total number of connections within each
-% glomerulus as well as the total number of PN connections
-
-leftCounter=1;
-rightCounter=1;
-
+% Loop over each ORN
 for p=1:length(ORNs)
     
-    leftRunT=[];
-    leftRunP=[];
     
-    
-    for j=1:size(leftAxonConnNums{p},2)
+    %loop over each presynaptic profile
+    for s=1:length(leftPostProfiles{p})
         
-        leftRunT=[leftRunT, leftAxonConnNums{p}(1,j)];
-        leftRunP=[leftRunP,leftAxonConnNums{p}(2,j)];
+      numPostProfL{p}(s)=numel
         
-    end
-    
-    if isnan(leftRunP)==1
-        
-    else
-        
-        leftTotCon(leftCounter)=sum(leftRunT);
-        leftPNCon(leftCounter)=sum(leftRunP);
-        leftCounter=leftCounter+1;
-        
-    end
-    
-    rightRunT=[];
-    rightRunP=[];
-    
-    
-    for j=1:size(rightAxonConnNums{p},2)
-        
-        rightRunT=[rightRunT, rightAxonConnNums{p}(1,j)];
-        rightRunP=[rightRunP,rightAxonConnNums{p}(2,j)];
-        
-    end
-    
-    if isnan(rightRunP)==1
-    else
-        
-        rightTotCon(rightCounter)=sum(rightRunT);
-        rightPNCon(rightCounter)=sum(rightRunP);
-        rightCounter=rightCounter+1;
     end
 end
+
+
+% Loop over each ORN
+for p=1:length(ORNs)
+    
+    
+    %loop over each presynaptic profile
+    for s=1:length(rightPostProfiles{p})
+        
+        if ismember(rightPostProfiles{p}(s), ORNs) == 1
+            
+            rightPostProfiles{p}(s)=1;
+            
+            
+        elseif ismember(rightPostProfiles{p}(s), PNs) == 1
+            
+            rightPostProfiles{p}(s)=2;
+            
+            
+        elseif ismember(rightPostProfiles{p}(s), LNs) == 1
+            
+            rightPostProfiles{p}(s)=3;
+            
+            
+        else %orphans
+            rightPostProfiles{p}(s)=4;
+            
+        end
+        
+    end
+end
+
 
 %% Plotting
 
@@ -151,6 +145,6 @@ ax.FontSize=16;
 axis square
 
 saveas(gcf,'ipsiContraConnDensity')
-saveas(gcf,'ipsiContraConnDensity','png')
+saveas(gcf,'ipsiContraConnDensity','epsc')
 
 

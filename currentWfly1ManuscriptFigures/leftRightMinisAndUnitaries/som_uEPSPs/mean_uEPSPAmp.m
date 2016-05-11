@@ -48,7 +48,7 @@ valsU = [ilAmps,clAmps,irAmps,crAmps];
 [YUmean,YUsem,YUstd,YUci] = grpstats(valsU,gpsU,{'mean','sem','std','meanci'});
 
 
-%% Simple bar plot Left-Right ORNs unitary amplitude
+%% Simple box plot Left-Right ORNs unitary amplitude
 %Ipsi and contra broken out
 
 figure

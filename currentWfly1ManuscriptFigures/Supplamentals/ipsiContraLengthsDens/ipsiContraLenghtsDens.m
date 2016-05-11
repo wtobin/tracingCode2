@@ -15,7 +15,7 @@ ORNs=[ORNs_Left, ORNs_Right];
 %return all skeleton IDs of DM6 PNs
 PNs=sort(annotations.DM6_0x20_PN);
 
-%% Calculate Path length
+%% Collect Path length
 
 load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornOutputSynDensity/leftAxons')
 load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornOutputSynDensity/rightAxons')
@@ -71,7 +71,6 @@ end
 
 %% create array of length and Density for ipsi and Contra axons
 
-
 ipsiLenDens(:,1)=[leftLengths(1:27),rightLengths(27:end)];
 ipsiLenDens(:,2)=[leftPreSites(1:27)./leftLengths(1:27),rightPreSites(27:end)./rightLengths(27:end)];
 
@@ -82,7 +81,8 @@ contraLenDens(:,2)=[leftPreSites(28:end)./leftLengths(28:end),rightPreSites(1:26
 figure()
 
 set(gcf,'Color','w')
-boxplot([ipsiLenDens(:,1);contraLenDens(:,1)], [ones(53,1);2*ones(51,1)], 'color', 'k')
+h=boxplot([ipsiLenDens(:,1);contraLenDens(:,1)], [ones(53,1);2*ones(51,1)], 'color', 'k', 'notch', 'on');
+h.LineWidth = 2;
 ax=gca;
 ax.XTickLabel={'ipsi axons','contra axons'};
 ax.FontSize=16;
@@ -91,12 +91,13 @@ axis square
 ylim([0 2*10^5])
 ax.YTick=[0:1*10^5:2*10^5]
 saveas(gcf,'ipsiContraLength')
-saveas(gcf,'ipsiContraLength','png')
+saveas(gcf,'ipsiContraLength','epsc')
 
 
 figure()
 set(gcf,'Color','w')
-boxplot([ipsiLenDens(:,2);contraLenDens(:,2)], [ones(53,1);2*ones(51,1)],'color', 'k')
+boxplot([ipsiLenDens(:,2);contraLenDens(:,2)], [ones(53,1);2*ones(51,1)],'color', 'k', 'notch', 'on')
+h.LineWidth = 2;
 ax=gca;
 ax.XTickLabel={'ipsi axons','contra axons'};
 ylabel('tbar density (tbars/nm)', 'FontSize',16);
@@ -106,4 +107,4 @@ ylim([0 6*10^-4])
 
 
 saveas(gcf,'ipsiContraDens')
-saveas(gcf,'ipsiContraDens','png')
+saveas(gcf,'ipsiContraDens','epsc')
