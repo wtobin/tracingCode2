@@ -37,11 +37,11 @@ connFields=fieldnames(conns);
 
 
 %for each ORN
-for p=1:length(ORNs)
-    p
+for o=1:length(ORNs)
+    o
     tic
     % Step #1 load ORN skeletons
-    workingSkel=loadjson(['~/tracing/skeletons/',num2str(ORNs(p)),'.json']);
+    workingSkel=loadjson(['~/tracing/skeletons/',num2str(ORNs(o)),'.json']);
     
     
     % STEP 2: generate the directed, weighted adjacency matrix and graph obj
@@ -84,7 +84,7 @@ for p=1:length(ORNs)
      % left axon node was improperly placed on ORN 15, use node
     % 693320 instead.
     
-    if p == 34
+    if o == 34
         
         start=find(strcmp('x0x36_93320', skelVertNames));
     else
@@ -96,6 +96,9 @@ for p=1:length(ORNs)
         
   
     else
+        
+        leftPostSkels{o}=[];
+        
         for s = 1:length(start)
             % step 4 identify all nodes that are descendants of the left axon start
             
@@ -111,7 +114,7 @@ for p=1:length(ORNs)
             %the midline that is left over when we remove the commisure vertices from
             %our list
             
-            if p == 33
+            if o == 33
                 
                 allInds=1:length(adjMat);
                 correctedLeftAxInds=allInds;
@@ -169,7 +172,8 @@ for p=1:length(ORNs)
           
             % Step 6 find all postsynaptic profiles sites in this subarbor
             
-            leftPostSkels{p}=[];
+            
+            
             for v=leftAxonInds
                 
                 children=fieldnames(workingSkel.connectivity.(cell2mat(skelVertNames(v))));
@@ -178,7 +182,7 @@ for p=1:length(ORNs)
                     
                     if strcmp(workingSkel.connectivity.(cell2mat(skelVertNames(v))).(cell2mat(children(c))).type, 'postsynaptic_to') == 1
                        
-                        leftPostSkels{p}=[leftPostSkels{p}, conns.(cell2mat(children(c))).post];
+                        leftPostSkels{o}=[leftPostSkels{o}, conns.(cell2mat(children(c))).post];
                         
                     else
                     end
@@ -227,6 +231,8 @@ for p=1:length(ORNs)
         
     else
         
+          rightPostSkels{o}=[];
+          
         for s = 1:length(rightStart)
             % step 4 identify all nodes that are descendants of the right axon starts
             
@@ -236,7 +242,7 @@ for p=1:length(ORNs)
             %parent this should yield the indicies of all nodes (from skelVertNames)
             %involved in the collateral
             
-            if p==43
+            if o==43
                 
                 rightAxonInds=unique([G.traverse(rightStart),G.traverse(2346)]);
             else
@@ -249,7 +255,7 @@ for p=1:length(ORNs)
             
             % Step 6 find all presynaptic sites in this subarbor
             
-    rightPostSkels{p}=[];
+  
             
             for v=rightAxonInds
                 
@@ -259,7 +265,7 @@ for p=1:length(ORNs)
                     
                     if strcmp(workingSkel.connectivity.(cell2mat(skelVertNames(v))).(cell2mat(children(c))).type, 'postsynaptic_to') == 1
                         
-                        rightPostSkels{p}=[rightPostSkels{p}, conns.(cell2mat(children(c))).post];
+                        rightPostSkels{o}=[rightPostSkels{o}, conns.(cell2mat(children(c))).post];
                         
                     else
                     end
@@ -290,29 +296,29 @@ save('leftPostSkels','leftPostSkels')
 
 
 % Loop over each ORN
-for p=1:length(ORNs)
+for o=1:length(ORNs)
     
     
     %loop over each presynaptic profile
-    for s=1:length(leftPostSkels{p})
+    for s=1:length(leftPostSkels{o})
         
-        if ismember(leftPostSkels{p}(s), ORNs) == 1
+        if ismember(leftPostSkels{o}(s), ORNs) == 1
             
-            leftPostProfiles{p}(s)=1;
-            
-            
-        elseif ismember(leftPostSkels{p}(s), PNs) == 1
-            
-            leftPostProfiles{p}(s)=2;
+            leftPostProfiles{o}(s)=1;
             
             
-        elseif ismember(leftPostSkels{p}(s), LNs) == 1
+        elseif ismember(leftPostSkels{o}(s), PNs) == 1
             
-            leftPostProfiles{p}(s)=3;
+            leftPostProfiles{o}(s)=2;
+            
+            
+        elseif ismember(leftPostSkels{o}(s), LNs) == 1
+            
+            leftPostProfiles{o}(s)=3;
             
             
         else %orphans
-            leftPostProfiles{p}(s)=4;
+            leftPostProfiles{o}(s)=4;
             
         end
         
@@ -321,29 +327,29 @@ end
 
 
 % Loop over each ORN
-for p=1:length(ORNs)
+for o=1:length(ORNs)
     
     
     %loop over each presynaptic profile
-    for s=1:length(rightPostSkels{p})
+    for s=1:length(rightPostSkels{o})
         
-        if ismember(rightPostSkels{p}(s), ORNs) == 1
+        if ismember(rightPostSkels{o}(s), ORNs) == 1
             
-            rightPostProfiles{p}(s)=1;
-            
-            
-        elseif ismember(rightPostSkels{p}(s), PNs) == 1
-            
-            rightPostProfiles{p}(s)=2;
+            rightPostProfiles{o}(s)=1;
             
             
-        elseif ismember(rightPostSkels{p}(s), LNs) == 1
+        elseif ismember(rightPostSkels{o}(s), PNs) == 1
             
-            rightPostProfiles{p}(s)=3;
+            rightPostProfiles{o}(s)=2;
+            
+            
+        elseif ismember(rightPostSkels{o}(s), LNs) == 1
+            
+            rightPostProfiles{o}(s)=3;
             
             
         else %orphans
-            rightPostProfiles{p}(s)=4;
+            rightPostProfiles{o}(s)=4;
             
         end
         
@@ -352,18 +358,18 @@ end
 
 
 %For each ORN
-for p=1:length(ORNs)
+for o=1:length(ORNs)
     
     %for each category
     for id=1:4
         
-        idenCountsL(p,id)=sum(leftPostProfiles{p}==id);
-        idenCountsR(p,id)=sum(rightPostProfiles{p}==id);
+        idenCountsL(o,id)=sum(leftPostProfiles{o}==id);
+        idenCountsR(o,id)=sum(rightPostProfiles{o}==id);
         
     end
     
-    fractIdenCountsL(p,:)=idenCountsL(p,:)./sum(idenCountsL(p,:));
-    fractIdenCountsR(p,:)=idenCountsR(p,:)./sum(idenCountsR(p,:));
+    fractIdenCountsL(o,:)=idenCountsL(o,:)./sum(idenCountsL(o,:));
+    fractIdenCountsR(o,:)=idenCountsR(o,:)./sum(idenCountsR(o,:));
 end
 
 
@@ -393,24 +399,24 @@ end
 %% Load the axon lengths
 
 %Load the axon length and presynaptic site number data
-load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornOutputSynDensity/leftAxons')
-load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornOutputSynDensity/rightAxons')
+load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplementals/ornOutputSynDensity/leftAxons')
+load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplementals/ornOutputSynDensity/rightAxons')
 
 
 % For each ORN calculate its total within glomerulus axon lengths
 leftCounter=1;
 rightCounter=1;
 
-for p=1:length(ORNs)
+for o=1:length(ORNs)
     
     leftRunL=[];
     leftRunPS=[];
     
     
-    for j=1:size(leftAxons{p},2)
+    for j=1:size(leftAxons{o},2)
         
-        leftRunL=[leftRunL, leftAxons{p}(1,j)];
-        leftRunPS=[leftRunPS,leftAxons{p}(2,j)];
+        leftRunL=[leftRunL, leftAxons{o}(1,j)];
+        leftRunPS=[leftRunPS,leftAxons{o}(2,j)];
         
     end
     
@@ -428,10 +434,10 @@ for p=1:length(ORNs)
     rightRunPS=[];
     
     
-    for j=1:size(rightAxons{p},2)
+    for j=1:size(rightAxons{o},2)
         
-        rightRunL=[rightRunL, rightAxons{p}(1,j)];
-        rightRunPS=[rightRunPS,rightAxons{p}(2,j)];
+        rightRunL=[rightRunL, rightAxons{o}(1,j)];
+        rightRunPS=[rightRunPS,rightAxons{o}(2,j)];
         
     end
     
@@ -462,7 +468,7 @@ ylabel('mean fractional contribution to PNs')
 
 legend('Left Axons', 'Right Axons')
 
- [r p]=corr([idenCountsL(find(idenCountsL(:,4)~=0),4); idenCountsR(find(idenCountsR(:,4)~=0),4)]...
+ [r o]=corr([idenCountsL(find(idenCountsL(:,4)~=0),4); idenCountsR(find(idenCountsR(:,4)~=0),4)]...
     ,[meanFractInputL(find(meanFractInputL~=0))'; meanFractInputR(find(meanFractInputR~=0))'])
 
 
@@ -474,7 +480,7 @@ scatter(idenCountsR(find(idenCountsR(:,4)~=0),4),rightLengths, 'r')
 xlabel('number of unIDd post profiles')
 ylabel('mean fractional PN input')
 
- [r p]=corr([idenCountsL(find(idenCountsL(:,4)~=0),4); idenCountsR(find(idenCountsR(:,4)~=0),4)]...
+ [r o]=corr([idenCountsL(find(idenCountsL(:,4)~=0),4); idenCountsR(find(idenCountsR(:,4)~=0),4)]...
     ,[leftLengths'; rightLengths'])
 
 

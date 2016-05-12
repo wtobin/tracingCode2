@@ -17,8 +17,8 @@ PNs=sort(annotations.DM6_0x20_PN);
 
 %% Collect Path length
 
-load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornOutputSynDensity/leftAxons')
-load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplamentals/ornOutputSynDensity/rightAxons')
+load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplementals/ornOutputSynDensity/leftAxons')
+load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplementals/ornOutputSynDensity/rightAxons')
 
 % For each ORN calculate its total within glomerulus axon lengths
 leftCounter=1;
