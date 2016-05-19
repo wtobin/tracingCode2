@@ -550,29 +550,6 @@ for p=1:5
     
 end
 
-system('mkdir responseMeans')
-save('responseMeans/real12Means','real12Means')
-save('responseMeans/real13Means','real13Means')
-save('responseMeans/real14Means','real14Means')
-save('responseMeans/real15Means','real15Means')
-save('responseMeans/real16Means','real16Means')
-save('responseMeans/real17Means','real17Means')
-save('responseMeans/real18Means','real18Means')
-save('responseMeans/real19Means','real19Means')
-save('responseMeans/real20Means','real20Means')
-
-save('responseMeans/eq12Means','eq12Means')
-save('responseMeans/eq13Means','eq13Means')
-save('responseMeans/eq14Means','eq14Means')
-save('responseMeans/eq15Means','eq15Means')
-save('responseMeans/eq16Means','eq16Means')
-save('responseMeans/eq17Means','eq17Means')
-save('responseMeans/eq18Means','eq18Means')
-save('responseMeans/eq19Means','eq19Means')
-save('responseMeans/eq20Means','eq20Means')
-
-
-
 %% Plotting
 
 
@@ -584,8 +561,7 @@ plot(performance_eq(:,:,2)', 'r')
 
 set(gcf,'Color','w')
 ax=gca;
-ax.XTick=[1:1:9];
-ax.XTickLabel=[0:1:8]
+ax.XTick=[1:1:3];
 xlabel('Spike Count Difference')
 ylabel('Performance')
 leg={'real contact num', 'equalized'};

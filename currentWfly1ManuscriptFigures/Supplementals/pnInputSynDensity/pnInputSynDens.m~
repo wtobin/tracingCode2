@@ -181,7 +181,7 @@ save('dendrites', 'dendrites')
 
 %% Path Length
 
-load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/pnInputSynDensity/dendrites')
+load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/S pnInputSynDensity/dendrites')
 
 
 
@@ -214,7 +214,9 @@ xlim([0 3])
 ax=gca;
 ax.XTick=[1:1:2]
 ax.XTickLabel={'Left PNs','Right PNs'}
-ylabel('postsynaptic site
+ylabel('ORN input syn density (sites/nm)')
+
+saveas(gcf,'pnInputSynDensity')
 
 
 

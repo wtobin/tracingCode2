@@ -181,7 +181,7 @@ save('dendrites', 'dendrites')
 
 %% Path Length
 
-load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/pnInputSynDensity/dendrites')
+load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/Supplementals/pnInputSynDensity/dendrites')
 
 
 
@@ -190,12 +190,11 @@ load('~/Documents/MATLAB/tracingCode2/currentWfly1ManuscriptFigures/pnInputSynDe
 
 for p=1:length(PNs)
     
-    
-    dendParams(p,1)=sum(dendrites{p}(1,:)); %cable length
+    dendParams(p,1)=sum(dendrites{p}(1,:))/1000; %cable length in um
     
     dendParams(p,2)=sum(dendrites{p}(2,:)); %ORN input syn Num
     
-  dendParams(p,3)=dendParams(p,2)/dendParams(p,1); %ORN input syn Density
+    dendParams(p,3)=dendParams(p,2)/dendParams(p,1); %ORN input syn Density
     
 end
 
