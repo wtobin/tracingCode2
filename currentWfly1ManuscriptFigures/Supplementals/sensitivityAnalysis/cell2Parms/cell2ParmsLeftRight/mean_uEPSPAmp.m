@@ -106,6 +106,7 @@ m = length(sa);
 n = length(sb); 
 
 d_empirical = mean(sa) - mean(sb);
+% d_empirical = median(sa) - median(sb);
 
 sa_rand = zeros(m,nPerm);
 sb_rand = zeros(n,nPerm);
@@ -117,7 +118,7 @@ end
 toc
 % Now we compute the differences between the means of these resampled
 % samples.
-% d = median(sb_rand) - median(sa_rand);
+% d = median(sa_rand) - median(sb_rand);
 d = mean(sa_rand) - mean(sb_rand);
 
 %

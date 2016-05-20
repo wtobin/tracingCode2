@@ -77,3 +77,17 @@ legend(labels,'Location','Southeast')
 
 saveas(gcf,'synNumVuEPSPAmp','epsc')
 saveas(gcf,'synNumVuEPSPAmp')
+
+%% Statistics
+[lpn1_rho,lpn1_pVal] = corr(uepspContNum(1,:,1)',uepspContNum(1,:,2)');
+[lpn2_rho,lpn2_pVal] = corr(uepspContNum(2,:,1)',uepspContNum(2,:,2)');
+[lpn3_rho,lpn3_pVal] = corr(uepspContNum(3,:,1)',uepspContNum(3,:,2)');
+[rpn1_rho,rpn1_pVal] = corr(uepspContNum(4,:,1)',uepspContNum(4,:,2)');
+[rpn2_rho,rpn2_pVal] = corr(uepspContNum(5,:,1)',uepspContNum(5,:,2)');
+
+rhos = [lpn1_rho; lpn2_rho; lpn3_rho; rpn1_rho; rpn2_rho]
+pVals = [lpn1_pVal; lpn2_pVal; lpn3_pVal; rpn1_pVal; rpn2_pVal]
+
+% http://www.mathworks.com/matlabcentral/fileexchange/28303-bonferroni-holm-correction-for-multiple-comparisons/content/bonf_holm.m
+[cor_p, h]=bonf_holm(pVals,.05)
+

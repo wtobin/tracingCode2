@@ -94,7 +94,7 @@ axis square
 saveas(gcf,'leftRightUniAmpsBoxplots','epsc')
 saveas(gcf,'leftRightUniAmpsBoxplots')
 
-%% Permutation test (p > 0.77)
+%% Permutation test (p > 0.073)
 nPerm = 10000;
 
 sa = [ilAmps';clAmps'];
