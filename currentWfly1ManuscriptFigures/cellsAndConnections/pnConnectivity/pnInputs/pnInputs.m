@@ -95,7 +95,6 @@ end
 
 % Question, how many profiles can be accounted for as ORNs, PNs and LNs?
 
-
 % Loop over each PN
 for p=1:length(PNs)
     
@@ -106,6 +105,7 @@ for s=1:length(preSkel{p})
      if ismember(preSkel{p}(s), ORNs) == 1
                 
                 preSynID{p}(s)=1;
+               
                 
                 
             elseif ismember(preSkel{p}(s), PNs) == 1

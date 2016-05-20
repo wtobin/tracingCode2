@@ -24,10 +24,10 @@ for s=1:2
            
           
            for t=1:length(resultFiles)
-              
+              tic
                pnvm_working=importdata([base,resultFiles(t).name, '/',dataFileName]);
                vmMeans(s,dSpikeCounter,p,t)=mean(pnvm_working+60);
-               
+               toc
            end
       
         
