@@ -1,4 +1,4 @@
-function [ output_args ] = latTaskMeanVm( s,d )
+function [ output_args ] = latTaskMeanVm_eq( s,d )
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
@@ -10,8 +10,8 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
             
             
             pn=PN_Names{p};
-            base=['/home/wft2/nC_projects/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
-            resultFiles=dir([base,'real_L',num2str(d),'_R12_rep*']);
+            base=['/home/wft2/nC_projects/',pn,'_allORNs/simulations/latTask_eq/results_fixedSpikeCount/'];
+            resultFiles=dir([base,'eq_L',num2str(d),'_R12_rep*']);
             dataFileName=ls([base,resultFiles(1).name]);
             dataFileName=strtrim(dataFileName(1:29));
             
@@ -30,7 +30,7 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
         
         
         
-        save(['/home/wft2/tracingCode2/currentWfly1ManuscriptFigures/simulationAnalyses/latTaskPerformance/vmMeans/left',num2str(d),'Right12VmMeans'],'vmMeans')
+        save(['/home/wft2/tracingCode2/currentWfly1ManuscriptFigures/simulationAnalyses/latTaskPerformance/vmMeans/left',num2str(d),'Right12VmMeans_eq'],'vmMeans')
         
         
         
@@ -42,8 +42,8 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
             
             
             pn=PN_Names{p};
-            base=['/home/wft2/nC_projects/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/'];
-            resultFiles=dir([base,'real_L12_R',num2str(d),'_rep*']);
+            base=['/home/wft2/nC_projects/',pn,'_allORNs/simulations/latTask_eq/results_fixedSpikeCount/'];
+            resultFiles=dir([base,'eq_L12_R',num2str(d),'_rep*']);
             dataFileName=ls([base,resultFiles(1).name]);
             dataFileName=strtrim(dataFileName(1:29));
             
@@ -63,7 +63,7 @@ PN_Names={'PN1LS','PN2LS', 'PN3LS', 'PN1RS', 'PN2RS'};
         
        
         
-        save(['/home/wft2/tracingCode2/currentWfly1ManuscriptFigures/simulationAnalyses/latTaskPerformance/vmMeans/left12Right',num2str(d),'VmMeans'],'vmMeans')
+        save(['/home/wft2/tracingCode2/currentWfly1ManuscriptFigures/simulationAnalyses/latTaskPerformance/vmMeans/left12Right',num2str(d),'VmMeans_eq'],'vmMeans')
         
         
         
