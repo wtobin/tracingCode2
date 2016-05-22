@@ -896,7 +896,10 @@ hold on
 plot([performance_eqL(:,2),performance_eqR(:,2)] ,'r')
 
 ax=gca;
-ax.XTick=[0:1:9]
+ax.XTick=[1:1:9];
+xlim([1 9])
+ax.XTickLabel=[0:1:8];
+
 xlabel('Spike Difference')
 ylabel('Performance')
 legend({'Real Contact Numbers', 'Equalized Contact Numbers'}, 'Location', 'SouthEast')
