@@ -268,6 +268,8 @@ oToPUnitaries_ipsi=[reshape(ornsToPn(1:27,[1,2,5]),numel(ornsToPn(1:27,[1,2,5]))
 
 oToPUnitaries_contra=[reshape(ornsToPn(1:27,[3,4]),numel(ornsToPn(1:27,[3,4])),1);...
     reshape(ornsToPn(28:end,[1,2,5]),numel(ornsToPn(28:end,[1,2,5])),1)];
+
+%remove zeros associated w/ the unilateral orns
 oToPUnitaries_contra=oToPUnitaries_contra(oToPUnitaries_contra~=0);
 
 %Store all other synapse numbers in a cell array, excluding zeros
@@ -278,19 +280,22 @@ ornPnUnitaries{3}=ornsToOrn(find(ornsToOrn>0));
 %Plot orn-to-pn counts
 jitterAmount = 0.25;
 jitterValuesX = 2*(rand(1,length([oToPUnitaries_ipsi]))-0.5)*jitterAmount;   %
-scatter(ones(1,length(oToPUnitaries_ipsi))+jitterValuesX,oToPUnitaries_ipsi) %,[],'k')
+scatter(ones(1,length(oToPUnitaries_ipsi))+jitterValuesX,oToPUnitaries_ipsi,...
+    60,'k') %,[],'k')
 hold on
 
 jitterAmount = 0.25;
 jitterValuesX = 2*(rand(1,length([oToPUnitaries_contra]))-0.5)*jitterAmount;   %
-scatter(ones(1,length(oToPUnitaries_contra))+jitterValuesX,oToPUnitaries_contra,'filled')
+scatter(ones(1,length(oToPUnitaries_contra))+jitterValuesX,oToPUnitaries_contra,...
+    60,'k', 'filled')
 
 for t=1:3
 
 jitterAmount = 0.25;
 jitterValuesX = 2*(rand(1,length(ornPnUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
 
-scatter((t+1)*ones(1,length(ornPnUnitaries{t}))+jitterValuesX,ornPnUnitaries{t}) %,[],'k')
+scatter((t+1)*ones(1,length(ornPnUnitaries{t}))+jitterValuesX, ornPnUnitaries{t},...
+    60, 'k') %,[],'k')
 
 hold on
 

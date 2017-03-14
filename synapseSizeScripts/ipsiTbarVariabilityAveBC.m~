@@ -68,6 +68,6 @@ ylabel('Frequency')
 xlabel('Mean Tbar Volume (nm^3)')
 % axis square
 text(0.05, 25, ['CV: ',num2str(std(ipsiTbarMeans)/mean(ipsiTbarMeans))], 'FontSize',16)
-saveas(gcf,'pooledIpsiFractInput','epsc')
-saveas(gcf,'pooledIpsiFractInput')
+saveas(gcf,'ipsiMeanTbarVolDist','epsc')
+saveas(gcf,'ipsiMeanTbarVolDist')
     

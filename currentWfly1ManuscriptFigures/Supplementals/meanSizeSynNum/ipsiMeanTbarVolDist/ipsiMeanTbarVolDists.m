@@ -38,23 +38,23 @@ for o=1:10
 end
 
 %% Plotting
-figure()
-set(gcf, 'Color','w')
-hold on
-
-histogram(ipsiTbarMeans)
-histogram(contraTbarMeans, 'BinWidth',.1*10^6)
-
-legend({'Ipsi Conns','Contra Conns'})
-title('Connection Mean Tbar Vol')
-xlim([0 2*mean([ipsiTbarMeans; contraTbarMeans])])
-xlabel('Mean Tbar Volume (nm^3)')
-ylabel('Counts')
-text(1.1*10^6, 9,['Ipsi CV: ',num2str(std(ipsiTbarMeans)/mean(ipsiTbarMeans))],...
-    'FontSize',18)
-text(1.1*10^6, 8,['Contra CV: ',num2str(std(contraTbarMeans)/mean(contraTbarMeans))],...
-    'FontSize',18)
-set(gca,'FontSize',18)
+% figure()
+% set(gcf, 'Color','w')
+% hold on
+% 
+% histogram(ipsiTbarMeans)
+% histogram(contraTbarMeans, 'BinWidth',.1*10^6)
+% 
+% legend({'Ipsi Conns','Contra Conns'})
+% title('Connection Mean Tbar Vol')
+% xlim([0 2*mean([ipsiTbarMeans; contraTbarMeans])])
+% xlabel('Mean Tbar Volume (nm^3)')
+% ylabel('Counts')
+% text(1.1*10^6, 9,['Ipsi CV: ',num2str(std(ipsiTbarMeans)/mean(ipsiTbarMeans))],...
+%     'FontSize',18)
+% text(1.1*10^6, 8,['Contra CV: ',num2str(std(contraTbarMeans)/mean(contraTbarMeans))],...
+%     'FontSize',18)
+% set(gca,'FontSize',18)
 
 
 figure()
@@ -67,7 +67,8 @@ ax.FontSize=16;
 ylabel('Frequency')
 xlabel('Mean Tbar Volume (nm^3)')
 % axis square
-text(0.05, 25, ['CV: ',num2str(std(ipsiTbarMeans)/mean(ipsiTbarMeans))], 'FontSize',16)
-saveas(gcf,'pooledIpsiFractInput','epsc')
-saveas(gcf,'pooledIpsiFractInput')
+text(11*10^5, 12, ['CV: ',num2str(std(ipsiTbarMeans)/mean(ipsiTbarMeans))], 'FontSize',16)
+box off 
+saveas(gcf,'ipsiMeanTbarVolDist','epsc')
+saveas(gcf,'ipsiMeanTbarVolDist')
     
