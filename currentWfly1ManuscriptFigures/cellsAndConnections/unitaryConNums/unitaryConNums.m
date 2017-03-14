@@ -34,6 +34,9 @@ connFields=fieldnames(conns);
 
 %% Determine the number of contacts between all pairs of categorized neurons
 
+%***NOTE*** This should probably be broken out of this script and saved as
+%a seperate file
+
 % order leftPNs1-3: 1,2,5 and right PNs1-2: 4,3  % 151230 WCL corresponded to catmaid2
 
 %Find contact numbers for connections where ORNs are presynaptic
