@@ -40,16 +40,15 @@ load('~/tracing/conns.mat')
 %gen conn fieldname list
 connFields=fieldnames(conns);
 
-
 %%
 
 numPostElL=[];
 numPNsL=[];
-fractLNL=[];
+
 
 numPostElR=[];
 numPNsR=[];
-fractLNR=[];
+
 
 
 for c = 1:length(connFields)

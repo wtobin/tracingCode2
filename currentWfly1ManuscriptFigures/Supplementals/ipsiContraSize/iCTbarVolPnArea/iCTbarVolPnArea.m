@@ -1,8 +1,8 @@
-%Load bias corrected synaptic element size file
+%Load the cell array contianing the tracer averaged, bias corrected tbar vol and pn area measurments
 
-load aveSizesBC.mat
+load '/Users/williamtobin/Documents/MATLAB/tracingCode2/synapseSizeScripts/aveSizesBC.mat'
 
-%sort measurments into ipsi/contra and right/left containers
+%sort measurments ipsi/contra syns
 
 ipsiSyns=[];
 contraSyns=[];
@@ -32,64 +32,25 @@ for o=1:10
     end
 end
 
-
-rightSyns=[];
-leftSyns=[];
-
-for o=1:10
-    for p=1:5
-        for u=1:4
-        if ismember(p,[1,2,5])==1
-            
-            leftSyns=[leftSyns;[aveSizesBC{o,p}(:,1),aveSizesBC{o,p}(:,2)]];
-            
-        elseif ismember(p,[3,4]) == 1
-            
-           
-           rightSyns=[rightSyns;[aveSizesBC{o,p}(:,1),aveSizesBC{o,p}(:,2)]];
-            
-        end
-        end
-        
-    end
-end
-
-
 %% Plotting
 
-
 figure()
-hold on
-set(gcf,'color','w')
+set(gcf,'Color','w')
 
-scatter(ipsiSyns(:,1),ipsiSyns(:,2), 'k')
+scatter(ipsiSyns(:,1),ipsiSyns(:,2), 60,'k')
 hold on
-scatter(contraSyns(:,1),contraSyns(:,2), '*r')
+scatter(contraSyns(:,1),contraSyns(:,2),60, 'k','filled')
 
 xlabel('Tbar Vol (nm^3)')
 ylabel('PN Postsynaptic Area (nm^2)')
 
 set(gca,'FontSize',18)
+legend({'Ipsi Synapses','Contra Synapses'})
 
-legend({'Ipsi Syns','Contra Syns'})
 [rho, p]=corr([ipsiSyns(:,1);contraSyns(:,1)],[ipsiSyns(:,2);contraSyns(:,2)])
 
-
-figure()
-hold on
-set(gcf,'color','w')
-
-scatter(leftSyns(:,1),leftSyns(:,2), 'k')
-hold on
-scatter(rightSyns(:,1),rightSyns(:,2), '*r')
-
-xlabel('Tbar Vol (nm^3)')
-ylabel('PN Postsynaptic Area (nm^2)')
-
-set(gca,'FontSize',18)
-
-legend({'Left Syns','Right Syns'})
+title(['Pearson''s r : ',num2str(rho),' p val: ',num2str(p)])
 
 
-
-
+saveas(gcf,'iCTbarVolPnArea','epsc')
+saveas(gcf,'iCTbarVolPnArea')
