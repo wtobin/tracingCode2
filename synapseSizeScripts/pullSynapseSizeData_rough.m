@@ -141,84 +141,15 @@ for u=1:4
                                     curSegFile=load_nii([basePath, curSegFileDir(f).name]);
                                     segStack=curSegFile.img;
                                     
-                                    %calculate the ratio of edge pixel num
-                                    %to total seg mask pixel number for the
-                                    %pn segmentation in each plane it is
-                                    %present. Also store bw masks for
-                                    %current PN membrane in masks
-                                    
-                                    [masks,ratios]=maskEdgeToIntRatio(curSegFile.img,postLabel);
-                                    
-                                    ratioCollection=[ratioCollection,ratios(ratios~=0)];
-                                    
-                                    %Here I will calculate tbar volume and
-                                    %pn membrane area across all slices in
-                                    %the segmentation stack
-                                    
-                                    pnArea=0;
-                                    tbarVol=0;
-                                    
-                                    %For each layer of the segmentation stack
-                                    for s=1:size(segStack,3)
-                                        
-                                        %if the PN is present at the
-                                        %synapse in this layer
-                                        if sum(sum(segStack(:,:,s)==postLabel))>0
-                                            
-                                            
-                                            if ratios(s)>.8 %If the membrane is segmented as a line
-                                                skMask=bwmorph(masks(:,:,s),'skel',Inf);
-                                                numPx=sum(sum(skMask==1));
-                                                pxLength=numPx*4;
-                                                %Here I am adding the area
-                                                %of PN membrane (in nm^2)
-                                                %in the current
-                                                %section to our running sum
-                                                
-                                                pnArea=pnArea+(pxLength*40);
-                                                
-                                                
-                                            else %If the membrane is segmented as a polygon
-                                                numPx=sum(sum(masks(:,:,s)==1));
-                                                %To get the area of a
-                                                %polygon I am multiplying
-                                                %pixel number by the widht
-                                                %and heigh of a pixel
-                                                pxArea=numPx*4*4;
-                                                %Here I am adding the area
-                                                %of PN membrane (in nm^2)
-                                                %in the current
-                                                %section to our running sum
-                                                pnArea=pnArea+pxArea;
-                                                
-                                            end
-                                            
-                                        end
-                                        
-                                        
-                                        %if the Tbar is present at the
-                                        %synapse in this layer
-                                        if sum(sum(segStack(:,:,s)==tbarLabel))>0
-                                            
-                                            %determine number of tbar
-                                            %pixels in this frame
-                                            numPx=sum(sum(segStack(:,:,s)==tbarLabel));
-                                            
-                                            %Multiply pixel number by pixel
-                                            %width,height and section depth
-                                            %to get volume in nm^3
-                                            vol=numPx*4*4*40;
-                                            tbarVol=tbarVol+vol;
-                                        else
-                                        end
-                                    end
+                                   tbarMeas=measureSeg(curSegFile.img,tbarLabel);
+                                   pnMeas=measureSeg(curSegFile.img,postLabel);
                                     
                                     %Store volume and area for this synapse
-                                    elementSizes{ornCounter,pnCounter,u}(synCounter,1)=tbarVol;
-                                    elementSizes{ornCounter,pnCounter,u}(synCounter,2)=pnArea;
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,1)=sum(tbarMeas);
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,2)=sum(pnMeas);
                                     elementSizes{ornCounter,pnCounter,u}(synCounter,3)=numel(post);
                                     elementSizes{ornCounter,pnCounter,u}(synCounter,4)=sum(ismember(post,PNs));
-                                    segIDs{ornCounter,pnCounter}(synCounter)=connID;
+                                    segIDs{ornCounter,pnCounter}(synCounter)={connID};
                                      
                                 end
                                 
@@ -253,7 +184,7 @@ for u=1:4
         end
         
         
-        toc
+      toc 
     end
     
     

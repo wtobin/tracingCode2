@@ -86,87 +86,71 @@ for c = 1:length(connFields)
     
 end
 
+%%
+figure()
+set(gcf,'Color','w')
+bins=[1:1:7];
 
-%% Plotting
+distributionPlot(numPostPNL','histOri','left','color','b','widthDiv',[2 1],'showMM',0,'histOpt',0,'divFactor',bins)
+hold on
+distributionPlot(numPostPNR','histOri','right','color','r','widthDiv',[2 2],'showMM',0,'histOpt',0,'divFactor',bins)
+
+distributionPlot(numPostNonPNL','histOri','left','color','b','widthDiv',[2 1],'showMM',0,'histOpt',0,'divFactor',bins)
+distributionPlot(numPostNonPNR','histOri','right','color','r','widthDiv',[2 2],'showMM',0,'histOpt',0,'divFactor',bins)
+
+
 
 figure()
 set(gcf,'color','w')
-
-jitterAmount = 0.25;
-jitterValuesX = 2*(rand(size([numPostPNL,numPostNonPNL]))-0.5)*jitterAmount;   % +/-jitterAmount max
-jitterValuesY = 2*(rand(size([numPostPNL,numPostNonPNL]))-0.5)*jitterAmount;   % +/-jitterAmount max
-
-
-
-scatter([ones(size(numPostPNL)),3*ones(size(numPostNonPNL))]+jitterValuesX,...
-    [numPostPNL,numPostNonPNL]+jitterValuesY)
-    
-
-%boxplot([numPostPNL,numPostNonPNL],[ones(size(numPostPNL)),2*ones(size(numPostNonPNL))], 'notch', 'on')
+h1=histogram(numPostElL,'Normalization','probability');
 hold on 
+histogram(numPostElR,h1.BinEdges,'Normalization','probability')
+legend({'Left','Right'})
+xlabel('Number of Postsynaptic Profiles')
+ylabel('Prob Normalized Freq')
+set(gca,'FontSize',18)
 
-jitterAmount = 0.25;
-jitterValuesX = 2*(rand(size([numPostPNR,numPostNonPNR]))-0.5)*jitterAmount;   % +/-jitterAmount max
-jitterValuesY = 2*(rand(size([numPostPNR,numPostNonPNR]))-0.5)*jitterAmount;   % +/-jitterAmount max
+grpdForBoxplot=[[numPostElL',zeros(size(numPostElL,2),1)];...
+    [numPostElR',ones(size(numPostElR,2),1)]];
 
-scatter([2*ones(size(numPostPNR)),4*ones(size(numPostNonPNR))]+jitterValuesX...
-    ,[numPostPNR,numPostNonPNR]+jitterValuesY)
-set(gca,'XTick',[1,2,3,4])
-xlim([0,5])
-set(gca,'XTickLabel',{'Post PN', 'Post PN','Post Non-PN', 'Post Non-PN'})
-ylabel('Counts')
-legend({'Left Synapses','Right Synapses'})
+figure()
+set(gcf,'color','w')
+boxplot(grpdForBoxplot(:,1),grpdForBoxplot(:,2),'Labels',...
+    {'Left Syns','Right Syns'},'Notch','on')
+
+ylabel('Number of Postsynaptic Profiles')
 set(gca,'FontSize',18)
 
 
 figure()
 set(gcf,'color','w')
-
-boxplot([numPostPNL,numPostPNR, numPostNonPNL,numPostNonPNR],...
-    [ones(size(numPostPNL)),2*ones(size(numPostPNR)),3*ones(size(numPostNonPNL)),4*ones(size(numPostNonPNR))]...
-    ,'Labels',{'Left Post PNs','Right Post PNs','Left Post Non-PNs','Right Post Non-PNs'})
-ylabel('Counts')
+h2=histogram((numPNsL./numPostElL),'Normalization','probability');
+hold on 
+histogram((numPNsR./numPostElR),h2.BinEdges,'Normalization','probability')
+legend({'Left Syns','Right Syns'})
+xlabel('Fraction of Post Profiles That are PNs')
+ylabel('Prob Normalized Freq')
 set(gca,'FontSize',18)
 
-
-
+grpdForBoxplo2t=[[(numPNsL./numPostElL)',zeros(size(numPostElL,2),1)];...
+    [(numPNsR./numPostElR)',ones(size(numPostElR,2),1)]];
 
 
 figure()
 set(gcf,'color','w')
-edges=[0.5:1:7.5];
-subplot(1,2,1)
-histogram(numPostPNL, 'BinEdges',edges,'Normalization','probability')
-hold on
-histogram(numPostPNR, 'BinEdges',edges,'Normalization','probability')
-box off
-ylabel('Probability')
-xlabel('# Postsynaptic PN Profiles')
-%legend({'Left Glomerulus','Right Glomerulus'})
-ylim([0 .6])
-xlim([0 10])
-set(gca,'FontSize',18)
+boxplot(grpdForBoxplot2(:,1),grpdForBoxplot2(:,2),'Labels',...
+    {'Left Syns','Right Syns'},'Notch','on')
 
-edges=[0.5:1:9.5];
-subplot(1,2,2)
-histogram(numPostNonPNL, 'BinEdges',edges,'Normalization','probability')
-hold on
-histogram(numPostNonPNR, 'BinEdges',edges,'Normalization','probability')
-legend({'Left Glomerulus','Right Glomerulus'})
-box off
-%ylabel('Probability')
-xlabel('# Postsynaptic Non-PN Profiles')
-ylim([0 .6])
-xlim([0 10])
+ylabel('Fract of Postsynaptic Profiles That are PNs')
 set(gca,'FontSize',18)
 
 
 
 
-figure()
-set(gcf,'color','w')
 
 
-set(gca,'FontSize',18)
+
+
+
 
 
