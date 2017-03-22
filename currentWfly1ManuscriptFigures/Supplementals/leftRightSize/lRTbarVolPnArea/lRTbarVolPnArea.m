@@ -30,7 +30,7 @@ end
 
 %% Plotting
 
-figure()
+figure('units','normalized','outerposition',[0 0 1 1])
 set(gcf,'Color','w')
 
 scatter(leftSyns(:,1),leftSyns(:,2), 60,'k')

@@ -116,13 +116,13 @@ for o=1:10
         for s=1:size(seg,1)
             
             %Loop over users
-            for u=1:4
+            for u=2:4
                 
             
                 
                 %Bias correct tbar vol and on area measurments
-                biasCorrSizes{o,p,u}(s,1)=elementSizes{o,p,u}(s,1)/tbarBias(u);
-                biasCorrSizes{o,p,u}(s,2)=elementSizes{o,p,u}(s,2)/pnBias(u);
+                biasCorrSizes{o,p,u}(s,1)=elementSizes{o,p,u}(s,1)/tbarBias(u-1);
+                biasCorrSizes{o,p,u}(s,2)=elementSizes{o,p,u}(s,2)/pnBias(u-1);
                 
                 %store num post and num post PNs
                 biasCorrSizes{o,p,u}(s,3)=elementSizes{o,p,u}(s,3);

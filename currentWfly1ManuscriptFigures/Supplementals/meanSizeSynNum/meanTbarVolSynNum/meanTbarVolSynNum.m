@@ -38,7 +38,7 @@ end
 
 %% Plotting
 
-figure()
+figure('units','normalized','outerposition',[0 0 1 1])
 hold on
 set(gcf,'color','w')
 

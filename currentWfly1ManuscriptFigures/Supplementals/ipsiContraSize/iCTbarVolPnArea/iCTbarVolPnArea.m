@@ -34,7 +34,7 @@ end
 
 %% Plotting
 
-figure()
+figure('units','normalized','outerposition',[0 0 1 1])
 set(gcf,'Color','w')
 
 scatter(ipsiSyns(:,1),ipsiSyns(:,2), 60,'k')

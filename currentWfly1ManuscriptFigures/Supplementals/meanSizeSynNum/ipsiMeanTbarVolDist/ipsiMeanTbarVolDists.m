@@ -67,7 +67,7 @@ ax.FontSize=16;
 ylabel('Frequency')
 xlabel('Mean Tbar Volume (nm^3)')
 % axis square
-text(11*10^5, 12, ['CV: ',num2str(std(ipsiTbarMeans)/mean(ipsiTbarMeans))], 'FontSize',16)
+text(11*10^5, 8, ['CV: ',num2str(std(ipsiTbarMeans)/mean(ipsiTbarMeans))], 'FontSize',16)
 box off 
 saveas(gcf,'ipsiMeanTbarVolDist','epsc')
 saveas(gcf,'ipsiMeanTbarVolDist')
