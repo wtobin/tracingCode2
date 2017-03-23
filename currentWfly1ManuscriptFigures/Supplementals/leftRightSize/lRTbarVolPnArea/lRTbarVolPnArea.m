@@ -41,11 +41,14 @@ xlabel('Tbar Vol (nm^3)')
 ylabel('PN Postsynaptic Area (nm^2)')
 
 set(gca,'FontSize',18)
+set(gca,'TickDir','out')
+axis square
 legend({'Left Synapses','Right Synapses'})
 
 [rho, p]=corr([leftSyns(:,1);rightSyns(:,1)],[leftSyns(:,2);rightSyns(:,2)])
 
 title(['Pearson''s r : ',num2str(rho),' p val: ',num2str(p)])
+
 
 
 saveas(gcf,'lRTbarVolPnArea','epsc')

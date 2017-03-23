@@ -53,7 +53,8 @@ set(gca,'FontSize',18)
 [rho, p]=corr(synsPerConn,ipsiPNMeans);
 
 title(['Pearson''s r : ',num2str(rho),' p val: ',num2str(p)])
-
+set(gca,'TickDir','out')
+axis square
 
 saveas(gcf,'meanPNAreaSynNum','epsc')
 saveas(gcf,'meanPNAreaSynNum')

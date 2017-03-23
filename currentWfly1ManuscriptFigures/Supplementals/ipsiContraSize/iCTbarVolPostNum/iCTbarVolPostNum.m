@@ -48,6 +48,8 @@ xlabel('# Postsynaptic Profiles')
 legend({'Ipsi Synapses','Contra Synapses'})
 
 set(gca,'FontSize',18)
+set(gca,'TickDir','out')
+axis square
 
 [rho, p]=corr([ipsiSyns(:,1);contraSyns(:,1)],[ipsiSyns(:,2);contraSyns(:,2)])
 

@@ -50,7 +50,8 @@ legend({'Ipsi Synapses','Contra Synapses'})
 [rho, p]=corr([ipsiSyns(:,1);contraSyns(:,1)],[ipsiSyns(:,2);contraSyns(:,2)])
 
 title(['Pearson''s r : ',num2str(rho),' p val: ',num2str(p)])
-
+set(gca,'TickDir','out')
+axis square
 
 saveas(gcf,'iCTbarVolPnArea','epsc')
 saveas(gcf,'iCTbarVolPnArea')

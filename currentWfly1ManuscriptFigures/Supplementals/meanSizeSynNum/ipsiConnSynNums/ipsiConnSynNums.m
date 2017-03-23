@@ -53,6 +53,9 @@ xlabel('Synapses per Connection')
 % axis square
 text(30, 2.5, ['CV: ',num2str(std(ipsiConSynNums)/mean(ipsiConSynNums))], 'FontSize',16)
 box off 
+set(gca,'TickDir','out')
+axis square
+
 saveas(gcf,'ipsiConnSynNums','epsc')
 saveas(gcf,'ipsiConnSynNums')
     

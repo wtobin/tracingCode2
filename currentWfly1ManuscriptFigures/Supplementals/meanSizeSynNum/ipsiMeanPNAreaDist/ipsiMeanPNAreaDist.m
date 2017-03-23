@@ -53,6 +53,9 @@ xlabel('Mean Postsynaptic PN Membrane Area (nm^2)')
 % axis square
 text(2.75*10^4, 10, ['CV: ',num2str(std(ipsiPnMeans)/mean(ipsiPnMeans))], 'FontSize',16)
 box off 
+set(gca,'TickDir','out')
+axis square
+
 saveas(gcf,'ipsiMeanPNAreaDist','epsc')
 saveas(gcf,'ipsiMeanPNAreaDist')
     

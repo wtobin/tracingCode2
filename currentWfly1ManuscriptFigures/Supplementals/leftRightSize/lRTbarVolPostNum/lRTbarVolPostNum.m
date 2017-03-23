@@ -43,7 +43,8 @@ xlabel('# Postsynaptic Profiles')
 legend({'Left Synapses','Right Synapses'})
 
 set(gca,'FontSize',18)
-
+set(gca,'TickDir','out')
+axis square
 
 [rho, p]=corr([leftSyns(:,1);rightSyns(:,1)],[leftSyns(:,2);rightSyns(:,2)])
 

@@ -69,6 +69,9 @@ xlabel('Mean Tbar Volume (nm^3)')
 % axis square
 text(11*10^5, 8, ['CV: ',num2str(std(ipsiTbarMeans)/mean(ipsiTbarMeans))], 'FontSize',16)
 box off 
+set(gca,'TickDir','out')
+axis square
+
 saveas(gcf,'ipsiMeanTbarVolDist','epsc')
 saveas(gcf,'ipsiMeanTbarVolDist')
     

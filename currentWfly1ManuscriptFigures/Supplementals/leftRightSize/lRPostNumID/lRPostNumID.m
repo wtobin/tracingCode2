@@ -102,6 +102,9 @@ xlabel('# Postsynaptic PN Profiles')
 ylim([0 .6])
 xlim([0 10])
 set(gca,'FontSize',18)
+set(gca,'TickDir','out')
+axis square
+
 
 edges=[0.5:1:9.5];
 subplot(1,2,2)
@@ -115,6 +118,8 @@ xlabel('# Postsynaptic Non-PN Profiles')
 ylim([0 .6])
 xlim([0 10])
 set(gca,'FontSize',18)
+set(gca,'TickDir','out')
+axis square
 
 
 saveas(gcf,'lRPostNumID','epsc')

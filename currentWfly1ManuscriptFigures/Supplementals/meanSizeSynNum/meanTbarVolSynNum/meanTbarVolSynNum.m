@@ -49,6 +49,8 @@ ylabel('Mean Tbar Vol (nm^3)')
 xlabel('Synapses per Connection')
 
 set(gca,'FontSize',18)
+set(gca,'TickDir','out')
+axis square
 
 [rho, p]=corr(synsPerConn,ipsiTbarMeans)
 
