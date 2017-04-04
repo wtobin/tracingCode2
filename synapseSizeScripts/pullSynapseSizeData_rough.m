@@ -45,22 +45,22 @@ array(orn,pn,1)=tbarArea array(orn, p,2)=membrane area
 %}
 
 tbarLabel=6;
-basePath='/Users/williamtobin/Desktop/wfly1_synapseVols2/segFiles/';
+basePath='/Users/williamtobin/Desktop/wfly1_synapseVols2/';
+cd(basePath)
 elementSizes=cell(10,5,4);
 segIDs=cell(10,5);
 Users={'JK','HY','BS','WC'};
 ratioCollection=[];
-
-
+multiCount=1;
+multiSynList=zeros(0,3);
 
 %Loop over tracers
 for u=1:4
     
-    u
     ornCounter=0;
     
     %Loop over ORNs
-    for o = [leftORNSubset, rightORNSubset]
+    for o =[leftORNSubset, rightORNSubset]
         tic
         ornCounter=ornCounter+1;
         pnCounter=0;
@@ -108,9 +108,13 @@ for u=1:4
                     
                     if pre == o && ismember(p,post)==1
                         
-                        %If so store a list of the seg files we have for
+                        %Find this connectors directory
+                        [F,synPath]=system(['find ~/Desktop/wfly1_synapseVols2 -type d -name ',connID]);
+                        
+                        %store a list of the seg files we have for
                         %this connector
-                        curSegFileDir=dir([basePath,connID,'_**.nii']);
+                        curSegFileDir=dir(strcat(synPath,'/',connID,'_**.nii'));
+                        
                         
                         %A flag to indicate whether this tracer has
                         %segmented this synapse or not
@@ -119,12 +123,13 @@ for u=1:4
                         
                         %If there are any
                         if isempty(curSegFileDir)==1
-                           
-                            disp('Weird, no files for this syn')
+                            
+                            error('Weird, no files for this syn')
                             
                         else
                             
-                            %Loop over each
+                            %Loop over each segmentation file for this
+                            %connector
                             for f =1:length(curSegFileDir)
                                 
                                 %See if the current tracer was the author
@@ -132,50 +137,132 @@ for u=1:4
                                     
                                     segFlag=1;
                                     
-                                    %If so,
-                                    %Increment synapse count
-                                    synCounter=synCounter+1;
                                     
                                     %load the connector segmentation
-                                    %file,assgn seg mask to variable
-                                    curSegFile=load_nii([basePath, curSegFileDir(f).name]);
+                                    
+                                    curSegFile=load_nii(strcat(synPath,'/', curSegFileDir(f).name));
                                     segStack=curSegFile.img;
                                     
-                                   tbarMeas=measureSeg(curSegFile.img,tbarLabel);
-                                   pnMeas=measureSeg(curSegFile.img,postLabel);
+                                    %Load the locations text file and check
+                                    %to see if the current pn is present
+                                    %more than once at this synapse
                                     
-                                    %Store volume and area for this synapse
-                                    elementSizes{ornCounter,pnCounter,u}(synCounter,1)=sum(tbarMeas);
-                                    elementSizes{ornCounter,pnCounter,u}(synCounter,2)=sum(pnMeas);
-                                    elementSizes{ornCounter,pnCounter,u}(synCounter,3)=numel(post);
-                                    elementSizes{ornCounter,pnCounter,u}(synCounter,4)=sum(ismember(post,PNs));
+                                    locations=loadjson(strcat( synPath,'/locations.json'));
+                                    strP=num2str(p);
+                                    pnField=['x0x3',strP(1),'_',strP(2:end)];
+                                    numPNProfs=size(locations.(pnField),1);
+                                    
+                                    
+                                    %If it hasnt already been logged as a
+                                    %multiPN
+                                    %store this connectors info for by
+                                    %hand sorting of pn profile
+                                    %segmentations
+                                    
+                                    if numPNProfs>1 && ismember([str2num(connID),o,p],multiSynList,'rows')==0
+                                        
+                                        forHandSeg{multiCount,1}=synPath;
+                                        forHandSeg{multiCount,2}=postLabel;
+                                        multiCount=multiCount+1;
+                                        multiSynList=[multiSynList;[str2num(connID),o,p]];
+                                        
+                                        
+                                    else
+                                        
+                                    end
+                                    
+                                    
+                                    %Add a row to the array for each
+                                    %postsynaptic PN profile present, if
+                                    %this is a single prof fill in the
+                                    %array with measurements of tbar vol
+                                    %and pn Area. If there are >1 pn
+                                    %profiles fill in the pn area measure with nan
+                                    
+                                    for c=1:numPNProfs
+                                        
+                                        %Increment synapse count
+                                        synCounter=synCounter+1;
+                                        
+                                        if numPNProfs>1
+                                            
+                                            tbarMeas=measureSeg(curSegFile.img,tbarLabel);
+                                            
+                                            %Store volume and area for this synapse
+                                            elementSizes{ornCounter,pnCounter,u}(synCounter,1)=sum(tbarMeas);
+                                            elementSizes{ornCounter,pnCounter,u}(synCounter,2)=nan;
+                                            
+                                        else
+                                            
+                                            
+                                            tbarMeas=measureSeg(curSegFile.img,tbarLabel);
+                                            pnMeas=measureSeg(curSegFile.img,postLabel);
+                                            
+                                            %Store volume and area for this synapse
+                                            elementSizes{ornCounter,pnCounter,u}(synCounter,1)=sum(tbarMeas);
+                                            elementSizes{ornCounter,pnCounter,u}(synCounter,2)=sum(pnMeas);
+                                            
+                                        end
+                                        
+                                        elementSizes{ornCounter,pnCounter,u}(synCounter,3)=numel(post);
+                                        elementSizes{ornCounter,pnCounter,u}(synCounter,4)=sum(ismember(post,PNs));
+                                        elementSizes{ornCounter,pnCounter,u}(synCounter,5)=locations.(pnField)(c,1);
+                                        elementSizes{ornCounter,pnCounter,u}(synCounter,6)=locations.(pnField)(c,2);
+                                        elementSizes{ornCounter,pnCounter,u}(synCounter,7)=locations.(pnField)(c,3);
+                                        
+                                        
+                                    end
+                                    
+                                    %Store the connector ID
                                     segIDs{ornCounter,pnCounter}(synCounter)={connID};
-                                     
+                                    
                                 end
                                 
                                 
                             end
                             
                             
+                            
+                            
+                            %If this user has not segmented this
+                            %synapse fill this slot with Nans to keep
+                            %connection matricies the same size
+                            if segFlag==0
+                                
+                                %Load the locations text file and check
+                                %to see if the current pn is present
+                                %more than once at this synapse
+                                
+                                locations=loadjson(strcat( synPath,'/locations.json'));
+                                strP=num2str(p);
+                                pnField=['x0x3',strP(1),'_',strP(2:end)];
+                                numPNProfs=size(locations.(pnField),1);
+                                
+                                %One entry for each postsynaptic pn profile at
+                                %this connector
+                                
+                                for c=1:numPNProfs
+                                    
+                                    %Increment synapse count
+                                    synCounter=synCounter+1;
+                                    
+                                    %fill w/ nans, locs to make sure
+                                    %correspondence is correct
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,1)=nan;
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,2)=nan;
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,3)=nan;
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,4)=nan;
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,5)=locations.(pnField)(c,1);
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,6)=locations.(pnField)(c,2);
+                                    elementSizes{ornCounter,pnCounter,u}(synCounter,7)=locations.(pnField)(c,3);
+                                    
+                                    
+                                end
+                                
+                            else
+                            end
+                            
                         end
-                        
-                        %If this user has not segmented this
-                        %synapse fill this slot with Nans to keep
-                        %connection matricies the same size
-                        if segFlag==0
-                            
-                            %Increment synapse count
-                            synCounter=synCounter+1;
-                            
-                            %Store volume and area for this synapse
-                            elementSizes{ornCounter,pnCounter,u}(synCounter,1)=nan;
-                            elementSizes{ornCounter,pnCounter,u}(synCounter,2)=nan;
-                            elementSizes{ornCounter,pnCounter,u}(synCounter,3)=nan;
-                            elementSizes{ornCounter,pnCounter,u}(synCounter,4)=nan;
-                            
-                        else
-                        end
-                        
                         
                     end
                     
@@ -183,10 +270,12 @@ for u=1:4
             end
         end
         
-        
-      toc 
+        toc
     end
     
     
 end
 
+save('multiSynList','multiSynList')
+save('forHandSeg','forHandSeg');
+save('elementSizes','elementSizes')

@@ -89,6 +89,7 @@ end
 %%
 figure('units','normalized','outerposition',[0 0 1 1])
 set(gcf,'Color','w')
+set(gcf,'renderer','painters');
 
 edges=[0.5:1:7.5];
 subplot(1,2,1)

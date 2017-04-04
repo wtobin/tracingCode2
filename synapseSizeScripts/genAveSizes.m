@@ -1,3 +1,5 @@
+load('elementSizes.mat')
+
 aveSizes=[]; 
 
 %loop over orns

@@ -41,7 +41,7 @@ end
 figure('units','normalized','outerposition',[0 0 1 1])
 hold on
 set(gcf,'color','w')
-
+set(gcf,'renderer','painters');
    
 scatter(synsPerConn,ipsiTbarMeans,60, 'k')
 

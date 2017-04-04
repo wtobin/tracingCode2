@@ -32,6 +32,7 @@ end
 
 figure('units','normalized','outerposition',[0 0 1 1])
 set(gcf,'Color','w')
+set(gcf,'renderer','painters');
 
 scatter(leftSyns(:,1),leftSyns(:,2), 60,'k')
 hold on

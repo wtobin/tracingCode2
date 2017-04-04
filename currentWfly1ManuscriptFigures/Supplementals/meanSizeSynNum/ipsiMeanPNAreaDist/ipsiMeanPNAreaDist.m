@@ -43,6 +43,8 @@ end
 
 figure()
 set(gcf, 'Color', 'w')
+set(gcf,'renderer','painters');
+
 h1=histogram(ipsiPnMeans, 'FaceColor','k');
 % h1=histogram(pooledNormIpsiOrnToP, 'FaceColor','k');
 xlim([0 2*mean(ipsiPnMeans)])

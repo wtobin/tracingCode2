@@ -1,4 +1,4 @@
-function [measurements]= measureSeg(segStack,label)
+function [measurements, failFlag]= measureSeg(segStack, label)
 
 %Function that accepts a stack of segmentation masks, a
 %target structure pixel value. The function will 1) determine whether a
@@ -12,6 +12,7 @@ function [measurements]= measureSeg(segStack,label)
 singleSeg=segStack;
 singleSeg(singleSeg~=label)=0;
 singleSeg(singleSeg==label)=1;
+
 
 %Identify slices containing the segmented element
 targSlices=[];

@@ -1,6 +1,7 @@
 load('biasCorrSizes.mat')
 
 aveSizesBC=[]; 
+CVs=[];
 
 %loop over orns
 for o=1:10
@@ -15,6 +16,7 @@ for o=1:10
         end
         
         aveSizesBC{o,p}=squeeze(nanmean(pool,1));
+        
         
     end
 end

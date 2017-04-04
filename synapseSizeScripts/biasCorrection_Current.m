@@ -61,25 +61,26 @@ for pair=1:size(allPairs,1)
     
 end
 
-%Re-express Tbar ratios in terms of tracer 1 (the benchmark tracer)
+%Re-express Tbar ratios in terms of tracer 2 (the benchmark tracer)
 aveTbarRatios_relT1=NaN(3,4); % dimensions 3 (non-benchmark tracers) by 4 (all tracers)
 
 %Tracer 1 comparison
-aveTbarRatios_relT1(:,1)=aveRatios(1:3,1);
+aveTbarRatios_relT1(2,1)=aveRatios(2,1)*(1/aveRatios(1,1));
+aveTbarRatios_relT1(3,1)=aveRatios(3,1)*(1/aveRatios(1,1));
 
 %Tracer 2 comparison
-aveTbarRatios_relT1(2,2)=aveRatios(1,1)*aveRatios(4,1);
-aveTbarRatios_relT1(3,2)=aveRatios(1,1)*aveRatios(5,1);
+aveTbarRatios_relT1(1,2)=(1/aveRatios(1,1));
+aveTbarRatios_relT1(2,2)=aveRatios(4,1);
+aveTbarRatios_relT1(3,2)=aveRatios(5,1);
 
 %Tracer 3 comparison
-%aveTbarRatios_relT1(1,3)=aveRatios(2,1)*aveRatios(4,1); %error
-%aveTbarRatios_relT1(3,3)=aveRatios(2,1)*(1/aveRatios(4,1)); %error
-aveTbarRatios_relT1(1,3)=aveRatios(2,1)*(1/aveRatios(4,1));
-aveTbarRatios_relT1(3,3)=aveRatios(2,1)*aveRatios(6,1);
+
+aveTbarRatios_relT1(1,3)=(1/aveRatios(2,1))*aveRatios(4,1);
+aveTbarRatios_relT1(3,3)=(1/aveRatios(6,1))*aveRatios(4,1);
 
 %Tracer 4 comparison
-aveTbarRatios_relT1(1,4)=aveRatios(3,1)*(1/aveRatios(5,1));
-aveTbarRatios_relT1(2,4)=aveRatios(3,1)*(1/aveRatios(6,1));
+aveTbarRatios_relT1(1,4)=(1/aveRatios(3,1))*aveRatios(5,1);
+aveTbarRatios_relT1(2,4)=aveRatios(6,1)*aveRatios(5,1);
 
 %Re-express PN ratios in terms of tracer 1
 avePNRatios_relT1=NaN(3,4);

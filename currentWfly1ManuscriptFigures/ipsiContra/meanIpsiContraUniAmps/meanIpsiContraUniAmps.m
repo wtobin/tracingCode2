@@ -33,8 +33,8 @@ LNs = unique(LNs);
 load('~/tracing/conns.mat')
 
 %Base dir for simulation results
-baseDir='~/nC_projects/';
-
+%baseDir='~/nC_projects/';
+baseDir='/Users/williamtobin/orchestra/users/wft2/nC_projects/';
 %%
 
 % Collect the amplitude of ipsi and contra uEPSPs for R and L ORN-->PN
