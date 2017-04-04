@@ -56,22 +56,23 @@ function multiPNHandSeg_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 
 
+handles.synapseVolsDir='/Users/tobin/Documents/MATLAB/tracingCode2'
+
 %Load elementSizes matrix
-load('/Users/williamtobin/Desktop/wfly1_synapseVols2/elementSizes.mat')
+load([handles.synapseVolsDir,'/elementSizes.mat'])
 handles.elementSizes=elementSizes;
 
+%Load segIDs matrix
+load([handles.synapseVolsDir,'/segIDs.mat'])
+handles.segIDs=segIDs;
+
 %Load forHandSeg matrix
-load('/Users/williamtobin/Desktop/wfly1_synapseVols2/forHandSeg.mat')
+load([handles.synapseVolsDir,'/forHandSeg.mat'])
 handles.forHandSeg=forHandSeg;
 
 %Load connID matrix, matrix is Conn ID by orn ID by pn ID
-load('/Users/williamtobin/Desktop/wfly1_synapseVols2/multiSynList.mat')
+load([handles.synapseVolsDir,'/multiSynList.mat'])
 handles.connIDs=multiSynList;
-
-
-%Create an array with one more column than hand seg to keep track of which
-%files have already been completed
-handles.completed=zeros(126,1);
 
 %initialize some lists we will need
 handles.leftORNSubset=[337396,401197,492811,320688,699676];
@@ -90,36 +91,6 @@ handles.PNs=sort(annotations.DM6_0x20_PN);
 %
 % %gen conn fieldname list
 % connFields=fieldnames(conns);
-
-%Select a working stack that hasn't yet been completed, store relevant info
-%about it, folder where image and seg files are located, pn label,Conn
-%ID,pnID, ornID
-
-k=find(handles.completed==0);
-handles.workingFolder=handles.forHandSeg{k(1),1};
-handles.workingPNLabel=handles.forHandSeg{k(1),2};
-handles.workingConnID=handles.connIDs(k(1),1);
-handles.workingORNID=handles.connIDs(k(1),2);
-handles.workingPNID=handles.connIDs(k(1),3);
-
-%Load the stack image
-curImFile=load_nii(strcat(handles.workingFolder,'/',num2str(handles.workingConnID),'.nii'));
-handles.imStack=curImFile.img;
-
-%Identify and load all segementation files for this synapse
-curSegFileDir=dir(strcat(handles.workingFolder,'/',num2str(handles.workingConnID),'_**.nii'));
-if size(curSegFileDir,1)~=3
-    
-    error('There are not three seg files for the current connector')
-    
-else
-    for s=1:size(curSegFileDir,1)
-        curSegFile=load_nii(strcat(handles.workingFolder,'/',curSegFileDir(s).name));
-        handles.segIms{s}=curSegFile.img;
-        author=curSegFileDir(s).name(end-5:end-4);
-        handles.segAuthors{s}=find(strcmp(handles.users,author));
-    end
-end
 
 %Set textbox 2's fontsize
 set(handles.text2,'FontSize',18)
@@ -161,6 +132,59 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+%Create a list of all segFiles that the current tracer produced
+
+for f =1:length(handles.forHandSeg)
+    
+    %Generating paths appropriate for local machine
+    myLaptopPath=handles.forHandSeg{f}(1:end-1);
+    connLoc=myLaptopPath(regexp(myLaptopPath,'\d*_\d*\/\d*$'):end);
+    connID=myLaptopPath(regexp(myLaptopPath,'\d*$'):end);
+    connFolder=[handles.synapseVolsDir,'/',connLoc];
+    curSegFileDir=dir(strcat(connFolder,'/',connID,'_**.nii'));
+    
+    if size(curSegFileDir,1)~=3
+        
+        error('There are not three seg files for the current connector')
+        
+    else
+        for s=1:size(curSegFileDir,1)
+            curSegFile=load_nii(strcat(handles.workingFolder,'/',curSegFileDir(s).name));
+            handles.segIms{s}=curSegFile.img;
+            author=curSegFileDir(s).name(end-5:end-4);
+            handles.segAuthors{s}=find(strcmp(handles.users,author));
+        end
+    end
+    
+    
+
+k=find(handles.completed==0);
+handles.workingFolder=handles.forHandSeg{k(1),1};
+handles.workingPNLabel=handles.forHandSeg{k(1),2};
+handles.workingConnID=handles.connIDs(k(1),1);
+handles.workingORNID=handles.connIDs(k(1),2);
+handles.workingPNID=handles.connIDs(k(1),3);
+
+%Load the stack image
+curImFile=load_nii(strcat(handles.workingFolder,'/',num2str(handles.workingConnID),'.nii'));
+handles.imStack=curImFile.img;
+
+%Identify and load all segementation files for this synapse
+curSegFileDir=dir(strcat(handles.workingFolder,'/',num2str(handles.workingConnID),'_**.nii'));
+if size(curSegFileDir,1)~=3
+    
+    error('There are not three seg files for the current connector')
+    
+else
+    for s=1:size(curSegFileDir,1)
+        curSegFile=load_nii(strcat(handles.workingFolder,'/',curSegFileDir(s).name));
+        handles.segIms{s}=curSegFile.img;
+        author=curSegFileDir(s).name(end-5:end-4);
+        handles.segAuthors{s}=find(strcmp(handles.users,author));
+    end
+end
 
 
 %Select a working stack that hasn't yet been completed, store relevant info
@@ -284,8 +308,8 @@ function edit1_Callback(hObject, eventdata, handles)
 % Hints: get(hObject,'String') returns contents of edit1 as text
 %        str2double(get(hObject,'String')) returns contents of edit1 as a double
 
-handles.curProfNum=str2double(get(hObject,'String'));
-
+%handles.curProfNum=str2double(get(hObject,'String'));
+handles.tracerIDNum=str2double(get(hObject,'String'));
 
 
 
@@ -378,27 +402,7 @@ function pushbutton9_Callback(hObject, eventdata, handles)
 
 
 %save the segmentation for this profile
-segToSave=handles.curProfSeg;
-
-save(strcat(handles.workingFolder,'/',num2str(handles.workingConnID),'_',num2str(handles.workingPNID),...
-    '_',num2str(handles.curSeg),'_',handles.users{handles.segAuthors{handles.curSeg}}),...
-    'segToSave')
-
-%Calculate Tbar Vol and PN Area for this synapse and profile, place these
-%values in the elementSizes matrix
-
-tbarMeas=measureSeg(handles.segIms{handles.curSeg},6);
-pnMeas=measureSeg(segToSave,1);
-
-%Get the indicicies of the current ORN and PN, these should correspond to
-%the order of ORNs and PNs in the elementSizes matrix, also the
-%segmentation authors #
-ornNum=find(handles.ORNSubset== handles.workingORNID);
-pnNum=find(handles.PNs== handles.workingPNID);
-userNum=handles.segAuthors{handles.curSeg};
-
-%Pull this users connection array
-workingArray=handles.elementSizes{ornNum,pnNum,userNum}
+disp('tar')
 
 
 % --- Executes on button press in pushbutton10.
