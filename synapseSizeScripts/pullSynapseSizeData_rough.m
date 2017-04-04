@@ -210,11 +210,11 @@ for u=1:4
                                         elementSizes{ornCounter,pnCounter,u}(synCounter,6)=locations.(pnField)(c,2);
                                         elementSizes{ornCounter,pnCounter,u}(synCounter,7)=locations.(pnField)(c,3);
                                         
-                                        
-                                    end
-                                    
                                     %Store the connector ID
                                     segIDs{ornCounter,pnCounter}(synCounter)={connID};
+                                    
+                                    end
+                                    
                                     
                                 end
                                 
