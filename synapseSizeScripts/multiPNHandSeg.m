@@ -22,7 +22,7 @@ function varargout = multiPNHandSeg(varargin)
 
 % Edit the above text to modify the response to help multiPNHandSeg
 
-% Last Modified by GUIDE v2.5 04-Apr-2017 08:58:30
+% Last Modified by GUIDE v2.5 04-Apr-2017 16:25:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -56,11 +56,11 @@ function multiPNHandSeg_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 
 
-handles.synapseVolsDir='/Users/tobin/Documents/MATLAB/tracingCode2'
+handles.synapseVolsDir='/Users/williamtobin/Desktop/wfly1_synapseVols2';
 
-%Load elementSizes matrix
-load([handles.synapseVolsDir,'/elementSizes.mat'])
-handles.elementSizes=elementSizes;
+% %Load elementSizes matrix
+% load([handles.synapseVolsDir,'/elementSizes.mat'])
+% handles.elementSizes=elementSizes;
 
 %Load segIDs matrix
 load([handles.synapseVolsDir,'/segIDs.mat'])
@@ -94,11 +94,6 @@ handles.PNs=sort(annotations.DM6_0x20_PN);
 
 %Set textbox 2's fontsize
 set(handles.text2,'FontSize',18)
-
-%set profile NUm to 1 to start
-handles.curProfNum=1;
-
-
 
 % Update handles structure
 guidata(hObject, handles);
@@ -134,74 +129,147 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-%Create a list of all segFiles that the current tracer produced
 
-for f =1:length(handles.forHandSeg)
+if exist(handles.todoPath)~=0
+    load(handles.todoPath)
+    handles.curTracerFilesToDo=segFilesToDo
+else
+    %Create a list of all segFiles that the current tracer produced
+    segFilesToDo={};
+    counter=1;
     
-    %Generating paths appropriate for local machine
-    myLaptopPath=handles.forHandSeg{f}(1:end-1);
-    connLoc=myLaptopPath(regexp(myLaptopPath,'\d*_\d*\/\d*$'):end);
-    connID=myLaptopPath(regexp(myLaptopPath,'\d*$'):end);
-    connFolder=[handles.synapseVolsDir,'/',connLoc];
-    curSegFileDir=dir(strcat(connFolder,'/',connID,'_**.nii'));
-    
-    if size(curSegFileDir,1)~=3
+    for f =1:length(handles.forHandSeg)
         
-        error('There are not three seg files for the current connector')
+        %Generating paths appropriate for local machine
+        myLaptopPath=handles.forHandSeg{f}(1:end-1);
+        connLoc=myLaptopPath(regexp(myLaptopPath,'\d*_\d*\/\d*$'):end);
+        connID=myLaptopPath(regexp(myLaptopPath,'\d*$'):end);
+        connFolder=[handles.synapseVolsDir,'/',connLoc];
+        curSegFileDir=dir(strcat(connFolder,'/',connID,'_**.nii'));
         
-    else
-        for s=1:size(curSegFileDir,1)
-            %See if the current tracer was the author
-            if sum(curSegFileDir(f).name(end-5:end-4)==Users{u})==2
+        
+        if size(curSegFileDir,1)~=3
             
-            curSegFile=load_nii(strcat(handles.workingFolder,'/',curSegFileDir(s).name));
-            handles.segIms{s}=curSegFile.img;
-            author=curSegFileDir(s).name(end-5:end-4);
-            handles.segAuthors{s}=find(strcmp(handles.users,author));
+            error('There are not three seg files for the current connector')
+            
+        else
+            for s=1:size(curSegFileDir,1)
+                
+                %See if the current tracer was the author
+                if sum(curSegFileDir(s).name(end-5:end-4)==handles.users{handles.tracerIDNum})==2
+                    
+                    segFilesToDo{counter,1}=[connFolder,'/',curSegFileDir(s).name];
+                    segFilesToDo{counter,2}=f;
+                    counter=counter+1;
+                else
+                end
+                
+            end
         end
     end
     
+    %cell array of segmentation file paths that need to be dona
+    % and the corresponding index for forHandSeg matrix
     
+    handles.curTracerFilesToDo=segFilesToDo;
+    save(handles.todoPath,'segFilesToDo')
+    
+end
 
-k=find(handles.completed==0);
-handles.workingFolder=handles.forHandSeg{k(1),1};
-handles.workingPNLabel=handles.forHandSeg{k(1),2};
-handles.workingConnID=handles.connIDs(k(1),1);
-handles.workingORNID=handles.connIDs(k(1),2);
-handles.workingPNID=handles.connIDs(k(1),3);
+
+%Set the first entry in the todolist as the current working file to sort
+
+handles.workingFile=handles.curTracerFilesToDo{1,1};
+
+%store the parent dir as well
+slashes=find(handles.workingFile=='/');
+handles.workingDir=handles.workingFile(1:slashes(end));
+
+% curTracerFilesToDo{1,2} this is the index of the forHandSeg matrix that
+% corresponds to the segmentation file listed in curTracerFilesToDo{1,1}.
+% This is the same index as in multiSynList(handles.connIDs) which has the
+% ORN, PN and Connector IDs in it
+
+handles.workingPNLabel=handles.forHandSeg{handles.curTracerFilesToDo{1,2},2};
+handles.workingConnID=handles.connIDs(handles.curTracerFilesToDo{1,2},1);
+handles.workingORNID=handles.connIDs(handles.curTracerFilesToDo{1,2},2);
+handles.workingPNID=handles.connIDs(handles.curTracerFilesToDo{1,2},3);
 
 %Load the stack image
-curImFile=load_nii(strcat(handles.workingFolder,'/',num2str(handles.workingConnID),'.nii'));
+curImFile=load_nii(strcat(handles.workingDir,num2str(handles.workingConnID),'.nii'));
 handles.imStack=curImFile.img;
 
-%Identify and load all segementation files for this synapse
-curSegFileDir=dir(strcat(handles.workingFolder,'/',num2str(handles.workingConnID),'_**.nii'));
-if size(curSegFileDir,1)~=3
-    
-    error('There are not three seg files for the current connector')
-    
-else
-    for s=1:size(curSegFileDir,1)
-        curSegFile=load_nii(strcat(handles.workingFolder,'/',curSegFileDir(s).name));
-        handles.segIms{s}=curSegFile.img;
-        author=curSegFileDir(s).name(end-5:end-4);
-        handles.segAuthors{s}=find(strcmp(handles.users,author));
+%load the segementation file for this synapse
+curSegFile=load_nii(handles.workingFile);
+handles.segIm=curSegFile.img;
+
+%Load the locations file
+locations=loadjson(strcat( handles.workingDir,'locations.json'));
+handles.locations=locations;
+
+%Start with the first pn profile at this synapse
+handles.curProfNum=1;
+
+%Highlight this profile with a red square, black out the rest
+
+strP=num2str(handles.workingPNID);
+handles.pnField=['x0x3',strP(1),'_',strP(2:end)];
+pnField=['x0x3',strP(1),'_',strP(2:end)];
+
+locFieldNames=fieldnames(handles.locations);
+
+for field=1:length(fieldnames(locations))
+    %Ignore catmaid coords
+    if strcmp(locFieldNames{field},'catmaidCoords')==1
+        
+    elseif strcmp(locFieldNames{field},pnField)==1
+        
+        %loop over each profile tagged in this stack
+        for i=1:size(handles.locations.(pnField),1)
+            
+            pos=handles.locations.(pnField)(i,:);
+            %I think this should correct for the fact that pixels are
+            %numbered according to python convention which starts at 0
+            
+            pos=pos+1;
+            %if its the first one, mark it red
+            if i==handles.curProfNum
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=255;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+                
+            else
+                
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+                
+            end
+        end
+        
+    else %Mark any other pns and the tbar black
+        
+        for i=1:size(handles.locations.(locFieldNames{field}),1)
+            
+            pos=handles.locations.(locFieldNames{field})(i,:);
+            %I think this should correct for the fact that pixels are
+            %numbered according to python convention which starts at 0
+            
+            pos=pos+1;
+            
+            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+            
+        end
+        
+        
     end
 end
 
 
-%Select a working stack that hasn't yet been completed, store relevant info
-%about it, folder where image and seg files are located, pn label,Conn
-%ID,pnID, ornID
-
-%Start with the first segmentation of this image
-handles.curSeg=1;
-
-set(handles.text2,'String',['Segmentation ',num2str(handles.curSeg),' currently loaded']);
-
 %Binerize the segmentation image
-handles.pnSeg=handles.segIms{handles.curSeg};
-
+handles.pnSeg=handles.segIm;
 handles.pnSeg(handles.pnSeg~=handles.workingPNLabel)=0;
 handles.pnSeg(handles.pnSeg==handles.workingPNLabel)=1;
 
@@ -211,7 +279,7 @@ handles.pnSeg(handles.pnSeg==handles.workingPNLabel)=1;
 
 handles.targSlices=[];
 
-for z=1:size(handles.segIms{handles.curSeg},3)
+for z=1:size(handles.pnSeg,3)
     
     if sum(sum(handles.pnSeg(:,:,z)==1))>0
         
@@ -222,6 +290,7 @@ for z=1:size(handles.segIms{handles.curSeg},3)
     
 end
 
+
 %Display the first slice of the stack
 handles.curSlice=1;
 handles.curFrame=squeeze(handles.imStack(:,:,handles.targSlices(handles.curSlice),:));
@@ -231,8 +300,6 @@ image(handles.curFrame)
 
 %initialize an array to store the curent profiles segmentation
 handles.curProfSeg=zeros(size(handles.pnSeg));
-
-
 
 % Update handles structure
 guidata(hObject, handles);
@@ -257,14 +324,14 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 if handles.curSlice == numel(handles.targSlices)
     disp('Last Segmented Slice')
 else
-
+    
     handles.curSlice=handles.curSlice+1;
     handles.curFrame=squeeze(handles.imStack(:,:,handles.targSlices(handles.curSlice),:));
     mask=logical(handles.pnSeg(:,:,handles.targSlices(handles.curSlice)));
     handles.curFrame(mask)=255;
     image(handles.curFrame)
     
-   
+    
 end
 
 % Update handles structure
@@ -313,6 +380,30 @@ function edit1_Callback(hObject, eventdata, handles)
 
 %handles.curProfNum=str2double(get(hObject,'String'));
 handles.tracerIDNum=str2double(get(hObject,'String'));
+
+%Set ToDo list path
+handles.todoPath=[handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_ToDo.mat'];
+
+%Check to see if there is a user copy of the elementSizes matrix, if not
+%make one
+
+if exist([handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_elementSizes.mat'])~=0
+    
+    %Load elementSizes matrix
+    load([handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_elementSizes.mat'])
+    handles.elementSizes=elementSizes;
+    
+else
+    
+    %make a copy of elementSizes to work with
+    copyfile([handles.synapseVolsDir,'/elementSizes.mat'],...
+        [handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_elementSizes.mat'])
+    
+    %load it and store it
+    load([handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_elementSizes.mat'])
+    handles.elementSizes=elementSizes;
+    
+end
 
 
 
@@ -405,7 +496,105 @@ function pushbutton9_Callback(hObject, eventdata, handles)
 
 
 %save the segmentation for this profile
-disp('tar')
+segToSave=handles.curProfSeg;
+save([handles.workingDir,num2str(handles.workingConnID),'_',...
+    num2str(handles.workingPNID),'_',num2str(handles.curProfNum),'_',...
+    handles.users{handles.tracerIDNum},'.mat'],'segToSave')
+
+
+%store postsynaptic pn area in the proper position in elementSizes
+ornNum=find(handles.ORNSubset==handles.workingORNID);
+pnNum=find(handles.PNs==handles.workingPNID);
+curProfLoc=handles.locations.(handles.pnField)(handles.curProfNum,:);
+tbarVol=sum(measureSeg(handles.segIm,6));
+
+%Find this position in the elementSizes matrix
+connArray=handles.elementSizes{ornNum,pnNum,handles.tracerIDNum};
+rowPos=find(ismember(connArray(:,[1,5,6,7]),[tbarVol,curProfLoc],'rows'));
+
+%Calculate pn membrane area
+pnArea=sum(measureSeg(handles.curProfSeg,1));
+
+%store it and save it
+handles.elementSizes{ornNum,pnNum,handles.tracerIDNum}(rowPos,2)=pnArea;
+elementSizes=handles.elementSizes;
+save([handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_elementSizes.mat'],...
+    'elementSizes')
+
+%increment the profile counter
+handles.curProfNum=handles.curProfNum+1;
+
+
+%Highlight this profile with a red square, black out the rest
+strP=num2str(handles.workingPNID);
+handles.pnField=['x0x3',strP(1),'_',strP(2:end)];
+pnField=['x0x3',strP(1),'_',strP(2:end)];
+
+locFieldNames=fieldnames(handles.locations);
+locations=handles.locations;
+
+for field=1:length(fieldnames(locations))
+    %Ignore catmaid coords
+    if strcmp(locFieldNames{field},'catmaidCoords')==1
+        
+    elseif strcmp(locFieldNames{field},pnField)==1
+        
+        %loop over each profile tagged in this stack
+        for i=1:size(handles.locations.(pnField),1)
+            
+            pos=handles.locations.(pnField)(i,:);
+            %I think this should correct for the fact that pixels are
+            %numbered according to python convention which starts at 0
+            
+            pos=pos+1;
+            %if its the current prof, mark it red
+            if i==handles.curProfNum
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=255;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+                
+            else
+                
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+                
+            end
+        end
+        
+    else %Mark any other pns and the tbar black
+        
+        for i=1:size(handles.locations.(locFieldNames{field}),1)
+            
+            pos=handles.locations.(locFieldNames{field})(i,:);
+            %I think this should correct for the fact that pixels are
+            %numbered according to python convention which starts at 0
+            
+            pos=pos+1;
+            
+            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+            
+        end
+        
+        
+    end
+end
+
+
+%Display the first slice of the stack
+handles.curSlice=1;
+handles.curFrame=squeeze(handles.imStack(:,:,handles.targSlices(handles.curSlice),:));
+mask=logical(handles.pnSeg(:,:,handles.targSlices(1)));
+handles.curFrame(mask)=255;
+image(handles.curFrame)
+
+%initialize an array to store the curent profiles segmentation
+handles.curProfSeg=zeros(size(handles.pnSeg));
+
+% Update handles structure
+guidata(hObject, handles);
 
 
 % --- Executes on button press in pushbutton10.
@@ -418,6 +607,264 @@ roi=imfreehand;
 handles.roiMask=roi.createMask;
 clear roi
 
+
+% Update handles structure
+guidata(hObject, handles);
+
+
+% --- Executes on button press in pushbutton12.
+function pushbutton12_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+confirm=input('Are you sure you want to move to the next file? y or n', 's');
+
+if confirm =='y'
+    
+    %Remove the working file from the todolist and resave it
+    handles.curTracerFilesToDo(1,:)=[];
+    segFilesToDo=handles.curTracerFilesToDo;
+    save(handles.todoPath,'segFilesToDo')
+        
+       
+    
+    %Set the first entry in the todolist as the current working file to sort
+    handles.workingFile=handles.curTracerFilesToDo{1,1};
+    
+    %store the parent dir as well
+    slashes=find(handles.workingFile=='/');
+    handles.workingDir=handles.workingFile(1:slashes(end));
+    
+    % curTracerFilesToDo{1,2} this is the index of the forHandSeg matrix that
+    % corresponds to the segmentation file listed in curTracerFilesToDo{1,1}.
+    % This is the same index as in multiSynList(handles.connIDs) which has the
+    % ORN, PN and Connector IDs in it
+    
+    handles.workingPNLabel=handles.forHandSeg{handles.curTracerFilesToDo{1,2},2};
+    handles.workingConnID=handles.connIDs(handles.curTracerFilesToDo{1,2},1);
+    handles.workingORNID=handles.connIDs(handles.curTracerFilesToDo{1,2},2);
+    handles.workingPNID=handles.connIDs(handles.curTracerFilesToDo{1,2},3);
+    
+    %Load the stack image
+    curImFile=load_nii(strcat(handles.workingDir,num2str(handles.workingConnID),'.nii'));
+    handles.imStack=curImFile.img;
+    
+    %load the segementation file for this synapse
+    curSegFile=load_nii(handles.workingFile);
+    handles.segIm=curSegFile.img;
+    
+    %Load the locations file
+    locations=loadjson(strcat( handles.workingDir,'locations.json'));
+    handles.locations=locations;
+    
+    %Start with the first pn profile at this synapse
+    handles.curProfNum=1;
+    
+    %Highlight this profile with a red square, black out the rest
+    
+    strP=num2str(handles.workingPNID);
+    handles.pnField=['x0x3',strP(1),'_',strP(2:end)];
+    pnField=['x0x3',strP(1),'_',strP(2:end)];
+    
+    locFieldNames=fieldnames(handles.locations);
+    
+    for field=1:length(fieldnames(locations))
+        %Ignore catmaid coords
+        if strcmp(locFieldNames{field},'catmaidCoords')==1
+            
+        elseif strcmp(locFieldNames{field},pnField)==1
+            
+            %loop over each profile tagged in this stack
+            for i=1:size(handles.locations.(pnField),1)
+                
+                pos=handles.locations.(pnField)(i,:);
+                %I think this should correct for the fact that pixels are
+                %numbered according to python convention which starts at 0
+                
+                pos=pos+1;
+                %if its the first one, mark it red
+                if i==handles.curProfNum
+                    handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=255;
+                    handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+                    handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+                    
+                else
+                    
+                    handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+                    handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+                    handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+                    
+                end
+            end
+            
+        else %Mark any other pns and the tbar black
+            
+            for i=1:size(handles.locations.(locFieldNames{field}),1)
+                
+                pos=handles.locations.(locFieldNames{field})(i,:);
+                %I think this should correct for the fact that pixels are
+                %numbered according to python convention which starts at 0
+                
+                pos=pos+1;
+                
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+                
+            end
+            
+            
+        end
+    end
+    
+    
+    %Binerize the segmentation image
+    handles.pnSeg=handles.segIm;
+    handles.pnSeg(handles.pnSeg~=handles.workingPNLabel)=0;
+    handles.pnSeg(handles.pnSeg==handles.workingPNLabel)=1;
+    
+    
+    %Identify the sections of the image containing sementations of the
+    %current PN
+    
+    handles.targSlices=[];
+    
+    for z=1:size(handles.pnSeg,3)
+        
+        if sum(sum(handles.pnSeg(:,:,z)==1))>0
+            
+            handles.targSlices=[handles.targSlices,z];
+            
+        else
+        end
+        
+    end
+    
+    
+    %Display the first slice of the stack
+    handles.curSlice=1;
+    handles.curFrame=squeeze(handles.imStack(:,:,handles.targSlices(handles.curSlice),:));
+    mask=logical(handles.pnSeg(:,:,handles.targSlices(1)));
+    handles.curFrame(mask)=255;
+    image(handles.curFrame)
+    
+    %initialize an array to store the curent profiles segmentation
+    handles.curProfSeg=zeros(size(handles.pnSeg));
+else   
+end
+    % Update handles structure
+    guidata(hObject, handles);
+    
+
+
+% --- Executes on button press in pushbutton13.
+function pushbutton13_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton13 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+%Because this is the last prof, we can assign everything left to it
+handles.curProfSeg=handles.pnSeg;
+
+%save the segmentation for this profile
+segToSave=handles.curProfSeg;
+save([handles.workingDir,num2str(handles.workingConnID),'_',...
+    num2str(handles.workingPNID),'_',num2str(handles.curProfNum),'_',...
+    handles.users{handles.tracerIDNum},'.mat'],'segToSave')
+
+
+%store postsynaptic pn area in the proper position in elementSizes
+ornNum=find(handles.ORNSubset==handles.workingORNID);
+pnNum=find(handles.PNs==handles.workingPNID);
+curProfLoc=handles.locations.(handles.pnField)(handles.curProfNum,:);
+tbarVol=sum(measureSeg(handles.segIm,6));
+
+%Find this position in the elementSizes matrix
+connArray=handles.elementSizes{ornNum,pnNum,handles.tracerIDNum};
+rowPos=find(ismember(connArray(:,[1,5,6,7]),[tbarVol,curProfLoc],'rows'));
+
+%Calculate pn membrane area
+pnArea=sum(measureSeg(handles.curProfSeg,1));
+
+%store it and save it
+handles.elementSizes{ornNum,pnNum,handles.tracerIDNum}(rowPos,2)=pnArea;
+elementSizes=handles.elementSizes;
+save([handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_elementSizes.mat'],...
+    'elementSizes')
+
+% %increment the profile counter
+% handles.curProfNum=handles.curProfNum+1;
+% 
+% 
+% %Highlight this profile with a red square, black out the rest
+% strP=num2str(handles.workingPNID);
+% handles.pnField=['x0x3',strP(1),'_',strP(2:end)];
+% pnField=['x0x3',strP(1),'_',strP(2:end)];
+% 
+% locFieldNames=fieldnames(handles.locations);
+% locations=handles.locations;
+% 
+% for field=1:length(fieldnames(locations))
+%     %Ignore catmaid coords
+%     if strcmp(locFieldNames{field},'catmaidCoords')==1
+%         
+%     elseif strcmp(locFieldNames{field},pnField)==1
+%         
+%         %loop over each profile tagged in this stack
+%         for i=1:size(handles.locations.(pnField),1)
+%             
+%             pos=handles.locations.(pnField)(i,:);
+%             %I think this should correct for the fact that pixels are
+%             %numbered according to python convention which starts at 0
+%             
+%             pos=pos+1;
+%             %if its the current prof, mark it red
+%             if i==handles.curProfNum
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=255;
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+%                 
+%             else
+%                 
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+%                 
+%             end
+%         end
+%         
+%     else %Mark any other pns and the tbar black
+%         
+%         for i=1:size(handles.locations.(locFieldNames{field}),1)
+%             
+%             pos=handles.locations.(locFieldNames{field})(i,:);
+%             %I think this should correct for the fact that pixels are
+%             %numbered according to python convention which starts at 0
+%             
+%             pos=pos+1;
+%             
+%             handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+%             handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+%             handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+%             
+%         end
+%         
+%         
+%     end
+% end
+% 
+% 
+% %Display the first slice of the stack
+% handles.curSlice=1;
+% handles.curFrame=squeeze(handles.imStack(:,:,handles.targSlices(handles.curSlice),:));
+% mask=logical(handles.pnSeg(:,:,handles.targSlices(1)));
+% handles.curFrame(mask)=255;
+% image(handles.curFrame)
+% 
+% %initialize an array to store the curent profiles segmentation
+% handles.curProfSeg=zeros(size(handles.pnSeg));
 
 % Update handles structure
 guidata(hObject, handles);
