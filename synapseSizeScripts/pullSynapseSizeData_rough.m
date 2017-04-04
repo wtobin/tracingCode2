@@ -279,3 +279,4 @@ end
 save('multiSynList','multiSynList')
 save('forHandSeg','forHandSeg');
 save('elementSizes','elementSizes')
+save('segIDs','segIDs')
