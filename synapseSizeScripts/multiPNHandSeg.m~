@@ -22,7 +22,7 @@ function varargout = multiPNHandSeg(varargin)
 
 % Edit the above text to modify the response to help multiPNHandSeg
 
-% Last Modified by GUIDE v2.5 04-Apr-2017 16:24:15
+% Last Modified by GUIDE v2.5 04-Apr-2017 16:25:59
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -56,7 +56,7 @@ function multiPNHandSeg_OpeningFcn(hObject, eventdata, handles, varargin)
 handles.output = hObject;
 
 
-handles.synapseVolsDir='/Users/williamtobin/Desktop/wfly1_synapseVols2';
+handles.synapseVolsDir='/Users/tobin/orchestra/wfly1_synapseVols';
 
 % %Load elementSizes matrix
 % load([handles.synapseVolsDir,'/elementSizes.mat'])
@@ -145,7 +145,7 @@ else
         connLoc=myLaptopPath(regexp(myLaptopPath,'\d*_\d*\/\d*$'):end);
         connID=myLaptopPath(regexp(myLaptopPath,'\d*$'):end);
         connFolder=[handles.synapseVolsDir,'/',connLoc];
-        curSegFileDir=dir(strcat(connFolder,'/',connID,'_**.nii'));
+        curSegFileDir=dir(strcat(connFolder,'/',connID,'_*.nii'));
         
         
         if size(curSegFileDir,1)~=3
@@ -765,6 +765,8 @@ function pushbutton13_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+%Because this is the last prof, we can assign everything left to it
+handles.curProfSeg=handles.pnSeg;
 
 %save the segmentation for this profile
 segToSave=handles.curProfSeg;
@@ -792,78 +794,77 @@ elementSizes=handles.elementSizes;
 save([handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_elementSizes.mat'],...
     'elementSizes')
 
-%increment the profile counter
-handles.curProfNum=handles.curProfNum+1;
-
-
-%Highlight this profile with a red square, black out the rest
-strP=num2str(handles.workingPNID);
-handles.pnField=['x0x3',strP(1),'_',strP(2:end)];
-pnField=['x0x3',strP(1),'_',strP(2:end)];
-
-locFieldNames=fieldnames(handles.locations);
-locations=handles.locations;
-
-for field=1:length(fieldnames(locations))
-    %Ignore catmaid coords
-    if strcmp(locFieldNames{field},'catmaidCoords')==1
-        
-    elseif strcmp(locFieldNames{field},pnField)==1
-        
-        %loop over each profile tagged in this stack
-        for i=1:size(handles.locations.(pnField),1)
-            
-            pos=handles.locations.(pnField)(i,:);
-            %I think this should correct for the fact that pixels are
-            %numbered according to python convention which starts at 0
-            
-            pos=pos+1;
-            %if its the current prof, mark it red
-            if i==handles.curProfNum
-                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=255;
-                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
-                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
-                
-            else
-                
-                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
-                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
-                handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
-                
-            end
-        end
-        
-    else %Mark any other pns and the tbar black
-        
-        for i=1:size(handles.locations.(locFieldNames{field}),1)
-            
-            pos=handles.locations.(locFieldNames{field})(i,:);
-            %I think this should correct for the fact that pixels are
-            %numbered according to python convention which starts at 0
-            
-            pos=pos+1;
-            
-            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
-            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
-            handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
-            
-        end
-        
-        
-    end
-end
-
-
-%Display the first slice of the stack
-handles.curSlice=1;
-handles.curFrame=squeeze(handles.imStack(:,:,handles.targSlices(handles.curSlice),:));
-mask=logical(handles.pnSeg(:,:,handles.targSlices(1)));
-handles.curFrame(mask)=255;
-image(handles.curFrame)
-
-%initialize an array to store the curent profiles segmentation
-handles.curProfSeg=zeros(size(handles.pnSeg));
+% %increment the profile counter
+% handles.curProfNum=handles.curProfNum+1;
+% 
+% 
+% %Highlight this profile with a red square, black out the rest
+% strP=num2str(handles.workingPNID);
+% handles.pnField=['x0x3',strP(1),'_',strP(2:end)];
+% pnField=['x0x3',strP(1),'_',strP(2:end)];
+% 
+% locFieldNames=fieldnames(handles.locations);
+% locations=handles.locations;
+% 
+% for field=1:length(fieldnames(locations))
+%     %Ignore catmaid coords
+%     if strcmp(locFieldNames{field},'catmaidCoords')==1
+%         
+%     elseif strcmp(locFieldNames{field},pnField)==1
+%         
+%         %loop over each profile tagged in this stack
+%         for i=1:size(handles.locations.(pnField),1)
+%             
+%             pos=handles.locations.(pnField)(i,:);
+%             %I think this should correct for the fact that pixels are
+%             %numbered according to python convention which starts at 0
+%             
+%             pos=pos+1;
+%             %if its the current prof, mark it red
+%             if i==handles.curProfNum
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=255;
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+%                 
+%             else
+%                 
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+%                 handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+%                 
+%             end
+%         end
+%         
+%     else %Mark any other pns and the tbar black
+%         
+%         for i=1:size(handles.locations.(locFieldNames{field}),1)
+%             
+%             pos=handles.locations.(locFieldNames{field})(i,:);
+%             %I think this should correct for the fact that pixels are
+%             %numbered according to python convention which starts at 0
+%             
+%             pos=pos+1;
+%             
+%             handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),1)=0;
+%             handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),2)=0;
+%             handles.imStack(pos(1)-2:pos(1)+2,pos(2)-2:pos(2)+2,pos(3),3)=0;
+%             
+%         end
+%         
+%         
+%     end
+% end
+% 
+% 
+% %Display the first slice of the stack
+% handles.curSlice=1;
+% handles.curFrame=squeeze(handles.imStack(:,:,handles.targSlices(handles.curSlice),:));
+% mask=logical(handles.pnSeg(:,:,handles.targSlices(1)));
+% handles.curFrame(mask)=255;
+% image(handles.curFrame)
+% 
+% %initialize an array to store the curent profiles segmentation
+% handles.curProfSeg=zeros(size(handles.pnSeg));
 
 % Update handles structure
 guidata(hObject, handles);
-
