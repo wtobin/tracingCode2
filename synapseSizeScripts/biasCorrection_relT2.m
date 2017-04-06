@@ -1,8 +1,8 @@
 %Load synaptic element size data
 cd ~/Documents/MATLAB/tracingCode2/synapseSizeScripts/
-load elementSizes.mat
+load elementSizes_comp.mat
 
-%In elementSizes.mat, the dimensions (10x5x4) correspond to 
+%In elementSizes_comp.mat, the dimensions (10x5x4) correspond to 
 %ORNs x PNs x Tracers. Each element of the cell array is
 %another array corresponding to a unitary connection. This 
 %array is size synapses X 4, each row corresponds to a single
@@ -31,8 +31,8 @@ for pair=1:size(allPairs,1)
     for o=1:10 %ORN indexing
         for p=1:5 %PN indexing
             
-            t1Seg=elementSizes{o,p,allPairs(pair,1)}; %data for all synapses in a connection
-            t2Seg=elementSizes{o,p,allPairs(pair,2)}; %data for the same synapses
+            t1Seg=elementSizes_comp{o,p,allPairs(pair,1)}; %data for all synapses in a connection
+            t2Seg=elementSizes_comp{o,p,allPairs(pair,2)}; %data for the same synapses
             
             for s=1:size(t1Seg,1) %size=# synapses/connection, s=synapse index
                 if isnan(t1Seg(s,1)) == 0 && isnan(t2Seg(s,1))==0 %checking both tracers measured the Tbars
@@ -120,7 +120,7 @@ for o=1:10
     for p=1:5
         
         %Look at tracer 1s seg simply to find # of syns at this connection
-        seg=elementSizes{o,p,1};
+        seg=elementSizes_comp{o,p,1};
         
         %Loop over synapses
         for s=1:size(seg,1)
@@ -129,12 +129,12 @@ for o=1:10
             for u=1:4
                 
                 %Bias correct tbar vol and on area measurments
-                biasCorrSizes{o,p,u}(s,1)=elementSizes{o,p,u}(s,1)/tbarBias(u);
-                biasCorrSizes{o,p,u}(s,2)=elementSizes{o,p,u}(s,2)/pnBias(u);
+                biasCorrSizes{o,p,u}(s,1)=elementSizes_comp{o,p,u}(s,1)/tbarBias(u);
+                biasCorrSizes{o,p,u}(s,2)=elementSizes_comp{o,p,u}(s,2)/pnBias(u);
                 
                 %store num post and num post PNs
-                biasCorrSizes{o,p,u}(s,3)=elementSizes{o,p,u}(s,3);
-                biasCorrSizes{o,p,u}(s,4)=elementSizes{o,p,u}(s,4);
+                biasCorrSizes{o,p,u}(s,3)=elementSizes_comp{o,p,u}(s,3);
+                biasCorrSizes{o,p,u}(s,4)=elementSizes_comp{o,p,u}(s,4);
                 
             end 
             

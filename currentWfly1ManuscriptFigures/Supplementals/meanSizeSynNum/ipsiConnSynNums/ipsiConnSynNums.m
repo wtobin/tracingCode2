@@ -53,7 +53,7 @@ ax.FontSize=16;
 ylabel('# of Connections')
 xlabel('Synapses per Connection')
 % axis square
-text(30, 2.5, ['CV: ',num2str(std(ipsiConSynNums)/mean(ipsiConSynNums))], 'FontSize',16)
+text(35, 2.5, ['CV: ',num2str(std(ipsiConSynNums)/mean(ipsiConSynNums))], 'FontSize',16)
 box off 
 set(gca,'TickDir','out')
 axis square

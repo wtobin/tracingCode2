@@ -810,13 +810,15 @@ tbarVol=sum(measureSeg(handles.segIm,6));
 
 %Find this position in the elementSizes matrix
 connArray=handles.elementSizes{ornNum,pnNum,handles.tracerIDNum};
-rowPos=find(ismember(connArray(:,[1,5,6,7]),[tbarVol,curProfLoc],'rows'));
+%rowPos=find(ismember(connArray(:,[1,5,6,7]),[tbarVol,curProfLoc],'rows'));
+rowPos=find(ismember(connArray(:,[5,6,7]),[curProfLoc],'rows'));
 
 %Calculate pn membrane area
 pnArea=sum(measureSeg(handles.curProfSeg,1));
 
 %store it and save it
 handles.elementSizes{ornNum,pnNum,handles.tracerIDNum}(rowPos,2)=pnArea;
+handles.elementSizes{ornNum,pnNum,handles.tracerIDNum}(rowPos,1)=tbarVol;
 handles.elementSizes{ornNum,pnNum,handles.tracerIDNum}(rowPos,:)
 elementSizes=handles.elementSizes;
 save([handles.synapseVolsDir,'/tracer_',num2str(handles.tracerIDNum),'_elementSizes.mat'],...

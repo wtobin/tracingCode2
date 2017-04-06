@@ -1,5 +1,4 @@
 %Load the cell array contianing the tracer averaged, bias corrected tbar vol and pn area measurments
-
 load '/Users/williamtobin/Documents/MATLAB/tracingCode2/synapseSizeScripts/aveSizesBC.mat'
 
 %sort measurments ipsi/contra syns

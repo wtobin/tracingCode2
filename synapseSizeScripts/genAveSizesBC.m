@@ -21,6 +21,5 @@ for o=1:10
     end
 end
 
-size(aveSizesBC{o,p})
 
 save('aveSizesBC','aveSizesBC')

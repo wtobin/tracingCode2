@@ -3,7 +3,8 @@ load '/Users/williamtobin/Documents/MATLAB/tracingCode2/synapseSizeScripts/aveSi
 
 %Load the cell array containing connector IDs for each ORN/PN pair in the
 %mat loaded above
-load '/Users/williamtobin/Documents/MATLAB/tracingCode2/synapseSizeScripts/segIDs.mat'
+synapseVolsDir='/Users/williamtobin/Desktop/wfly1_synapseVols2/';
+load([synapseVolsDir, 'segIDs.mat'])
 
 %sort measurments ipsi/contra syns
 tbarVols=[];
@@ -20,7 +21,7 @@ for o=1:10
             
             %Check to see if this tbar was recorded as part of another
             %connection
-            if ismember(segIDs{o,p,1}(s),connsIncluded) == 0
+            if ismember(segIDs{o,p}(s),connsIncluded) == 0
                 
                 tbarVols=[tbarVols, aveSizesBC{o,p}(s,1)];
                 connsIncluded=[connsIncluded;segIDs{o,p,1}(s)];

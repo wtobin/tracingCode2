@@ -4,7 +4,9 @@ load '/Users/williamtobin/Documents/MATLAB/tracingCode2/synapseSizeScripts/aveSi
 
 %Load the cell array containing connector IDs for each ORN/PN pair in the
 %mat loaded above
-load '/Users/williamtobin/Documents/MATLAB/tracingCode2/synapseSizeScripts/segIDs.mat'
+
+synapseVolsDir='/Users/williamtobin/Desktop/wfly1_synapseVols2/';
+load([synapseVolsDir, 'segIDs.mat'])
 
 
 %sort measurments ipsi/contra syns
@@ -20,9 +22,7 @@ for o=1:10
         
         for s=1:size(aveSizesBC{o,p},1)
             
-            %Check to see if this connector was recorded as part of another
-            %connection
-            if ismember(segIDs{o,p,1}(s),connsIncluded) == 0
+       
                 
                 if o<=5 && ismember(p,[1,2,5])==1 
                     
@@ -42,11 +42,6 @@ for o=1:10
                     
                 end
                 
-                connsIncluded=[connsIncluded;segIDs{o,p,1}(s)];
-               
-            else
-                
-            end
             
         end
         
@@ -73,6 +68,7 @@ legend({'Ipsi Synapses','Contra Synapses'})
 set(gca,'FontSize',18)
 set(gca,'TickDir','out')
 %axis square
+xlim([0,11])
 
 [rho, p]=corr([ipsiSyns(:,1);contraSyns(:,1)],[ipsiSyns(:,2);contraSyns(:,2)]);
 
