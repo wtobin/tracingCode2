@@ -1,7 +1,7 @@
 load('biasCorrSizes.mat')
 
 aveSizesBC=[]; 
-CVs=[];
+
 
 %loop over orns
 for o=1:10

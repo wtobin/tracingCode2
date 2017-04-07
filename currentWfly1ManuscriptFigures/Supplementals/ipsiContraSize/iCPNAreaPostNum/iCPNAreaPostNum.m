@@ -68,7 +68,8 @@ legend({'Ipsi Synapses','Contra Synapses'})
 set(gca,'FontSize',18)
 set(gca,'TickDir','out')
 %axis square
-xlim([0,11])
+xlim([0,12])
+set(gca, 'XTick',[0:1:12])
 
 [rho, p]=corr([ipsiSyns(:,1);contraSyns(:,1)],[ipsiSyns(:,2);contraSyns(:,2)]);
 

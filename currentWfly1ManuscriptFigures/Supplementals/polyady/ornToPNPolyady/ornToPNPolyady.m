@@ -85,8 +85,8 @@ box off
 ylabel('T-bar Counts')
 xlabel('# Postsynaptic Profiles')
 %legend({'Left Glomerulus','Right Glomerulus'})
-ylim([0 1200])
-xlim([0 13])
+ylim([0 2000])
+xlim([-2 13])
 set(gca,'FontSize',18)
 set(gca,'TickDir','out')
 axis square

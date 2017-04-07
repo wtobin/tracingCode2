@@ -88,8 +88,8 @@ box off
 ylabel('T-bar Counts')
 xlabel('# Postsynaptic Non-PN Profiles')
 %legend({'Left Glomerulus','Right Glomerulus'})
-ylim([0 1400])
-xlim([-2 10])
+ylim([0 2000])
+xlim([-2 13])
 set(gca,'FontSize',18)
 set(gca,'TickDir','out')
 axis square

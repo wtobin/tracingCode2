@@ -1,5 +1,5 @@
 %Load data non bias corrected
-load('~/Documents/MATLAB/tracingCode2/synapseSizeScripts/elementSizes.mat')
+load('~/Documents/MATLAB/tracingCode2/synapseSizeScripts/elementSizes_comp.mat')
 
 %Load data bias corrected
 load('~/Documents/MATLAB/tracingCode2/synapseSizeScripts/biasCorrSizes.mat')
@@ -29,8 +29,8 @@ for o=1:10
             %Loop over users
             for u=1:4
                 
-                tbarVolsByTracer(synapseCounter,u)=elementSizes{o,p,u}(s,1);
-                pnAreaByTracer(synapseCounter,u)=elementSizes{o,p,u}(s,2);
+                tbarVolsByTracer(synapseCounter,u)=elementSizes_comp{o,p,u}(s,1);
+                pnAreaByTracer(synapseCounter,u)=elementSizes_comp{o,p,u}(s,2);
                 
                 
                 tbarVolsByTracerBC(synapseCounter,u)=biasCorrSizes{o,p,u}(s,1);
