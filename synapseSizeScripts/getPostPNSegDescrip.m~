@@ -1,0 +1,22 @@
+function [segD]=getPostPNSegDescrip(segStack,postLabel)
+
+segD=[];
+
+for s=1:size(segStack,3)
+    
+    curPlane=segStack(:,:,s);
+    
+    if sum(sum(curPlane==postLabel))>0
+        bwIm=curPlane;
+        bwIm(bwIm~=postLabel)=0;
+        bwIm(bwIm==postLabel)=1;
+        
+        stats=regionprops(bwIm,'Eccentricity','MajorAxisLength','MinorAxisLength');
+        segD=[segD;[stats.Eccentricity,stats.MajorAxisLength,stats.MinorAxisLength]];
+        
+    else
+    end
+    
+end
+
+end

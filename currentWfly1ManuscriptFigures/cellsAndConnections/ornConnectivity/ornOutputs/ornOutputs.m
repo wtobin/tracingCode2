@@ -53,7 +53,7 @@ for o=1:length(ORNs)
             
         else
             
-            %Check to see if the current PN is presynaptic at this connector
+            %Check to see if the current ORN is presynaptic at this connector
             if ORNs(o) == conns.(cell2mat(connFields(i))).pre
                 
                 %record the postsynaptic skel IDs
@@ -83,7 +83,7 @@ end
 for o=1:length(postSkel)
     
     for s=1:length(postSkel{o})
-       annCheck{o}(s)=ismember(postSkel{o}(s), annSkels);
+        annCheck{o}(s)=ismember(postSkel{o}(s), annSkels);
     end
     
     fractAnn(o)=sum(annCheck{o})/length(postSkel{o})
@@ -145,25 +145,25 @@ for p=1:length(ORNs)
     
 end
 
-% 
+%
 % order=[5,1,2,3,4];
-% 
+%
 % labels={'unk: ','ORN: ','LN: ','PN: ','unclassified: '};
 % explode=[0,0,0,1,1];
-% 
-% 
+%
+%
 % for i=1:5
-%     
+%
 %     subplot(2,3,i)
 % %     h=pie(idenCounts(order(i),:));
 % %     hText = findobj(h,'Type','text'); % text object handles
 % %     percentValues = get(hText,'String'); % percent values
 % %     combinedLabels=strcat(labels,percentValues');
 %     pie(idenCounts(order(i),:),explode)
-%    
-%     
+%
+%
 % end
-%     
+%
 % subplot(2,3,6)
 % legend(labels)
 
@@ -171,9 +171,9 @@ end
 
 labels={'ORN','PN','Multi-glomerular'};
 
-myC= [1 1 1 
-  0 0 1
-  0.87 0.80 0.47]; % y: ORN, b: PN, w: multi
+myC= [1 1 1
+    0 0 1
+    0.87 0.80 0.47]; % y: ORN, b: PN, w: multi
 
 %Raw Numbers
 figure()
@@ -222,22 +222,22 @@ saveas(gcf,'ornPostCategorization_fract')
 saveas(gcf,'ornPostCategorization_fract','epsc')
 
 % %% Pie chart of average across PNs
-% 
+%
 % figure()
 % h=pie(mean(normIden));
 % % title('Average Fractional Input')
 % set(gcf,'color','w')
-% 
+%
 % hp = findobj(h, 'Type', 'patch');
 % set(hp(1), 'facecolor', 'w');
 % set(hp(2), 'facecolor', 'b');
 % set(hp(3), 'facecolor', [0.87 0.80 0.47]);
-% 
+%
 % textInds=[2:2:8];
-% 
+%
 % for i=1:4
 %     h(textInds(i)).FontSize=16;
 % end
-% 
+%
 % mean(normIden)
 % std(normIden)/sqrt(length(normIden))

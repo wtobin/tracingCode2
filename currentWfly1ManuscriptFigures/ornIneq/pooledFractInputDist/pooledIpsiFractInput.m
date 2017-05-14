@@ -3,7 +3,8 @@
 
 %load orn to PN connectivity matrix
 
-load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript_Archive16March2016/ornToPn.mat')
+%load('~/Dropbox/htem_team/code/wtobin/tracingCode2/wfly1_Manuscript_Archive16March2016/ornToPn.mat')
+load('~/Documents/MATLAB/tracingCode2/wfly1_Manuscript_Archive16March2016/ornToPn.mat')
 
 ipsiConsL(1:27,1:3)=ornsToPn(1:27,[1,2,5]);
 ipsiConsR(1:26,1:2)=ornsToPn(28:end,[3,4]);

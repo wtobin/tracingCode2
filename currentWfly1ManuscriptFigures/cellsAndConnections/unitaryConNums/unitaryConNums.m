@@ -34,6 +34,9 @@ connFields=fieldnames(conns);
 
 %% Determine the number of contacts between all pairs of categorized neurons
 
+%***NOTE*** This should probably be broken out of this script and saved as
+%a seperate file
+
 % order leftPNs1-3: 1,2,5 and right PNs1-2: 4,3  % 151230 WCL corresponded to catmaid2
 
 %Find contact numbers for connections where ORNs are presynaptic
@@ -259,18 +262,41 @@ set(gcf,'color','w')
 % ornPnUnitaries{3}=pnToOrn(find(pnToOrn>3));
 % ornPnUnitaries{4}=ornToOrn(find(ornToOrn>3));
 
-ornPnUnitaries{1}=ornsToPn(find(ornsToPn>0));
-ornPnUnitaries{2}=pnToPn(find(pnToPn>0));
-ornPnUnitaries{3}=pnToOrn(find(pnToOrn>0));
-ornPnUnitaries{4}=ornsToOrn(find(ornsToOrn>0));
+%Store ipsi/contra orn-to-pn connection synapse numbers seperately
+oToPUnitaries_ipsi=[reshape(ornsToPn(1:27,[1,2,5]),numel(ornsToPn(1:27,[1,2,5])),1);...
+    reshape(ornsToPn(28:end,[3,4]),numel(ornsToPn(28:end,[3,4])),1)];
 
+oToPUnitaries_contra=[reshape(ornsToPn(1:27,[3,4]),numel(ornsToPn(1:27,[3,4])),1);...
+    reshape(ornsToPn(28:end,[1,2,5]),numel(ornsToPn(28:end,[1,2,5])),1)];
 
-for t=1:4
+%remove zeros associated w/ the unilateral orns
+oToPUnitaries_contra=oToPUnitaries_contra(oToPUnitaries_contra~=0);
+
+%Store all other synapse numbers in a cell array, excluding zeros
+ornPnUnitaries{1}=pnToPn(find(pnToPn>0));
+ornPnUnitaries{2}=pnToOrn(find(pnToOrn>0));
+ornPnUnitaries{3}=ornsToOrn(find(ornsToOrn>0));
+
+%Plot orn-to-pn counts
+jitterAmount = 0.25;
+jitterValuesX = 2*(rand(1,length([oToPUnitaries_ipsi]))-0.5)*jitterAmount;   %
+scatter(ones(1,length(oToPUnitaries_ipsi))+jitterValuesX,oToPUnitaries_ipsi,...
+    60,'k') %,[],'k')
+hold on
+
+jitterAmount = 0.25;
+jitterValuesX = 2*(rand(1,length([oToPUnitaries_contra]))-0.5)*jitterAmount;   %
+scatter(ones(1,length(oToPUnitaries_contra))+jitterValuesX,oToPUnitaries_contra,...
+    60,'k', 'filled')
+
+for t=1:3
 
 jitterAmount = 0.25;
 jitterValuesX = 2*(rand(1,length(ornPnUnitaries{t}))-0.5)*jitterAmount;   % +/-jitterAmount max
 
-scatter(t*ones(1,length(ornPnUnitaries{t}))+jitterValuesX,ornPnUnitaries{t}) %,[],'k')
+scatter((t+1)*ones(1,length(ornPnUnitaries{t}))+jitterValuesX, ornPnUnitaries{t},...
+    60, 'k') %,[],'k')
+
 hold on
 
 end
@@ -282,7 +308,7 @@ ax.XLim=[0 5];
 ax.YLim=[0 60];
 ax.XTick=[1:4];
 ax.XTickLabel={'ORN-->PN','PN-->PN','PN-->ORN','ORN-->ORN'};
-ax.FontSize=10;
+ax.FontSize=18;
 
 saveas(gcf,'uniConNums')
 saveas(gcf,'uniConNums','epsc')
