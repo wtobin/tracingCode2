@@ -102,7 +102,7 @@ saveas(gcf,'meanIpsiContraMiniAmps', 'epsc');
 
 %% Stats
 
-[h,p]=ttest(miniMeans(:,1),miniMeans(:,2))
+[h,p, ci, stats]=ttest(miniMeans(:,1),miniMeans(:,2))
 
 
 % 

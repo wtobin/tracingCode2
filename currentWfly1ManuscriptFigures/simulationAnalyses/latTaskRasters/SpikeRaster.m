@@ -5,7 +5,7 @@
 currentDir=pwd;
 
 %move to working Dir
-cd('~/nC_projects_retired160201/PN1LS_allORNs/simulations/latTask/results_fixedSpikeCount/real_L15_R12_rep650/')
+cd('~/nC_projects/PN1LS_allORNs/simulations/latTask/results_fixedSpikeCount/real_L15_R12_rep651/')
 
 %Load LEFT ORN spiketime
 load('spikeTimesL.mat')

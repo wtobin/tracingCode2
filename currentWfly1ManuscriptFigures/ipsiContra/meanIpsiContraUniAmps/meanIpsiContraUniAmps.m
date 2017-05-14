@@ -83,6 +83,8 @@ for p = 1:5
 end
 
 
+
+
 %% Plotting
 
 figure()
@@ -98,6 +100,7 @@ for p=1:5
         
         scatter([1 2],[mean(leftPNIpsiAmps(p,:)) mean(leftPNContraAmps(p,:))]...
             ,54,'Filled' ,'k')
+        [mean(leftPNIpsiAmps(p,:)) mean(leftPNContraAmps(p,:))]
         line([1 2 ], [mean(leftPNIpsiAmps(p,:)) mean(leftPNContraAmps(p,:))]...
             ,'Color', 'k', 'LineWidth',1)
         hold on
@@ -108,6 +111,7 @@ for p=1:5
     else
         scatter([1 2],[mean(rightPNIpsiAmps(rightCounter,:)) mean(rightPNContraAmps(rightCounter,:))]...
             ,54, 'Filled','k')
+        [mean(rightPNIpsiAmps(rightCounter,:)) mean(rightPNContraAmps(rightCounter,:))]
         line([1 2 ], [mean(rightPNIpsiAmps(rightCounter,:)) mean(rightPNContraAmps(rightCounter,:))]...
             ,'Color', 'k', 'LineWidth',1)
         
@@ -141,7 +145,7 @@ saveas(gcf,'meanIpsiContraUniAmps', 'epsc');
 
 %% Stats
 
-[h,p]=ttest(uniMeans(:,1),uniMeans(:,2))
+[h,p, ci, stats]=ttest(uniMeans(:,1),uniMeans(:,2))
 
 
 

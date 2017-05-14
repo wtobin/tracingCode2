@@ -1,7 +1,6 @@
 % The purpose of this code is to generate a connected scatter plot of  mean
 % uEPSP amp from ipsi and contra ORNs. This code relies on the product of
-% sensitivityAnalysis/generateUnitaries/pullCell1Parms/pullCell2ParmsUEPSPs.m
-% THIS CODE IS A SIMPLE COPY OF THAT IN THE MAIN FIG DIR
+% pulluEPSPs
 
 %% Load annotations and connectors
 
@@ -84,6 +83,8 @@ for p = 1:5
 end
 
 
+
+
 %% Plotting
 
 figure()
@@ -99,6 +100,7 @@ for p=1:5
         
         scatter([1 2],[mean(leftPNIpsiAmps(p,:)) mean(leftPNContraAmps(p,:))]...
             ,54,'Filled' ,'k')
+        
         line([1 2 ], [mean(leftPNIpsiAmps(p,:)) mean(leftPNContraAmps(p,:))]...
             ,'Color', 'k', 'LineWidth',1)
         hold on

@@ -142,7 +142,7 @@ saveas(gcf,'meanIpsiContraUniAmps', 'epsc');
 
 %% Stats
 
-[h,p]=ttest(uniMeans(:,1),uniMeans(:,2))
+[h,p,ci, stats]=ttest(uniMeans(:,1),uniMeans(:,2))
 
 
 

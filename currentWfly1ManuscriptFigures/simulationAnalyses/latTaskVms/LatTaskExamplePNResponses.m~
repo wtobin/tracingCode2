@@ -12,14 +12,14 @@ set(gcf,'Color','w')
 for i=1:5
     
     pn=PN_Names{i};
-    base=['/home/simulation/nC_projects/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/real_L15_R12_rep651/'];
+    base=['/home/simulation/nC_projects/',pn,'_allORNs/simulations/latTask/results_fixedSpikeCount/real_L15_R12_rep650/'];
     resultFiles=dir(base);
     
     if i==1
-        pnvm_working=importdata([base,resultFiles(4).name ]);
+        
+    pnvm_working=importdata([base,resultFiles(4).name ]);
     else
-        pnvm_working=importdata([base,resultFiles(3).name ]);
-    end
+    pnvm_working=importdata([base,resultFiles(4).name ]);
     
     
     if i<=3
